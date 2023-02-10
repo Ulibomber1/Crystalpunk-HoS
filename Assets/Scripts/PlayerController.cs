@@ -38,26 +38,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
 
-        float movementX = movementVector.x; //left right
-        float movementY = movementVector.y; //up down
-
-        /*float movementX = Input.GetAxis("Vertical");
-        float movementY = Input.GetAxis("Horizontal");*/  //I tried using old unity input system and it didn't change anything, but maybe i did it wrong
-
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward = forward.normalized;
-        right = right.normalized;
-
-        Vector3 forwardRelativeVerticalInput = movementX * forward;
-        Vector3 rightRelativeHorizontalInput = movementY * right;
-
-        Vector3 cameraRelativeMovement = forwardRelativeVerticalInput * rightRelativeHorizontalInput;
-        this.transform.Translate(cameraRelativeMovement, Space.World);
-
-
+        movementX = movementVector.x; //left right
+        movementY = movementVector.y; //up down
 
     }
 
@@ -74,9 +56,20 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward = forward.normalized;
+        right = right.normalized;
 
-        
+        Vector3 forwardRelativeVerticalInput = movementY * forward;
+        Vector3 rightRelativeHorizontalInput = movementX * right;
+
+        Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
+        //this.transform.Translate(cameraRelativeMovement, Space.World);
+        rb.AddForce(cameraRelativeMovement * speed);
+
 
         /* Vector3 movement = new Vector3(movementX, 0.0f, movementY);
          rb.AddForce(movement * speed);*/
