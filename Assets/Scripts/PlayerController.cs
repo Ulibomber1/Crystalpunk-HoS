@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
 
-        movementX = movementVector.x;
-        movementY = movementVector.y;
+        movementX = movementVector.x; //left right
+        movementY = movementVector.y; //up down
     }
 
     void SetCountText()
@@ -55,10 +55,32 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        rb.AddForce(movement * speed);
+        
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward = forward.normalized;
+        right = right.normalized;
 
-        if (rb.velocity.y == 0)
+        if(movementX != 0 || movementY != 0)
+        {
+            transform.rotation = Quaternion.LookRotation(forward * Time.deltaTime); //controls rotation, feels a bit jank
+        }
+        
+
+        Vector3 forwardRelativeVerticalInput = movementY * forward;
+        Vector3 rightRelativeHorizontalInput = movementX * right;
+
+        Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
+        //this.transform.Translate(cameraRelativeMovement, Space.World);
+        rb.AddForce(cameraRelativeMovement * speed);
+
+
+        /* Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+         rb.AddForce(movement * speed);*/
+
+        if (rb.velocity.y == 0) //dumb way of doing isGrounded, will fix
         {
             isGrounded = true;
         }
