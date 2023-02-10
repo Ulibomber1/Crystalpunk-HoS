@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
 
         movementX = movementVector.x; //left right
         movementY = movementVector.y; //up down
-
     }
 
     void SetCountText()
@@ -56,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up); //this line
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
         forward.y = 0;
