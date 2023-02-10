@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
         if(movementX != 0 || movementY != 0)
         {
-            transform.rotation = Quaternion.LookRotation(forward * Time.deltaTime); //this line is the thing causing tank controls
+            transform.rotation = Quaternion.LookRotation(forward * Time.deltaTime); //controls rotation, feels a bit jank
         }
         
 
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         /* Vector3 movement = new Vector3(movementX, 0.0f, movementY);
          rb.AddForce(movement * speed);*/
 
-        if (rb.velocity.y == 0)
+        if (rb.velocity.y == 0) //dumb way of doing isGrounded, will fix
         {
             isGrounded = true;
         }
