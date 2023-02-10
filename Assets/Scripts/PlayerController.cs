@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         forward = forward.normalized;
         right = right.normalized;
 
-        if(movementX != 0 || movementY != 0 && movementY > 0) //this code sucks but its better than nothing
+/*        if(movementX != 0 || movementY != 0 && movementY > 0) //this code sucks but its better than nothing
         {
             transform.rotation = Quaternion.LookRotation(forward); //controls rotation, feels a bit jank
         }
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(forward * -1); //makes the player face backwards
         }
-        
+        */
 
         Vector3 forwardRelativeVerticalInput = movementY * forward;
         Vector3 rightRelativeHorizontalInput = movementX * right;
@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
         //this.transform.Translate(cameraRelativeMovement, Space.World);
         rb.AddForce(cameraRelativeMovement * speed);
 
+        transform.rotation = Quaternion.LookRotation(cameraRelativeMovement); //a little bit better way of rotating player
 
         /* Vector3 movement = new Vector3(movementX, 0.0f, movementY);
          rb.AddForce(movement * speed);*/
