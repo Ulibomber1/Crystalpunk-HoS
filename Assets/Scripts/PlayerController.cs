@@ -55,13 +55,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up); //this line
+        
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
         forward.y = 0;
         right.y = 0;
         forward = forward.normalized;
         right = right.normalized;
+        transform.rotation = Quaternion.LookRotation(forward); //this line
 
         Vector3 forwardRelativeVerticalInput = movementY * forward;
         Vector3 rightRelativeHorizontalInput = movementX * right;
