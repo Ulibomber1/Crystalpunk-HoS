@@ -63,9 +63,13 @@ public class PlayerController : MonoBehaviour
         forward = forward.normalized;
         right = right.normalized;
 
-        if(movementX != 0 || movementY != 0)
+        if(movementX != 0 || movementY != 0 && movementY > 0) //this code sucks but its better than nothing
         {
-            transform.rotation = Quaternion.LookRotation(forward * Time.deltaTime); //controls rotation, feels a bit jank
+            transform.rotation = Quaternion.LookRotation(forward); //controls rotation, feels a bit jank
+        }
+        else if (movementX != 0 || movementY != 0 && movementY < 0)
+        {
+            transform.rotation = Quaternion.LookRotation(forward * -1); //makes the player face backwards
         }
         
 
