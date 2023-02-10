@@ -62,7 +62,12 @@ public class PlayerController : MonoBehaviour
         right.y = 0;
         forward = forward.normalized;
         right = right.normalized;
-        transform.rotation = Quaternion.LookRotation(forward); //this line
+
+        if(movementX != 0 || movementY != 0)
+        {
+            transform.rotation = Quaternion.LookRotation(forward * Time.deltaTime); //this line is the thing causing tank controls
+        }
+        
 
         Vector3 forwardRelativeVerticalInput = movementY * forward;
         Vector3 rightRelativeHorizontalInput = movementX * right;
