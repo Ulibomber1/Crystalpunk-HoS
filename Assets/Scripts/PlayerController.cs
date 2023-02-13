@@ -13,8 +13,9 @@ public class PlayerController : MonoBehaviour
     public float haltingDrag;
     public float accelerationForce;
     public float maxVelocity;
+    bool jumping;
 
-    private bool isGrounded = false;
+    //private bool isGrounded = false;
     private Rigidbody rb;
     private int count;
     private int deathcount;
@@ -23,6 +24,10 @@ public class PlayerController : MonoBehaviour
     public GameObject winTextObject;
 
     private Vector2 movementVector;
+
+    public Vector3 boxSize;
+    public float maxDistance;
+    public LayerMask layerMask;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +39,8 @@ public class PlayerController : MonoBehaviour
 
         SetCountText();
         winTextObject.SetActive(false);
+
+        
     }
 
     void OnMove(InputValue movementValue)
@@ -69,6 +76,12 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(cameraRelativeMovement); //a little bit better way of rotating player
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position-transform.up*maxDistance, boxSize);
+    }
+
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
@@ -83,21 +96,39 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayerRelativeToCamera();
-        
-        if (rb.velocity.y == 0) //dumb way of doing isGrounded, will fix
+
+        Debug.Log("Boing");
+        if (GroundCheck() && jumping)
         {
-            isGrounded = true;
+
+
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+        }
+
+        //GroundCheck();
+        /*        if (rb.velocity.y == 0) //dumb way of doing isGrounded, will fix
+                {
+                    isGrounded = true;
+                }
+                else
+                    isGrounded = false;*/
+    }
+
+    bool GroundCheck()
+    {
+        if(Physics.BoxCast(transform.position,boxSize,-transform.up,transform.rotation,maxDistance,layerMask))
+        {
+            return true;
         }
         else
-            isGrounded = false;
+        {
+            return false;
+        }
     }
 
     void OnJump()
     {
-        if (isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-        }
+        jumping = true;
     }
 
     void OnFire()
