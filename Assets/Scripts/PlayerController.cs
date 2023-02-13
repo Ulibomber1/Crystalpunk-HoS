@@ -7,10 +7,12 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     
-    public float speed = 0;
     public TextMeshProUGUI countText;
     public TextMeshProUGUI deathCountText;
     public float jumpHeight = 0;
+    public float haltingDrag;
+    public float accelerationForce;
+    public float maxVelocity;
 
     private bool isGrounded = false;
     private Rigidbody rb;
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private float movementY;
     public GameObject winTextObject;
 
-
+    private Vector2 movementVector;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +38,35 @@ public class PlayerController : MonoBehaviour
 
     void OnMove(InputValue movementValue)
     {
-        Vector2 movementVector = movementValue.Get<Vector2>();
+        movementVector = movementValue.Get<Vector2>();
+    }
+    void MovePlayerRelativeToCamera()
+    {
+        if (movementVector.magnitude == 0.0f)
+        {
+            rb.drag = haltingDrag;
+            return;
+        }
+        rb.drag = 0.0f;
 
-        movementX = movementVector.x; //left right
-        movementY = movementVector.y; //up down
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward = forward.normalized;
+        right = right.normalized;
+
+        Vector3 forwardRelativeVerticalInput = movementVector.normalized.y * forward;
+        Vector3 rightRelativeHorizontalInput = movementVector.normalized.x * right;
+
+        Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
+        rb.AddForce(cameraRelativeMovement.normalized * accelerationForce);
+        if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
+        {
+            rb.velocity = rb.velocity.normalized * maxVelocity;
+        }
+
+        transform.rotation = Quaternion.LookRotation(cameraRelativeMovement); //a little bit better way of rotating player
     }
 
     void SetCountText()
@@ -55,43 +82,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        MovePlayerRelativeToCamera();
         
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward = forward.normalized;
-        right = right.normalized;
-
-/*        if(movementX != 0 || movementY != 0 && movementY > 0) //this code sucks but its better than nothing
-        {
-            transform.rotation = Quaternion.LookRotation(forward); //controls rotation, feels a bit jank
-        }
-        else if (movementX != 0 || movementY != 0 && movementY < 0)
-        {
-            transform.rotation = Quaternion.LookRotation(forward * -1); //makes the player face backwards
-        }
-        */
-
-        Vector3 forwardRelativeVerticalInput = movementY * forward;
-        Vector3 rightRelativeHorizontalInput = movementX * right;
-
-        Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
-        //this.transform.Translate(cameraRelativeMovement, Space.World);
-        rb.AddForce(cameraRelativeMovement * speed);
-
-        transform.rotation = Quaternion.LookRotation(cameraRelativeMovement); //a little bit better way of rotating player
-
-        /* Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-         rb.AddForce(movement * speed);*/
-
         if (rb.velocity.y == 0) //dumb way of doing isGrounded, will fix
         {
             isGrounded = true;
         }
         else
             isGrounded = false;
-
     }
 
     void OnJump()

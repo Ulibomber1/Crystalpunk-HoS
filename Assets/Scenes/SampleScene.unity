@@ -621,10 +621,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438756f2867984d46924f9b0692471f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   countText: {fileID: 1698130261}
   deathCountText: {fileID: 777579925}
   jumpHeight: 5
+  haltingDrag: 5
+  accelerationForce: 30
+  maxVelocity: 10
   winTextObject: {fileID: 85326288}
 --- !u!54 &101439526
 Rigidbody:
