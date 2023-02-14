@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public float haltingDrag;
     public float accelerationForce;
     public float maxVelocity;
-    bool jumping;
 
     //private bool isGrounded = false;
     private Rigidbody rb;
@@ -49,13 +48,6 @@ public class PlayerController : MonoBehaviour
     }
     void MovePlayerRelativeToCamera()
     {
-        if (movementVector.magnitude == 0.0f)
-        {
-            rb.drag = haltingDrag;
-            return;
-        }
-        rb.drag = 0.0f;
-
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
         forward.y = 0;
@@ -96,27 +88,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayerRelativeToCamera();
-
-        Debug.Log("Boing");
-        if (GroundCheck() && jumping)
-        {
-
-
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-        }
-
-        //GroundCheck();
-        /*        if (rb.velocity.y == 0) //dumb way of doing isGrounded, will fix
-                {
-                    isGrounded = true;
-                }
-                else
-                    isGrounded = false;*/
     }
 
     bool GroundCheck()
     {
-        if(Physics.BoxCast(transform.position,boxSize,-transform.up,transform.rotation,maxDistance,layerMask))
+        if(Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask))
         {
             return true;
         }
@@ -128,7 +104,11 @@ public class PlayerController : MonoBehaviour
 
     void OnJump()
     {
-        jumping = true;
+        if (GroundCheck())
+        {
+            Debug.Log("Boing");
+            rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+        }
     }
 
     void OnFire()
