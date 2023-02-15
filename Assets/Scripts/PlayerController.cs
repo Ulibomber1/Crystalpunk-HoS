@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = rb.velocity.normalized * maxVelocity;
         }
 
-        transform.rotation = Quaternion.LookRotation(cameraRelativeMovement); //a little bit better way of rotating player
+        transform.rotation = Quaternion.LookRotation(cameraRelativeMovement * Time.deltaTime); //a little bit better way of rotating player
     }
 
     void OnDrawGizmos()
@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
     void OnFire()
     {
         Debug.Log("Pew");
+
     }
 
     void OnTriggerEnter(Collider other)
