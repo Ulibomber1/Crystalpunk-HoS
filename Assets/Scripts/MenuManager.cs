@@ -20,7 +20,7 @@ public class MenuManager : MonoBehaviour
         settingsMenu.SetActive(false);
     }
 
-    public void BackToMain()
+    public void BackToMainMenu()
     {
         creditsMenu.SetActive(false);
         mainMenu.SetActive(true);
@@ -32,5 +32,11 @@ public class MenuManager : MonoBehaviour
         creditsMenu.SetActive(false);
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("Game is exiting");
     }
 }
