@@ -34,6 +34,11 @@ public class MenuManager : MonoBehaviour
         settingsMenu.SetActive(true);
     }
 
+    public void OpenSave()
+    {
+
+    }
+
     public void Quit()
     {
         Application.Quit();
