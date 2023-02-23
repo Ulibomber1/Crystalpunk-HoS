@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour
     private float movementY;
     public GameObject winTextObject;
 
-    private Vector2 movementVector;
+    private Vector3 movementVector;
+    private Quaternion rotationResult;
 
     public Vector3 boxSize;
     public float maxDistance;
@@ -42,12 +43,15 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    void OnMove(InputValue movementValue)
+    private Vector3 VectorLocalToRelative(Vector3 vector)
     {
+<<<<<<< Updated upstream
         movementVector = movementValue.Get<Vector2>();
     }
     void MovePlayerRelativeToCamera()
     {
+=======
+>>>>>>> Stashed changes
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
         forward.y = 0;
@@ -55,15 +59,42 @@ public class PlayerController : MonoBehaviour
         forward = forward.normalized;
         right = right.normalized;
 
-        Vector3 forwardRelativeVerticalInput = movementVector.normalized.y * forward;
-        Vector3 rightRelativeHorizontalInput = movementVector.normalized.x * right;
+        Vector3 forwardRelativeVerticalInput = vector.normalized.y * forward;
+        Vector3 rightRelativeHorizontalInput = vector.normalized.x * right;
 
         Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
-        rb.AddForce(cameraRelativeMovement.normalized * accelerationForce);
+        return cameraRelativeMovement;
+    }
+
+    void OnMove(InputValue movementValue)
+    {
+        Vector2 readVector = movementValue.Get<Vector2>();
+        Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
+        movementVector = VectorLocalToRelative(toConvert);
+        Vector3 relative = (transform.position + movementVector) - transform.position;
+        rotationResult = Quaternion.LookRotation(relative, Vector3.up);
+    }
+    void MovePlayerRelativeToCamera()
+    {
+        if (movementVector.magnitude == 0.0f)
+        {
+            rb.drag = haltingDrag;
+            rb.constraints = RigidbodyConstraints.FreezeRotationY |
+                             RigidbodyConstraints.FreezeRotationX |
+                             RigidbodyConstraints.FreezeRotationZ;
+            return;
+        }
+        rb.drag = 0.0f;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX |
+                         RigidbodyConstraints.FreezeRotationZ;
+
+        rb.AddForce(movementVector.normalized * accelerationForce);
+        transform.rotation = rotationResult;
         if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
         }
+<<<<<<< Updated upstream
 
         transform.rotation = Quaternion.LookRotation(cameraRelativeMovement * Time.deltaTime); //a little bit better way of rotating player
     }
@@ -72,6 +103,8 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position-transform.up*maxDistance, boxSize);
+=======
+>>>>>>> Stashed changes
     }
 
     void SetCountText()
