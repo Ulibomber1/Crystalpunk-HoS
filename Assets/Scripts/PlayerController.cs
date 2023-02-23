@@ -39,19 +39,10 @@ public class PlayerController : MonoBehaviour
 
         SetCountText();
         winTextObject.SetActive(false);
-
-        
     }
 
     private Vector3 VectorLocalToRelative(Vector3 vector)
     {
-<<<<<<< Updated upstream
-        movementVector = movementValue.Get<Vector2>();
-    }
-    void MovePlayerRelativeToCamera()
-    {
-=======
->>>>>>> Stashed changes
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
         forward.y = 0;
@@ -59,7 +50,7 @@ public class PlayerController : MonoBehaviour
         forward = forward.normalized;
         right = right.normalized;
 
-        Vector3 forwardRelativeVerticalInput = vector.normalized.y * forward;
+        Vector3 forwardRelativeVerticalInput = vector.normalized.z * forward;
         Vector3 rightRelativeHorizontalInput = vector.normalized.x * right;
 
         Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
@@ -74,6 +65,7 @@ public class PlayerController : MonoBehaviour
         Vector3 relative = (transform.position + movementVector) - transform.position;
         rotationResult = Quaternion.LookRotation(relative, Vector3.up);
     }
+
     void MovePlayerRelativeToCamera()
     {
         if (movementVector.magnitude == 0.0f)
@@ -94,17 +86,12 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
         }
-<<<<<<< Updated upstream
-
-        transform.rotation = Quaternion.LookRotation(cameraRelativeMovement * Time.deltaTime); //a little bit better way of rotating player
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position-transform.up*maxDistance, boxSize);
-=======
->>>>>>> Stashed changes
     }
 
     void SetCountText()
