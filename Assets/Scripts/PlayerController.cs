@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     //private bool isGrounded = false;
     private Rigidbody rb;
     private int count;
-    private int deathcount;
+    public int lifecount;
     private float movementX;
     private float movementY;
     public GameObject winTextObject;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
         count = 0;
-        deathcount = 0;
+        lifecount = 3;
 
         SetCountText();
         winTextObject.SetActive(false);
@@ -96,8 +96,8 @@ public class PlayerController : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
-        deathCountText.text = "Deaths: " + deathcount.ToString();
+        countText.text = "Gears: " + count.ToString();
+        deathCountText.text = "Lives: " + lifecount.ToString();
 
         if (count >= 6)
         {
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(0f, 0.5f, 0f);
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            deathcount = deathcount + 1;
+            lifecount = lifecount - 1;
             SetCountText();
         }
     }
