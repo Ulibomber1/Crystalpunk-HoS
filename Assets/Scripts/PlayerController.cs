@@ -6,6 +6,10 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public int maxHealth = 10;
+    public int currentHealth;
+    public HealthBar healthBar;
     
     public TextMeshProUGUI countText;
     public TextMeshProUGUI deathCountText;
@@ -39,7 +43,9 @@ public class PlayerController : MonoBehaviour
         SetCountText();
         winTextObject.SetActive(false);
 
-        
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
     }
 
     void OnMove(InputValue movementValue)
@@ -134,6 +140,21 @@ public class PlayerController : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             deathcount = deathcount + 1;
             SetCountText();
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth = currentHealth - damage;
+
+        healthBar.SetHealth(currentHealth);
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            TakeDamage(2);
         }
     }
 }
