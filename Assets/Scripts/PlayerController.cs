@@ -153,6 +153,21 @@ public class PlayerController : MonoBehaviour
 
         //The new player health that was subtracted is set
         healthBar.SetHealth(currentHealth);
+
+        //When the player loses all health their position will be reset and the death count will increase by +1
+        //The player's health is reset back to it's max value
+        //The health slider is also reset to a full bar
+        if(currentHealth == 0)
+        {
+            transform.position = new Vector3(0f, 0.5f, 0f);
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            deathcount = deathcount + 1;
+            SetCountText();
+
+            currentHealth = maxHealth;
+            healthBar.SetMaxHealth(maxHealth);
+        }
     }
 
     void Update()
