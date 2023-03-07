@@ -5,10 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 
 public class PlayerController : MonoBehaviour
-{
-    
-    public TextMeshProUGUI countText;
-    public TextMeshProUGUI deathCountText;
+{ 
     public float jumpHeight = 0;
     public float haltingDrag;
     public float accelerationForce;
@@ -16,11 +13,8 @@ public class PlayerController : MonoBehaviour
 
     //private bool isGrounded = false;
     private Rigidbody rb;
-    private int count;
-    public int lifecount;
     private float movementX;
     private float movementY;
-    public GameObject winTextObject;
 
     private Vector3 movementVector;
     private Quaternion rotationResult;
@@ -29,16 +23,49 @@ public class PlayerController : MonoBehaviour
     public float maxDistance;
     public LayerMask layerMask;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnJump()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        rb = GetComponent<Rigidbody>();
-        count = 0;
-        lifecount = 3;
+        if (GroundCheck())
+        {
+            Debug.Log("Boing");
+            rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+        }
+    }
 
-        SetCountText();
-        winTextObject.SetActive(false);
+    void OnFire()
+    {
+        Debug.Log("Pew"); // Projectile-based shooting
+        // Disable projectile when they hit something
+    }
+
+    void OnMove(InputValue movementValue)
+    {
+        Vector2 readVector = movementValue.Get<Vector2>();
+        Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
+        movementVector = VectorLocalToRelative(toConvert);
+        Vector3 relative = (transform.position + movementVector) - transform.position;
+        rotationResult = Quaternion.LookRotation(relative, Vector3.up);
+    }
+
+    void MovePlayerRelativeToCamera()
+    {
+        if (movementVector.magnitude == 0.0f)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotationY |
+                             RigidbodyConstraints.FreezeRotationX |
+                             RigidbodyConstraints.FreezeRotationZ;
+            return;
+        }
+        rb.constraints = RigidbodyConstraints.FreezeRotationX |
+                         RigidbodyConstraints.FreezeRotationZ;
+
+        rb.AddForce(movementVector.normalized * accelerationForce);
+        transform.rotation = rotationResult;
+
+        if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
+        {
+            rb.velocity = rb.velocity.normalized * maxVelocity;
+        }
     }
 
     private Vector3 VectorLocalToRelative(Vector3 vector)
@@ -57,62 +84,9 @@ public class PlayerController : MonoBehaviour
         return cameraRelativeMovement;
     }
 
-    void OnMove(InputValue movementValue)
-    {
-        Vector2 readVector = movementValue.Get<Vector2>();
-        Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
-        movementVector = VectorLocalToRelative(toConvert);
-        Vector3 relative = (transform.position + movementVector) - transform.position;
-        rotationResult = Quaternion.LookRotation(relative, Vector3.up);
-    }
-
-    void MovePlayerRelativeToCamera()
-    {
-        if (movementVector.magnitude == 0.0f)
-        {
-            rb.drag = haltingDrag;
-            rb.constraints = RigidbodyConstraints.FreezeRotationY |
-                             RigidbodyConstraints.FreezeRotationX |
-                             RigidbodyConstraints.FreezeRotationZ;
-            return;
-        }
-        rb.drag = 0.0f;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX |
-                         RigidbodyConstraints.FreezeRotationZ;
-
-        rb.AddForce(movementVector.normalized * accelerationForce);
-        transform.rotation = rotationResult;
-        if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
-        {
-            rb.velocity = rb.velocity.normalized * maxVelocity;
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(transform.position-transform.up*maxDistance, boxSize);
-    }
-
-    void SetCountText()
-    {
-        countText.text = "Gears: " + count.ToString();
-        deathCountText.text = "Lives: " + lifecount.ToString();
-
-        if (count >= 6)
-        {
-            winTextObject.SetActive(true);
-        }
-    }
-
-    void FixedUpdate()
-    {
-        MovePlayerRelativeToCamera();
-    }
-
     bool GroundCheck()
     {
-        if(Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask))
+        if (Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask))
         {
             return true;
         }
@@ -122,19 +96,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnJump()
+    // Start is called before the first frame update
+    void Start()
     {
-        if (GroundCheck())
-        {
-            Debug.Log("Boing");
-            rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
-        }
+        Cursor.lockState = CursorLockMode.Locked;
+        rb = GetComponent<Rigidbody>();
     }
 
-    void OnFire()
+    void FixedUpdate()
     {
-        Debug.Log("Pew");
-
+        MovePlayerRelativeToCamera();
     }
 
     void OnTriggerEnter(Collider other)
@@ -142,9 +113,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
-            count = count + 1;
-
-            SetCountText();
         }
 
         if (other.gameObject.CompareTag("Void"))
@@ -152,8 +120,12 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(0f, 0.5f, 0f);
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            lifecount = lifecount - 1;
-            SetCountText();
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
     }
 }
