@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
         Vector2 readVector = movementValue.Get<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
         movementVector = VectorLocalToRelative(toConvert);
+        VectorToQuaternion(movementVector);
+    }
+
+    void VectorToQuaternion(Vector3 movementVector)
+    {
         Vector3 relative = (transform.position + movementVector) - transform.position;
         rotationResult = Quaternion.LookRotation(relative, Vector3.up);
     }
@@ -60,6 +65,7 @@ public class PlayerController : MonoBehaviour
                          RigidbodyConstraints.FreezeRotationZ;
 
         rb.AddForce(movementVector.normalized * accelerationForce);
+        VectorToQuaternion(movementVector);
         transform.rotation = rotationResult;
 
         if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
