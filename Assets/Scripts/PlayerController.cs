@@ -2,22 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 public class PlayerController : MonoBehaviour
 { 
     public float jumpHeight = 0;
-    public float haltingDrag;
-    public float accelerationForce;
+    public float playerSpeed;
     public float maxVelocity;
 
     //private bool isGrounded = false;
     private Rigidbody rb;
-    private float movementX;
-    private float movementY;
-
     private Vector3 movementVector;
-    private Quaternion rotationResult;
 
     public Vector3 boxSize;
     public float maxDistance;
@@ -36,6 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Pew"); // Projectile-based shooting
         // Disable projectile when they hit something
+        // Here, we only instantiate the projectile
     }
 
     void OnLook(InputValue inputValue)
@@ -47,14 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 readVector = movementValue.Get<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
-        movementVector = VectorLocalToRelative(toConvert);
-        rotationResult = VectorToQuaternion(movementVector);
-    }
-
-    Quaternion VectorToQuaternion(Vector3 movementVector)
-    {
-        Vector3 relative = (transform.position + movementVector) - transform.position;
-        return Quaternion.LookRotation(relative, Vector3.up);
+        movementVector = toConvert;
     }
 
     void MovePlayerRelativeToCamera()
@@ -69,17 +57,8 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotationX |
                          RigidbodyConstraints.FreezeRotationZ;
 
-        rb.AddForce(movementVector.normalized * accelerationForce);
-        transform.rotation = rotationResult;
+        movementVector = movementVector.normalized * playerSpeed;
 
-        if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
-        {
-            rb.velocity = rb.velocity.normalized * maxVelocity;
-        }
-    }
-
-    private Vector3 VectorLocalToRelative(Vector3 vector)
-    {
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
         forward.y = 0;
@@ -87,11 +66,18 @@ public class PlayerController : MonoBehaviour
         forward = forward.normalized;
         right = right.normalized;
 
-        Vector3 forwardRelativeVerticalInput = vector.normalized.z * forward;
-        Vector3 rightRelativeHorizontalInput = vector.normalized.x * right;
+        Vector3 forwardRelativeVerticalInput = movementVector.z * forward;
+        Vector3 rightRelativeHorizontalInput = movementVector.x * right;
 
         Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
-        return cameraRelativeMovement;
+        rb.velocity = new Vector3(cameraRelativeMovement.x, rb.velocity.y, cameraRelativeMovement.z);
+        transform.forward = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+        /* // May be deprecated
+        if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
+        {
+            rb.velocity = rb.velocity.normalized * maxVelocity;
+        }*/
     }
 
     bool GroundCheck()
