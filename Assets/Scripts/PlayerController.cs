@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     //private bool isGrounded = false;
     private Rigidbody rb;
     private Vector3 movementVector;
+    private Quaternion rotationResult;
 
     public Vector3 boxSize;
     public float maxDistance;
@@ -45,6 +46,12 @@ public class PlayerController : MonoBehaviour
         movementVector = toConvert;
     }
 
+    private Quaternion VectorToQuaternion(Vector3 movementVector)
+    {
+        Vector3 relative = (transform.position + movementVector) - transform.position;
+        return Quaternion.LookRotation(relative, Vector3.up);
+    }
+
     void MovePlayerRelativeToCamera()
     {
         if (movementVector.magnitude == 0.0f)
@@ -70,14 +77,18 @@ public class PlayerController : MonoBehaviour
         Vector3 rightRelativeHorizontalInput = movementVector.x * right;
 
         Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
-        rb.velocity = new Vector3(cameraRelativeMovement.x, rb.velocity.y, cameraRelativeMovement.z);
-        transform.forward = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        rotationResult = VectorToQuaternion(cameraRelativeMovement);
 
-        /* // May be deprecated
+        //rb.velocity = new Vector3(cameraRelativeMovement.x, rb.velocity.y, cameraRelativeMovement.z);
+        rb.AddForce(cameraRelativeMovement);
+        //transform.forward = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        transform.rotation = rotationResult;
+
+         // May be deprecated
         if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
-        }*/
+        }
     }
 
     bool GroundCheck()
