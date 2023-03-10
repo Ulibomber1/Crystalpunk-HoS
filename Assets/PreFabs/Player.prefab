@@ -262,8 +262,8 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   healthBar: {fileID: 0}
-  jumpHeight: 5
-  playerSpeed: 10
+  jumpHeight: 10
+  playerSpeed: 45
   maxVelocity: 15
   boxSize: {x: 1, y: 0.2, z: 1}
   maxDistance: 1
