@@ -250,12 +250,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gear (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 1446860067171003870, guid: 5ccf789edd4a57c41bd78efc88d03901,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -2432090755550338912, guid: e3070cc6301621440835ae10924cfcd1,
-        type: 3}
     - target: {fileID: 1446860067171003871, guid: 5ccf789edd4a57c41bd78efc88d03901,
         type: 3}
       propertyPath: m_RootOrder
@@ -811,7 +805,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.06370128, y: 0.000000034342868, z: -0.0000000021921367, w: 0.99796903}
+  m_LocalRotation: {x: 0.06370128, y: -0.000000034342868, z: 0.0000000021921367, w: 0.99796903}
   m_LocalPosition: {x: 0, y: 2, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1148,12 +1142,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gear (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 1446860067171003870, guid: 5ccf789edd4a57c41bd78efc88d03901,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -2432090755550338912, guid: e3070cc6301621440835ae10924cfcd1,
-        type: 3}
     - target: {fileID: 1446860067171003871, guid: 5ccf789edd4a57c41bd78efc88d03901,
         type: 3}
       propertyPath: m_RootOrder
@@ -1718,7 +1706,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804461203}
-  m_LocalRotation: {x: 0.029125324, y: 0.000000017299321, z: -5.040622e-10, w: 0.9995758}
+  m_LocalRotation: {x: 0.029125322, y: -0.000000017000874, z: 4.9536614e-10, w: 0.9995758}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1929,12 +1917,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gear (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1446860067171003870, guid: 5ccf789edd4a57c41bd78efc88d03901,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -2432090755550338912, guid: e3070cc6301621440835ae10924cfcd1,
-        type: 3}
     - target: {fileID: 1446860067171003871, guid: 5ccf789edd4a57c41bd78efc88d03901,
         type: 3}
       propertyPath: m_RootOrder
@@ -2544,7 +2526,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311362360}
-  m_LocalRotation: {x: 0.06370128, y: 0.000000017171432, z: -0.0000000010960685, w: 0.99796903}
+  m_LocalRotation: {x: 0.06370128, y: -0.000000017171432, z: 0.0000000010960685, w: 0.99796903}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2806,12 +2788,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gear (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 1446860067171003870, guid: 5ccf789edd4a57c41bd78efc88d03901,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -2432090755550338912, guid: e3070cc6301621440835ae10924cfcd1,
-        type: 3}
     - target: {fileID: 1446860067171003871, guid: 5ccf789edd4a57c41bd78efc88d03901,
         type: 3}
       propertyPath: m_RootOrder
@@ -3044,12 +3020,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gear (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 1446860067171003870, guid: 5ccf789edd4a57c41bd78efc88d03901,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -2432090755550338912, guid: e3070cc6301621440835ae10924cfcd1,
-        type: 3}
     - target: {fileID: 1446860067171003871, guid: 5ccf789edd4a57c41bd78efc88d03901,
         type: 3}
       propertyPath: m_RootOrder
