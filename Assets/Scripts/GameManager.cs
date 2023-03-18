@@ -8,6 +8,10 @@ public delegate void OnStateChangeHandler();
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private string hubWorldSceneName;
+    [SerializeField] private string levelZeroSceneName;
+    [SerializeField] private string mainMenuSceneName;
+
     // Singleton Pattern
     protected GameManager() { }
     private static GameManager instance = null;
@@ -39,48 +43,108 @@ public class GameManager : MonoBehaviour
     }
     // Singleton Pattern End
 
-    
+
     public void ChangeScene(string sceneName)
     {
         switch (gameState)
         {
             case GameState.MAIN_MENU:
-                // Change to a level based upon save file
+                ChangeBasedOnSave();
                 break;
             case GameState.LEVEL_0:
-                // Change to Hub World, nothing else
+                ChangeFromLevel();
                 break;
             case GameState.HUB_WORLD:
-                // Change to a level but cannot go to level 0
+                ChangeFromHub();
                 break;
             case GameState.LEVEL_FACTORY:
-                // Change to Hub World, nothing else
+                ChangeFromLevel();
                 break;
             case GameState.LEVEL_LAVA:
-                // Change to Hub World, nothing else
+                ChangeFromLevel();
                 break;
             case GameState.LEVEL_AIR:
-                // Change to Hub World, nothing else
+                ChangeFromLevel();
                 break;
             case GameState.PAUSED:
-                // Change to either main menu or Hub World, nothing else
+                ChangeFromPause();
                 break;
             case GameState.GAME_OVER:
-                // Change to Hub World, restart scene, or go to Main Menu
+                ChangeFromGameOver();
                 break;
         }
 
         void ChangeBasedOnSave()
         {
-
+            if (sceneName != mainMenuSceneName)
+            {
+                Debug.LogError("Cannot change based on a save file from anywhere except the main menu.");
+                return;
+            }
+            // Need to load save, then intialize the scene using that save data
         }
 
-        void ChangeSpecific(string sceneName)
+        void ChangeFromGameOver()
         {
-
+            if (sceneName != hubWorldSceneName || sceneName != mainMenuSceneName || sceneName != SceneManager.GetActiveScene().name)
+            {
+                Debug.LogError("Cannot change from " + SceneManager.GetActiveScene().name + " to " + sceneName + ".");
+                return;
+            }
+            else if (sceneName == SceneManager.GetActiveScene().name)
+            {
+                RestartCurrent();
+                return;
+            }
+            SceneManager.LoadScene(sceneName);
         }
 
-        // only here so I can move it to other places in code
-        SceneManager.LoadScene(sceneName);
+        void ChangeFromHub()
+        {
+            if (SceneManager.GetActiveScene().name != hubWorldSceneName)
+            {
+                Debug.LogError("Cannot change to " + sceneName + " from a non-hub scene.\n" +
+                    "Make sure the hubWorldSceneName is intitialized properly.");
+                return;
+            }
+            else if (sceneName == levelZeroSceneName)
+            {
+                Debug.LogError("Cannot change from hub world to Level 0. " +
+                    "Also make sure Level Zero Scene Name is set properly.");
+                return;
+            }
+            // save player state first, then load the scene
+            SceneManager.LoadScene(sceneName);
+        }
+
+        void ChangeFromLevel()
+        {
+            if (sceneName != hubWorldSceneName)
+            {
+                Debug.LogError("Cannot change to " + sceneName +
+                               " from a from a level.\n" +
+                               "Make sure the call to ChangeFromLevel() is" +
+                               "getting the Hub World's scene name as its parameter.");
+                return;
+            }
+            // Before scene change, save player stats/equipment except for HP
+            SceneManager.LoadScene(sceneName);
+        }
+
+        void RestartCurrent()
+        {
+            // initialize the player to last saved state first
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        void ChangeFromPause() 
+        {
+            if (sceneName != hubWorldSceneName || sceneName != mainMenuSceneName)
+            {
+                Debug.LogError("Cannot change from " + SceneManager.GetActiveScene().name + " to " + sceneName + ".");
+                return;
+            }
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }
