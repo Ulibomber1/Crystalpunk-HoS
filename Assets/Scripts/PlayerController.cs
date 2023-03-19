@@ -179,4 +179,9 @@ public class PlayerController : MonoBehaviour
             PlayerDamage(2);
         }
     }
+
+    private void OnDestroy()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
 }

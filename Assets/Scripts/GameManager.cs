@@ -1,10 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 using System.Collections;
 
-public enum GameState { MAIN_MENU, HUB_WORLD, LEVEL_0, LEVEL_FACTORY, LEVEL_LAVA, LEVEL_AIR, PAUSED, GAME_OVER}
-
-public delegate void OnStateChangeHandler();
+public enum GameState { MAIN_MENU, 
+                        HUB_WORLD, 
+                        LEVEL_0, 
+                        LEVEL_FACTORY,
+                        LEVEL_LAVA, 
+                        LEVEL_AIR, 
+                        PAUSED, 
+                        GAME_OVER}
 
 public class GameManager : MonoBehaviour
 {
@@ -12,37 +18,42 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string levelZeroSceneName;
     [SerializeField] private string mainMenuSceneName;
 
-    // Singleton Pattern
-    protected GameManager() { }
-    private static GameManager instance = null;
-    public event OnStateChangeHandler OnStateChange;
-    public GameState gameState { get; private set; }
-
-    public static GameManager Instance
+    // New Singleton Pattern
+    public static GameManager Instance { get; private set; }
+    private void Awake()
     {
-        get
+        if (Instance != null && Instance != this)
         {
-            if (GameManager.instance == null)
-            {
-                DontDestroyOnLoad(GameManager.instance);
-                GameManager.instance = new GameManager { };
-            }
-            return GameManager.instance;
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(Instance);
         }
     }
+    // End of new Singleton Pattern
 
+    public GameState gameState { get; private set; }
     public void SetGameState(GameState state)
     {
-        this.gameState = state;
-        OnStateChange();
+        gameState = state;
     }
 
     public void OnApplicationQuit()
     {
-        GameManager.instance = null;
+        GameManager.Instance = null;
     }
-    // Singleton Pattern End
 
+    public void Start()
+    {
+        SetGameState(GameState.MAIN_MENU);
+    }
+
+    public void Update()
+    {
+        // Game Logic may occur here
+    }
 
     public void ChangeScene(string sceneName)
     {
@@ -76,12 +87,15 @@ public class GameManager : MonoBehaviour
 
         void ChangeBasedOnSave()
         {
-            if (sceneName != mainMenuSceneName)
+            if (SceneManager.GetActiveScene().name != mainMenuSceneName)
             {
                 Debug.LogError("Cannot change based on a save file from anywhere except the main menu.");
                 return;
             }
             // Need to load save, then intialize the scene using that save data
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+            // Temporary:
+            SetGameState(GameState.HUB_WORLD);
         }
 
         void ChangeFromGameOver()
@@ -115,6 +129,8 @@ public class GameManager : MonoBehaviour
             }
             // save player state first, then load the scene
             SceneManager.LoadScene(sceneName);
+            // temporary:
+            SetGameState(GameState.MAIN_MENU);
         }
 
         void ChangeFromLevel()

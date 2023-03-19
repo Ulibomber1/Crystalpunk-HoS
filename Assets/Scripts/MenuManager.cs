@@ -8,9 +8,9 @@ public class MenuManager : MonoBehaviour
     public GameObject mainMenu;
     public GameObject settingsMenu;
     public GameObject creditsMenu;
-    public void MoveToScene(int sceneID)
+    public void MoveToScene(string SceneName)
     {
-        SceneManager.LoadScene(sceneID);
+        GameManager.Instance.ChangeScene(SceneName);
     }
 
     public void OpenCredits()
