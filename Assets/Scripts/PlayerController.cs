@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     public float maxDistance;
     public LayerMask layerMask;
 
+    [SerializeField] private Transform rayCastOrigin;
+    [SerializeField] private Transform playerFeet;
+
     void OnJump()
     {
         if (GroundCheck())
@@ -86,7 +89,8 @@ public class PlayerController : MonoBehaviour
         //rb.velocity = new Vector3(cameraRelativeMovement.x, rb.velocity.y, cameraRelativeMovement.z);
         rb.AddForce(cameraRelativeMovement);
         //transform.forward = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        transform.rotation = rotationResult;
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotationResult, Time.deltaTime * 10);//smooths rotation
 
          // May be deprecated
         if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
