@@ -65,6 +65,9 @@ public class PlayerController : MonoBehaviour
                          RigidbodyConstraints.FreezeRotationX |
                          RigidbodyConstraints.FreezeRotationZ;
 
+        if (movementVector.magnitude == 0.0f)
+            return;
+
         movementVector = movementVector.normalized * playerSpeed;
 
         Vector3 forward = Camera.main.transform.forward;
