@@ -61,14 +61,8 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayerRelativeToCamera()
     {
-        if (movementVector.magnitude == 0.0f)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeRotationY |
-                             RigidbodyConstraints.FreezeRotationX |
-                             RigidbodyConstraints.FreezeRotationZ;
-            return;
-        }
-        rb.constraints = RigidbodyConstraints.FreezeRotationX |
+        rb.constraints = RigidbodyConstraints.FreezeRotationY |
+                         RigidbodyConstraints.FreezeRotationX |
                          RigidbodyConstraints.FreezeRotationZ;
 
         movementVector = movementVector.normalized * playerSpeed;
