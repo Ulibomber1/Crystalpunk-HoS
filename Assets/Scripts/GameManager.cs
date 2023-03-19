@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using System.Collections;
-
 public enum GameState { MAIN_MENU, 
                         HUB_WORLD, 
                         LEVEL_0, 
@@ -17,6 +16,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string hubWorldSceneName;
     [SerializeField] private string levelZeroSceneName;
     [SerializeField] private string mainMenuSceneName;
+
+    public static int gears = 0;
+    public static int ammo = 0;
+    public static int health = 0;
+    public static int lives = 0;
+    public static bool doubleJump = false;
 
     // New Singleton Pattern
     public static GameManager Instance { get; private set; }
