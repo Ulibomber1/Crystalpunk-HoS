@@ -8,8 +8,8 @@ public class GearPickup : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.gears += 1;
-            Debug.Log(GameManager.gears + " gears collected");
+            PlayerController.gears += 1;
+            Debug.Log(PlayerController.gears + " gears collected");
         }
     }
 }

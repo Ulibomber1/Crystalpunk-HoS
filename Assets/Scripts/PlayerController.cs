@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public int maxHealth = 10;
-    public int currentHealth;
     public HealthBar healthBar;
 
     public float jumpHeight = 0;
@@ -22,6 +21,15 @@ public class PlayerController : MonoBehaviour
     public float maxDistance;
     public LayerMask layerMask;
 
+    //Player Stat Variables
+    public static int gears = 0;
+    private static int maxAmmo = 5;
+    private static int ammo = maxAmmo;
+    private int maxHealth = 10;
+    private int currentHealth;
+    private static int lives = 0;
+    private static bool doubleJump = false;
+
     void OnJump()
     {
         if (GroundCheck())
@@ -33,9 +41,24 @@ public class PlayerController : MonoBehaviour
 
     void OnFire()
     {
-        Debug.Log("Pew"); // Projectile-based shooting
-        // Disable projectile when they hit something
-        // Here, we only instantiate the projectile
+        if (ammo > 0)
+        {
+            Debug.Log("Pew"); // Projectile-based shooting
+            ammo = ammo - 1;
+            // Disable projectile when they hit something
+            // Here, we only instantiate the projectile
+        }
+        else
+        {
+            Reload();
+        }
+    }
+
+    void Reload()
+    {
+        //Code for reloading
+        ammo = maxAmmo;
+        Debug.Log("Reloaded Successfully!");
     }
 
     void OnLook(InputValue inputValue)
