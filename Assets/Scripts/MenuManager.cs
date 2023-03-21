@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public GameObject mainMenu;
+    public GameObject fileSelectMenu;
     public GameObject settingsMenu;
     public GameObject creditsMenu;
     public void MoveToScene(int sceneID)
@@ -18,6 +19,7 @@ public class MenuManager : MonoBehaviour
         creditsMenu.SetActive(true);
         mainMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        fileSelectMenu.SetActive(false);
     }
 
     public void BackToMainMenu()
@@ -25,6 +27,7 @@ public class MenuManager : MonoBehaviour
         creditsMenu.SetActive(false);
         mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
+        fileSelectMenu.SetActive(false);
     }
 
     public void OpenSettings()
@@ -32,11 +35,15 @@ public class MenuManager : MonoBehaviour
         creditsMenu.SetActive(false);
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
+        fileSelectMenu.SetActive(false);
     }
 
-    public void OpenSave()
+    public void OpenFileSelect()
     {
-
+        fileSelectMenu.SetActive(true);
+        creditsMenu.SetActive(false);
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(false);
     }
 
     public void Quit()
