@@ -9,9 +9,26 @@ public class MenuManager : MonoBehaviour
     public GameObject fileSelectMenu;
     public GameObject settingsMenu;
     public GameObject creditsMenu;
-    public void MoveToScene(int sceneID)
+    public GameObject areYouSure;
+
+    public void LoadGame()
     {
+        Debug.Log("We don't have a save system to load from yet!");
+    }
+
+    public void NewGame(int sceneID)
+    {
+        Debug.Log("Starting new game!");
         SceneManager.LoadScene(sceneID);
+    }
+
+    public void AreYouSure()//asks the player if they are sure about starting new game
+    {
+        creditsMenu.SetActive(false);
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        fileSelectMenu.SetActive(false);
+        areYouSure.SetActive(true);
     }
 
     public void OpenCredits()
@@ -20,6 +37,7 @@ public class MenuManager : MonoBehaviour
         mainMenu.SetActive(false);
         settingsMenu.SetActive(false);
         fileSelectMenu.SetActive(false);
+        areYouSure.SetActive(false);
     }
 
     public void BackToMainMenu()
@@ -28,6 +46,7 @@ public class MenuManager : MonoBehaviour
         mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
         fileSelectMenu.SetActive(false);
+        areYouSure.SetActive(false);
     }
 
     public void OpenSettings()
@@ -36,6 +55,7 @@ public class MenuManager : MonoBehaviour
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
         fileSelectMenu.SetActive(false);
+        areYouSure.SetActive(false);
     }
 
     public void OpenFileSelect()
@@ -44,6 +64,7 @@ public class MenuManager : MonoBehaviour
         creditsMenu.SetActive(false);
         mainMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        areYouSure.SetActive(false);
     }
 
     public void Quit()
