@@ -3402,9 +3402,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Arius Ulibarri - Co Lead, Project Organization, Programmer\n\nThomas Mezzie
-    - Co Lead, Programmer\n\nAlejandro Perez - \n\nAdi Tuhuteru -\n\nAlan Torres
-    -\n\nDaniel Ramirez -"
+  m_text: "Arius Ulibarri: Co-Leader, Project Organizer, Programmer\n\nThomas Mezzie:
+    Co-Leader, Terrain Design, Programmer\n\nAlejandro Perez: Story Writer, Programmer\n\nAdi
+    Tuhuteru: 3D Asset Creation, Programmer\n\nAlan Torres: \n\nDaniel Ramirez: "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
