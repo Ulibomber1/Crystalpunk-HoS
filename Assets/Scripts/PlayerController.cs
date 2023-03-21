@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     void OnLook(InputValue inputValue)
     {
-        
+
     }
 
     void OnMove(InputValue movementValue)
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rotationResult, Time.deltaTime * 10);//smooths rotation
 
-         // May be deprecated
+        // May be deprecated
         if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
