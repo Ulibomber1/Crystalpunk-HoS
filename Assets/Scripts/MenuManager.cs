@@ -28,7 +28,7 @@ public class MenuManager : MonoBehaviour
     {
         fadeOut.SetActive(true);
         fadeOut.GetComponent<Animator>().Play("MenuFade");
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(sceneID);
     }
 
