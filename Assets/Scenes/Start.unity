@@ -4032,24 +4032,24 @@ MonoBehaviour:
 
 
     Thomas
-    Mezzie: Co-Leader, Terrain Design, Programmer
+    Mezzie: Co-Leader, Terrain Design, Menus, Programmer
 
 
-    Alejandro Perez: Story Writer,
-    Programmer
+    Alejandro Perez: Story
+    Writer, Programmer
 
 
     Adi Tuhuteru: 3D Asset Creation, Programmer
 
 
-    Alan Torres:
-    Programmer
+    Alan
+    Torres: UI, Programmer
 
 
     Daniel Ramirez: Programmer'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0729d108856d795479fc30a118c824da, type: 2}
-  m_sharedMaterial: {fileID: 8222578264723375854, guid: 0729d108856d795479fc30a118c824da,
+  m_fontAsset: {fileID: 11400000, guid: 0e9bca0fda898e44ea8c22db52eebf54, type: 2}
+  m_sharedMaterial: {fileID: 1473775713305383962, guid: 0e9bca0fda898e44ea8c22db52eebf54,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4074,7 +4074,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.3
+  m_fontSize: 55.75
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
