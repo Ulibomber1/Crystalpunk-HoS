@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject creditsMenu;
     public GameObject areYouSure;
+    public GameObject fadeOut;
 
     public void LoadGame()
     {
@@ -19,6 +20,15 @@ public class MenuManager : MonoBehaviour
     public void NewGame(int sceneID)
     {
         Debug.Log("Starting new game!");
+        StartCoroutine(Fade(sceneID));
+        
+    }
+
+    private IEnumerator Fade(int sceneID)
+    {
+        fadeOut.SetActive(true);
+        fadeOut.GetComponent<Animator>().Play("MenuFade");
+        yield return new WaitForSeconds(0.8f);
         SceneManager.LoadScene(sceneID);
     }
 
