@@ -22,19 +22,19 @@ public class MenuManager : MonoBehaviour
         Debug.Log("We don't have a save system to load from yet!");
     }
 
-    public void NewGame(int sceneID)
+    public void NewGame(string SceneName)
     {
         Debug.Log("Starting new game!");
-        StartCoroutine(Fade(sceneID));
+        StartCoroutine(Fade(SceneName));
         
     }
 
-    private IEnumerator Fade(int sceneID)
+    private IEnumerator Fade(string SceneName)
     {
         fadeOut.SetActive(true);
         fadeOut.GetComponent<Animator>().Play("MenuFade");
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene(sceneID);
+        MoveToScene(SceneName);
     }
 
     public void AreYouSure()//asks the player if they are sure about starting new game
