@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
     void OnLook(InputValue inputValue)
     {
-        
+
     }
 
     void OnMove(InputValue movementValue)
@@ -81,15 +81,12 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayerRelativeToCamera()
     {
-        if (movementVector.magnitude == 0.0f)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeRotationY |
-                             RigidbodyConstraints.FreezeRotationX |
-                             RigidbodyConstraints.FreezeRotationZ;
-            return;
-        }
-        rb.constraints = RigidbodyConstraints.FreezeRotationX |
+        rb.constraints = RigidbodyConstraints.FreezeRotationY |
+                         RigidbodyConstraints.FreezeRotationX |
                          RigidbodyConstraints.FreezeRotationZ;
+
+        if (movementVector.magnitude == 0.0f)
+            return;
 
         movementVector = movementVector.normalized * playerSpeed;
 
@@ -109,9 +106,10 @@ public class PlayerController : MonoBehaviour
         //rb.velocity = new Vector3(cameraRelativeMovement.x, rb.velocity.y, cameraRelativeMovement.z);
         rb.AddForce(cameraRelativeMovement);
         //transform.forward = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        transform.rotation = rotationResult;
 
-         // May be deprecated
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotationResult, Time.deltaTime * 10);//smooths rotation
+
+        // May be deprecated
         if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
