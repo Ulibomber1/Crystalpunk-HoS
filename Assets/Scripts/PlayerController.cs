@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 //using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,15 +28,27 @@ public class PlayerController : MonoBehaviour
     private static int ammo = maxAmmo;
     private int maxHealth = 10;
     private int currentHealth;
-    private static int lives = 0;
+    private static int lives = 3;
     private static bool doubleJump = false;
+    private static float cd = 5;
+    private static float nextCast;
 
     void OnJump()
     {
         if (GroundCheck())
         {
+            if (doubleJump != false)
+            {
+                doubleJump = false;
+            }
             Debug.Log("Boing");
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+        }
+        else if (GroundCheck() == false && doubleJump == false)
+        {
+            Debug.Log("Double Boing");
+            rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+            doubleJump = true;
         }
     }
 
@@ -61,10 +74,38 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Reloaded Successfully!");
     }
 
+    //Ability function, checks to see if ability is on cooldown
+    void Ability()
+    {
+        if(Time.time < nextCast)
+        {
+            Debug.Log("Ability in cooldown!");
+            return;
+        }
+        else
+        {
+            Debug.Log("Ability casted!");
+            nextCast = Time.time + cd;
+        }
+    }
+
+    //Should return current HP
+    private int DisplayHP()
+    {
+        return currentHealth;
+    }
+
+    //Should return current amount of gears
+    private int DisplayGears()
+    {
+        return gears;
+    }
+
     void OnLook(InputValue inputValue)
     {
 
     }
+
 
     void OnMove(InputValue movementValue)
     {
@@ -183,7 +224,9 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(0f, 0.5f, 0f);
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            //deathcount = deathcount + 1;
+            lives = lives - 1;
+            Debug.Log("Lives left: " + lives);
+            //deathccount = deathcount + 1;
             //SetCountText();
 
             currentHealth = maxHealth;
@@ -198,6 +241,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             PlayerDamage(2);
+        }
+
+        //Tests Ability Cooldown
+        //Press the "E" key to use ability to cast and see if its on cooldown or not
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Ability();
         }
     }
 
