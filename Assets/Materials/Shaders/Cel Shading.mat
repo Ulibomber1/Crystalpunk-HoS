@@ -82,7 +82,7 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
-    - _CelShading: 250
+    - _CelShading: 97.2
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -97,7 +97,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Outline_Fade: 0
-    - _Outline_Pixels: 2
+    - _Outline_Pixels: 4
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
