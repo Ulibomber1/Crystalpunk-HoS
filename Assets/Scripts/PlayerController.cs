@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask layerMask;
 
     //Player Stat Variables
-    public static int gears = 0;
+    private static int gears = 0;
     private static int maxAmmo = 5;
     private static int ammo = maxAmmo;
     private int maxHealth = 10;
@@ -90,13 +90,13 @@ public class PlayerController : MonoBehaviour
     }
 
     //Should return current HP
-    private int DisplayHP()
+    public int DisplayHP()
     {
         return currentHealth;
     }
 
     //Should return current amount of gears
-    private int DisplayGears()
+    public int DisplayGears()
     {
         return gears;
     }
@@ -190,6 +190,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
+            gears += 1;
+            Debug.Log(gears + " gears collected");
         }
 
         if (other.gameObject.CompareTag("Void"))
