@@ -1146,6 +1146,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5005127394278487161, guid: 2f8f9c860641b974188abaa1c7294109,
         type: 3}
+      propertyPath: gearText
+      value: 
+      objectReference: {fileID: 1048689573}
+    - target: {fileID: 5005127394278487161, guid: 2f8f9c860641b974188abaa1c7294109,
+        type: 3}
+      propertyPath: countText
+      value: 
+      objectReference: {fileID: 1048689573}
+    - target: {fileID: 5005127394278487161, guid: 2f8f9c860641b974188abaa1c7294109,
+        type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 400099288}
@@ -1510,6 +1520,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 94bae38325319a5489902c962754c063, type: 3}
+--- !u!114 &1048689573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8053328627056417960, guid: 308fcec71c3480e4c9f7ae3e8a60ae18,
+    type: 3}
+  m_PrefabInstance: {fileID: 594837897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1098708599
 GameObject:
   m_ObjectHideFlags: 3
@@ -1586,7 +1608,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098708599}
-  m_LocalRotation: {x: 0.080019414, y: 0.000000004287801, z: -3.4421105e-10, w: 0.9967933}
+  m_LocalRotation: {x: 0.080019414, y: -0.0000000042878026, z: 3.442112e-10, w: 0.9967933}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

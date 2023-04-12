@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     public HealthBar healthBar;
+    public TextMeshProUGUI gearText;
+
 
     public float jumpHeight = 0;
     public float playerSpeed;
@@ -178,6 +181,10 @@ public class PlayerController : MonoBehaviour
         //Sets the current health to the max health
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        //Sets HUD stats
+        SetGearText();
+
     }
 
     void FixedUpdate()
@@ -192,6 +199,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             gears += 1;
             Debug.Log(gears + " gears collected");
+            SetGearText();
         }
 
         if (other.gameObject.CompareTag("Void"))
@@ -234,6 +242,11 @@ public class PlayerController : MonoBehaviour
             currentHealth = maxHealth;
             healthBar.SetMaxHealth(maxHealth);
         }
+    }
+    void SetGearText()
+    {
+        gearText.text = gears.ToString();
+
     }
 
     void Update()
