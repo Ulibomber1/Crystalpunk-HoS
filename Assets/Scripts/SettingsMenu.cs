@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
+
+    [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
 
     public TMPro.TMP_Dropdown resolutionDropdown;
 
@@ -23,7 +26,7 @@ public class SettingsMenu : MonoBehaviour
         int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate;
+            string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + " Hz";
             options.Add(option);
 
             if (resolutions[i].Equals(Screen.currentResolution))
@@ -57,4 +60,19 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
     }
+
+    public void FOV (int fov)
+    {
+        cinemachineVirtualCamera.m_Lens.FieldOfView = fov;
+    }
+
+/*    public void Sensitivity(int fov)
+    {
+        cinemachineVirtualCamera.m_Lens.FieldOfView = fov;
+    }*/
+
+/*    public void invertY(bool invert)
+    {
+        cinemachineVirtualCamera.GetCinemachineComponent<AxisControl>
+    }*/
 }
