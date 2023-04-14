@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
 {
     public HealthBar healthBar;
     public TextMeshProUGUI gearText;
-
+    private CapsuleCollider capColl;
 
     public float jumpHeight = 0;
     public float playerSpeed;
     public float maxVelocity;
+    public float slopeLimit;
 
-    //private bool isGrounded = false;
     private Rigidbody rb;
     private Vector3 movementVector;
     private Quaternion rotationResult;
@@ -32,26 +32,31 @@ public class PlayerController : MonoBehaviour
     private int maxHealth = 10;
     private int currentHealth;
     private static int lives = 3;
-    private static bool doubleJump = false;
+
+    private static bool canDoubleJump = false;
+    private static bool isGrounded;
+    public float groundAngle;
+    public Vector3 groundNormal;
+
     private static float cd = 5;
     private static float nextCast;
 
     void OnJump()
     {
-        if (GroundCheck())
+        if (isGrounded)
         {
-            if (doubleJump != false)
+            if (canDoubleJump != false)
             {
-                doubleJump = false;
+                canDoubleJump = false;
             }
             Debug.Log("Boing");
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
         }
-        else if (GroundCheck() == false && doubleJump == false)
+        else if (!isGrounded && !canDoubleJump)
         {
             Debug.Log("Double Boing");
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
-            doubleJump = true;
+            canDoubleJump = true;
         }
     }
 
@@ -147,28 +152,40 @@ public class PlayerController : MonoBehaviour
         Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
         rotationResult = VectorToQuaternion(cameraRelativeMovement);
 
-        //rb.velocity = new Vector3(cameraRelativeMovement.x, rb.velocity.y, cameraRelativeMovement.z);
-        rb.AddForce(cameraRelativeMovement);
         //transform.forward = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        //rb.velocity = new Vector3(cameraRelativeMovement.x, rb.velocity.y, cameraRelativeMovement.z);
+        cameraRelativeMovement = Vector3.ProjectOnPlane(cameraRelativeMovement, groundNormal);
+
+        rb.AddForce(cameraRelativeMovement);
+
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rotationResult, Time.deltaTime * 10);//smooths rotation
 
-        // May be deprecated
         if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
         }
     }
 
-    bool GroundCheck()
+    void GroundCheck()
     {
-        if (Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask))
+        // Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask)
+        if (Physics.SphereCast(transform.position, capColl.radius, Vector3.down, out RaycastHit hit, capColl.height / 2 - capColl.radius + 0.01f))
         {
-            return true;
+            isGrounded = true;
+            groundAngle = Vector3.Angle(Vector3.up, hit.normal);
+            groundNormal = hit.normal;
+
+            if (Physics.BoxCast(transform.position, new Vector3(capColl.radius / 2.5f, capColl.radius / 3f, capColl.radius / 2.5f), Vector3.down, out RaycastHit helpHit, transform.rotation, capColl.height / 2 - capColl.radius / 2))
+            {
+                groundAngle = Vector3.Angle(Vector3.up, helpHit.normal);
+            }
+            //rb.useGravity = false; // May not be necessary
         }
         else
         {
-            return false;
+            isGrounded = false;
+            //rb.useGravity = true; // May not be necessary
         }
     }
 
@@ -177,10 +194,11 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
+        capColl = GetComponent<CapsuleCollider>();
 
         //Sets the current health to the max health
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        //healthBar.SetMaxHealth(maxHealth);
 
         //Sets HUD stats
         SetGearText();
@@ -189,7 +207,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        GroundCheck();
         MovePlayerRelativeToCamera();
+
     }
 
     void OnTriggerEnter(Collider other)
