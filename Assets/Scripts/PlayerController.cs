@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private static bool isGrounded;
     public float groundAngle;
     public Vector3 groundNormal;
+    public float sphercastOffset;
 
     private static float cd = 5;
     private static float nextCast;
@@ -170,7 +171,7 @@ public class PlayerController : MonoBehaviour
     void GroundCheck()
     {
         // Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask)
-        if (Physics.SphereCast(transform.position, capColl.radius, Vector3.down, out RaycastHit hit, capColl.height / 2 - capColl.radius + 0.01f))
+        if (Physics.SphereCast(transform.position, capColl.radius, Vector3.down, out RaycastHit hit, capColl.height / 2 - capColl.radius + sphercastOffset))
         {
             isGrounded = true;
             groundAngle = Vector3.Angle(Vector3.up, hit.normal);
@@ -185,6 +186,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             isGrounded = false;
+            groundAngle = 0;
+            groundNormal = Vector3.zero;
             //rb.useGravity = true; // May not be necessary
         }
     }
