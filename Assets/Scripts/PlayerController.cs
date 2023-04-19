@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private CapsuleCollider capColl;
 
     public float jumpHeight = 0;
-    public float playerSpeed;
+    public float acceleration;
     public float maxVelocity;
     public float slopeLimit;
 
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private static bool canDoubleJump = false;
     private static bool isGrounded;
     public float groundAngle;
+    [Range(0, 1)] public float midAirForceScale;
     public Vector3 groundNormal;
     public float sphercastOffset;
 
@@ -51,12 +52,12 @@ public class PlayerController : MonoBehaviour
                 canDoubleJump = false;
             }
             Debug.Log("Boing");
-            rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+            rb.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
         }
         else if (!isGrounded && !canDoubleJump)
         {
             Debug.Log("Double Boing");
-            rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+            rb.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
             canDoubleJump = true;
         }
     }
@@ -131,14 +132,10 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayerRelativeToCamera()
     {
-        rb.constraints = RigidbodyConstraints.FreezeRotationY |
-                         RigidbodyConstraints.FreezeRotationX |
-                         RigidbodyConstraints.FreezeRotationZ;
-
         if (movementVector.magnitude == 0.0f)
             return;
 
-        movementVector = movementVector.normalized * playerSpeed;
+        movementVector = movementVector.normalized * acceleration;
 
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
@@ -147,30 +144,34 @@ public class PlayerController : MonoBehaviour
         forward = forward.normalized;
         right = right.normalized;
 
-        Vector3 forwardRelativeVerticalInput = movementVector.z * forward;
-        Vector3 rightRelativeHorizontalInput = movementVector.x * right;
+        Vector3 forwardRelativeInput = movementVector.z * forward;
+        Vector3 rightRelativeInput = movementVector.x * right;
 
-        Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
+        Vector3 cameraRelativeMovement = forwardRelativeInput + rightRelativeInput;
         rotationResult = VectorToQuaternion(cameraRelativeMovement);
-
-        //transform.forward = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        //rb.velocity = new Vector3(cameraRelativeMovement.x, rb.velocity.y, cameraRelativeMovement.z);
-        cameraRelativeMovement = Vector3.ProjectOnPlane(cameraRelativeMovement, groundNormal);
-
-        rb.AddForce(cameraRelativeMovement);
-
-
         transform.rotation = Quaternion.Lerp(transform.rotation, rotationResult, Time.deltaTime * 10);//smooths rotation
 
-        if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
+        Vector3 projectedRelativeMovement = Vector3.ProjectOnPlane(cameraRelativeMovement, groundNormal);
+        //rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
+
+        if (isGrounded)
         {
-            rb.velocity = rb.velocity.normalized * maxVelocity;
+            rb.AddForce(projectedRelativeMovement);
         }
+        else
+        {
+            rb.AddForce(projectedRelativeMovement * midAirForceScale); 
+        }
+        /*if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
+        {
+            Vector3 yVector = new Vector3(0f, rb.velocity.y, 0f);
+            rb.velocity = rb.velocity.normalized * maxVelocity;
+            rb.velocity += yVector;
+        }*/
     }
 
     void GroundCheck()
     {
-        // Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask)
         if (Physics.SphereCast(transform.position, capColl.radius, Vector3.down, out RaycastHit hit, capColl.height / 2 - capColl.radius + sphercastOffset))
         {
             isGrounded = true;
@@ -187,7 +188,7 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
             groundAngle = 0;
-            groundNormal = Vector3.zero;
+            groundNormal = Vector3.up;
             //rb.useGravity = true; // May not be necessary
         }
     }
