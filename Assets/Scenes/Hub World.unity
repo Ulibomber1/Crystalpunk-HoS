@@ -11164,6 +11164,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1939442110892641666, guid: 36f0723f0dd91f246963ada8e1dac623,
         type: 3}
+      propertyPath: m_YAxis.m_MaxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939442110892641666, guid: 36f0723f0dd91f246963ada8e1dac623,
+        type: 3}
       propertyPath: m_XAxis.m_AccelTime
       value: 0.2
       objectReference: {fileID: 0}
