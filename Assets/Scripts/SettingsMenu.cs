@@ -9,7 +9,7 @@ public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
 
-    [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] private CinemachineFreeLook cmFreeLook;
 
     public TMPro.TMP_Dropdown resolutionDropdown;
 
@@ -63,16 +63,26 @@ public class SettingsMenu : MonoBehaviour
 
     public void FOV (int fov)
     {
-        cinemachineVirtualCamera.m_Lens.FieldOfView = fov;
+        cmFreeLook.m_Lens.FieldOfView = fov;
+    }
+    public void FlipX(bool flipX)
+    {
+        cmFreeLook.m_XAxis.m_InvertInput = flipX;
     }
 
-/*    public void Sensitivity(int fov)
+    public void FlipY(bool flipY)
     {
-        cinemachineVirtualCamera.m_Lens.FieldOfView = fov;
-    }*/
+        cmFreeLook.m_YAxis.m_InvertInput = flipY;
+    }
 
-/*    public void invertY(bool invert)
-    {
-        cinemachineVirtualCamera.GetCinemachineComponent<AxisControl>
-    }*/
+
+    /*    public void Sensitivity(int fov)
+        {
+            cinemachineVirtualCamera.m_Lens.FieldOfView = fov;
+        }*/
+
+    /*    public void invertY(bool invert)
+        {
+            cinemachineVirtualCamera.GetCinemachineComponent<AxisControl>
+        }*/
 }
