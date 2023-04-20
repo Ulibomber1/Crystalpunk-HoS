@@ -162,12 +162,12 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(projectedRelativeMovement * midAirForceScale); 
         }
-        /*if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
+        if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity) // Using sqrMagnitude for efficiency
         {
-            Vector3 yVector = new Vector3(0f, rb.velocity.y, 0f);
-            rb.velocity = rb.velocity.normalized * maxVelocity;
-            rb.velocity += yVector;
-        }*/
+            float yValue = rb.velocity.y;
+            Vector3 clampedVelocity = rb.velocity.normalized * maxVelocity;
+            rb.velocity = new Vector3(clampedVelocity.x, yValue, clampedVelocity.z);
+        }
     }
 
     void GroundCheck()
@@ -182,14 +182,12 @@ public class PlayerController : MonoBehaviour
             {
                 groundAngle = Vector3.Angle(Vector3.up, helpHit.normal);
             }
-            //rb.useGravity = false; // May not be necessary
         }
         else
         {
             isGrounded = false;
             groundAngle = 0;
             groundNormal = Vector3.up;
-            //rb.useGravity = true; // May not be necessary
         }
     }
 
