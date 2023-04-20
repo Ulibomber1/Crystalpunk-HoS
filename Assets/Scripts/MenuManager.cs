@@ -12,6 +12,11 @@ public class MenuManager : MonoBehaviour
     public GameObject areYouSure;
     public GameObject fadeOut;
 
+    private void Start()
+    {
+        BackToMainMenu();
+    }
+
     public void MoveToScene(string SceneName)
     {
         GameManager.Instance.ChangeScene(SceneName);
