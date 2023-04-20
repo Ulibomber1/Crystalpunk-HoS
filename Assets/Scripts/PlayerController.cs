@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private static int lives = 3;
 
     private static bool canDoubleJump = false;
+    public bool doubleJumpUnlocked;
     private static bool isGrounded;
     public float groundAngle;
     [Range(0, 1)] public float midAirForceScale;
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Boing");
             rb.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
         }
-        else if (!isGrounded && !canDoubleJump)
+        else if (!isGrounded && !canDoubleJump && doubleJumpUnlocked)
         {
             Debug.Log("Double Boing");
             rb.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
