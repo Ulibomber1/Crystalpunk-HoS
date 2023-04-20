@@ -101,13 +101,13 @@ public class PlayerController : MonoBehaviour
     }
 
     //Should return current HP
-    public int DisplayHP()
+    public int GetHP()
     {
         return currentHealth;
     }
 
     //Should return current amount of gears
-    public int DisplayGears()
+    public int GetGearTotal()
     {
         return gears;
     }
