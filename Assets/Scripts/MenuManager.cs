@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
     public GameObject creditsMenu;
     public GameObject areYouSure;
     public GameObject fadeOut;
+    public delegate void OnExitSettingsHandler();
+    public static event OnExitSettingsHandler SettingsExited;
 
     private void Start()
     {
@@ -62,6 +64,7 @@ public class MenuManager : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        SettingsExited?.Invoke();
         creditsMenu.SetActive(false);
         mainMenu.SetActive(true);
         settingsMenu.SetActive(false);

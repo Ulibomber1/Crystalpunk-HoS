@@ -17,12 +17,19 @@ public class SettingsMenu : MonoBehaviour
     public Toggle invertY;
     public Slider sensitivity;
     public Slider FOVslider;
+    public void passSettings() {
+        SettingsData.volume = volume.value;
+        SettingsData.invertX = invertX.isOn;
+    }
 
+    public delegate void SettingsAwakeHandler(SettingsMenu settingsMenu);
+    public static event SettingsAwakeHandler onSettingsAwake;
 
     Resolution[] resolutions;
 
     private void Start()
     {
+        MenuManager.SettingsExited += passSettings;
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -44,9 +51,12 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+    }
 
-        volume.value = -5;
-        invertX.isOn = true;
+    private void Awake()
+    {
+/*        volume.value = SettingsData.volume;
+        invertX.isOn = SettingsData.invertX;*/
     }
 
     public void SetResolution(int resolutionIndex)

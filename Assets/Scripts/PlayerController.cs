@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public HealthBar healthBar;
     public TextMeshProUGUI gearText;
     private CapsuleCollider capColl;
-    public InGameMenu menu;
 
     public float jumpHeight = 0;
     public float acceleration;
@@ -79,10 +78,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnPause()
-    {
-        menu.Pause();
-    }
+
 
     void Reload()
     {
@@ -201,7 +197,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
         capColl = GetComponent<CapsuleCollider>();
 

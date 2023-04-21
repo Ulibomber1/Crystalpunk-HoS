@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class InGameMenu : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class InGameMenu : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject HUD;
 
-
+    void OnPause()
+    {
+        Pause();
+    }
 
     private void Start()
     {
@@ -41,11 +45,12 @@ public class InGameMenu : MonoBehaviour
 
     public void Unpause()
     {
+        Time.timeScale = 1;
         //GameManager.Instance.SetGameState(Name of scene); 
         HUD.SetActive(true);
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
-        Time.timeScale = 1;
+        
     }
 
     public void OpenSettings()
