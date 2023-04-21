@@ -11,16 +11,24 @@ public enum GameState { MAIN_MENU,
                         PAUSED, 
                         GAME_OVER}
 
+public static class SettingsData
+{
+    public static float volume;
+    public static bool invertX;
+    public static bool invertY;
+    public static float sensitivity;
+    public static float FOVslider;
+}
+
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private string hubWorldSceneName;
-    [SerializeField] private string levelZeroSceneName;
-    [SerializeField] private string mainMenuSceneName;
+    [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, levelOneSceneName;
 
     // New Singleton Pattern
     public static GameManager Instance { get; private set; }
     private void Awake()
     {
+        // Singleton pattern
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -30,23 +38,41 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(Instance);
         }
-    }
-    // End of new Singleton Pattern
+        // End of new Singleton Pattern
 
+        string activeSceneName = SceneManager.GetActiveScene().name;
+        if (activeSceneName == hubWorldSceneName) // if else-if because switch cases require constant values to compare to.
+            SetGameState(GameState.HUB_WORLD);
+        else if (activeSceneName == levelZeroSceneName)
+            SetGameState(GameState.LEVEL_0);
+        else if (activeSceneName == levelOneSceneName)
+            SetGameState(GameState.LEVEL_FACTORY);
+        else if (activeSceneName == mainMenuSceneName)
+            SetGameState(GameState.MAIN_MENU);
+        else
+            Debug.LogWarning("Unrecognized Scene Name. Check the active scene's GameManager script to make sure the correct scene names are provided.");
+
+        SettingsMenu.onSettingsAwake += PassBackSettingsData;
+    }
+
+    public void PassBackSettingsData(SettingsMenu settingsMenu)
+    {
+        SettingsData.volume = settingsMenu.volume.value;
+        SettingsData.invertX = settingsMenu.invertX.isOn;
+    }
+
+    public delegate void StateChangeHandler(GameState state);
+    public static event StateChangeHandler OnStateChange;
     public GameState gameState { get; private set; }
     public void SetGameState(GameState state)
     {
         gameState = state;
+        OnStateChange?.Invoke(gameState);
     }
 
     public void OnApplicationQuit()
     {
         GameManager.Instance = null;
-    }
-
-    public void Start()
-    {
-        SetGameState(GameState.MAIN_MENU);
     }
 
     public void Update()
