@@ -89,6 +89,7 @@ public class MeleeEnemy : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
                     Stop();
+                CaughtPlayer();
                 m_WaitTime -= Time.deltaTime;
 
             }
@@ -148,10 +149,13 @@ public class MeleeEnemy : MonoBehaviour
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
     }
-
+    
     void CaughtPlayer()
     {
+        Debug.Log("Caught player!");
         m_CaughtPlayer = true;
+        GetComponent<PlayerController>().PlayerDamage(1);
+        
     }
 
     void LookingPlayer(Vector3 player)
