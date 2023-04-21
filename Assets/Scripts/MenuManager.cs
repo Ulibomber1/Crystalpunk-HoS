@@ -55,6 +55,7 @@ public class MenuManager : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
         //GameManager.Instance.SetGameState(Name of scene); 
         InGameSwitch("HUD");
 
