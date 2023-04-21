@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public HealthBar healthBar;
     public TextMeshProUGUI gearText;
     private CapsuleCollider capColl;
+    public InGameMenu menu;
 
     public float jumpHeight = 0;
     public float acceleration;
@@ -76,6 +77,11 @@ public class PlayerController : MonoBehaviour
         {
             Reload();
         }
+    }
+
+    void OnPause()
+    {
+        menu.Pause();
     }
 
     void Reload()

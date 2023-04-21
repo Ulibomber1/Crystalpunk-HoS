@@ -12,6 +12,12 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private CinemachineFreeLook cmFreeLook;
 
     public TMPro.TMP_Dropdown resolutionDropdown;
+    public Slider volume;
+    public Toggle invertX;
+    public Toggle invertY;
+    public Slider sensitivity;
+    public Slider FOVslider;
+
 
     Resolution[] resolutions;
 
@@ -38,6 +44,9 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        volume.value = -5;
+        invertX.isOn = true;
     }
 
     public void SetResolution(int resolutionIndex)
