@@ -6,9 +6,13 @@ public class GearPickup : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("PlayerInteract"))
+            return;
+
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerController.gears += 1;
+            gameObject.SetActive(false);
+
             Debug.Log(PlayerController.gears + " gears collected");
         }
     }
