@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LeverController : MonoBehaviour
+public class Interactable : MonoBehaviour
 {
 
-    public delegate void LeverActionHandler(string name);
-    public static event LeverActionHandler OnLeverAction;
+    public delegate void InteractActionHandler(string name);
+    public static event InteractActionHandler OnInteractAction;
 
     private bool isInteractable = false;
 
@@ -38,6 +38,6 @@ public class LeverController : MonoBehaviour
         if (!isInteractable)
             return;
         Debug.Log("Lever Pulled");
-        OnLeverAction?.Invoke(gameObject.name);
+        OnInteractAction?.Invoke(gameObject.name);
     }
 }

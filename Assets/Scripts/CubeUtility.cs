@@ -9,12 +9,12 @@ public class CubeUtility : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        LeverController.OnLeverAction += OnLeverActionHandler;
+        Interactable.OnInteractAction += OnInteractHandler;
         mr = gameObject.GetComponent<MeshRenderer>();
     }
 
 
-    public void OnLeverActionHandler(string name)
+    public void OnInteractHandler(string name)
     {
         if (name != togglerName)
             return;

@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             SetGameState(GameState.MAIN_MENU);
         else
             Debug.LogWarning("Unrecognized Scene Name. Check the active scene's GameManager script to make sure the correct scene names are provided.");
-        LeverController.OnLeverAction += OnLeverActionHandler;
+        Interactable.OnInteractAction += OnInteractHandler;
         SettingsMenu.onSettingsAwake += PassBackSettingsData;
     }
 
@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnLeverActionHandler(string name)
+    public void OnInteractHandler(string name)
     {
         Debug.Log("Hello Lever!");
     }
