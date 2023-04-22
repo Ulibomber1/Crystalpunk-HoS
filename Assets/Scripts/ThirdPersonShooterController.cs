@@ -42,7 +42,10 @@ public class ThirdPersonShooterController : MonoBehaviour
     }
 
     public void OnFire(){
-        Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+        //shoot where at the mouse cursor
+        //Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+        //shoot where the player is looking
+        Vector3 aimDir = transform.forward;
         Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
         
     }
