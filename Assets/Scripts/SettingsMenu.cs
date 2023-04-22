@@ -12,11 +12,24 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private CinemachineFreeLook cmFreeLook;
 
     public TMPro.TMP_Dropdown resolutionDropdown;
+    public Slider volume;
+    public Toggle invertX;
+    public Toggle invertY;
+    public Slider sensitivity;
+    public Slider FOVslider;
+    public void passSettings() {
+        SettingsData.volume = volume.value;
+        SettingsData.invertX = invertX.isOn;
+    }
+
+    public delegate void SettingsAwakeHandler(SettingsMenu settingsMenu);
+    public static event SettingsAwakeHandler onSettingsAwake;
 
     Resolution[] resolutions;
 
     private void Start()
     {
+        MenuManager.SettingsExited += passSettings;
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -38,6 +51,12 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+    }
+
+    private void Awake()
+    {
+/*        volume.value = SettingsData.volume;
+        invertX.isOn = SettingsData.invertX;*/
     }
 
     public void SetResolution(int resolutionIndex)

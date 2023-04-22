@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+
     void Reload()
     {
         //Code for reloading
@@ -102,13 +104,13 @@ public class PlayerController : MonoBehaviour
     }
 
     //Should return current HP
-    public int DisplayHP()
+    public int GetHP()
     {
         return currentHealth;
     }
 
     //Should return current amount of gears
-    public int DisplayGears()
+    public int GetGearTotal()
     {
         return gears;
     }
@@ -250,7 +252,7 @@ public class PlayerController : MonoBehaviour
 
     //Reduces the player's health by the parameter value
     //Function should be called whenever the player takes damage from an enemy
-    void PlayerDamage(int damage)
+    public void PlayerDamage(int damage)
     {
         //The player's health is subtracted by the damage value
         currentHealth = currentHealth - damage;
