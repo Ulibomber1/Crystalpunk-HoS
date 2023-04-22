@@ -261,6 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   gearText: {fileID: 0}
+  playerInput: {fileID: 5005127394278487163}
   jumpHeight: 7
   acceleration: 30
   maxVelocity: 10

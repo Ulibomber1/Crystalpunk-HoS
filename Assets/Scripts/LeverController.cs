@@ -11,6 +11,11 @@ public class LeverController : MonoBehaviour
 
     private bool isInteractable = false;
 
+    private void Awake()
+    {
+        PlayerController.OnInteraction += BroadcastToggle;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player"))
@@ -28,7 +33,7 @@ public class LeverController : MonoBehaviour
     }
 
 
-    public void OnInteract(InputValue context)
+    public void BroadcastToggle()
     {
         if (!isInteractable)
             return;

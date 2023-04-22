@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public HealthBar healthBar;
     public TextMeshProUGUI gearText;
     private CapsuleCollider capColl;
+    public PlayerInput playerInput;
 
     public float jumpHeight = 0;
     public float acceleration;
@@ -117,6 +118,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public delegate void InteractionHandler();
+    public static event InteractionHandler OnInteraction;
+    public void OnInteract(InputValue value)
+    {
+           OnInteraction?.Invoke();
+    }
 
     public void OnMove(InputValue movementValue)
     {
