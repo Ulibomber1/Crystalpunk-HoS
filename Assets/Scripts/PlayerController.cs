@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public HealthBar healthBar;
     public TextMeshProUGUI gearText;
     private CapsuleCollider capColl;
+    public PlayerInput playerInput;
 
     public float jumpHeight = 0;
     public float acceleration;
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
     private static float cd = 5;
     private static float nextCast;
 
-    void OnJump()
+    public void OnJump(InputValue context)
     {
         if (isGrounded)
         {
@@ -63,7 +64,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnFire()
+    public void OnFire(InputValue context)
     {
         if (ammo > 0)
         {
@@ -114,13 +115,19 @@ public class PlayerController : MonoBehaviour
         return gears;
     }
 
-    void OnLook(InputValue inputValue)
+    public void OnLook(InputValue context)
     {
 
     }
 
+    public delegate void InteractionHandler();
+    public static event InteractionHandler OnInteraction;
+    public void OnInteract(InputValue value)
+    {
+           OnInteraction?.Invoke();
+    }
 
-    void OnMove(InputValue movementValue)
+    public void OnMove(InputValue movementValue)
     {
         Vector2 readVector = movementValue.Get<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
@@ -198,7 +205,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
         capColl = GetComponent<CapsuleCollider>();
 
         //Sets the current health to the max health
@@ -217,7 +224,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
+
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
@@ -278,21 +287,23 @@ public class PlayerController : MonoBehaviour
     {
         //This is used as a test to ensure the health bar works properly
         //Press the "V" key to reduce the player health
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            PlayerDamage(2);
-        }
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    PlayerDamage(2);
+        //}
 
         //Tests Ability Cooldown
         //Press the "E" key to use ability to cast and see if its on cooldown or not
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Ability();
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    Ability();
+        //}
     }
 
     private void OnDestroy()
     {
         Cursor.lockState = CursorLockMode.None;
     }
+
+
 }

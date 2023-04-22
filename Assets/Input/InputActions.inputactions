@@ -42,9 +42,18 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "7d2e8e74-3e92-42b1-aca1-f86b67dc2b5e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
-                    "id": "3deadc6a-e5ff-4719-a02f-1373747593ce",
+                    "id": "387a4e25-e034-472e-8b5b-f9b0d3d6f68e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -285,7 +294,18 @@
                 },
                 {
                     "name": "",
-                    "id": "63aff7c5-1462-4e90-bdd4-3bebb2291d87",
+                    "id": "9eac0cda-3f3b-4e1d-9132-acc0d2b994a1",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb87aa39-d662-49da-83ec-6c992762a2dd",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
