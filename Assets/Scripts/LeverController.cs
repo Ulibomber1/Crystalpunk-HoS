@@ -13,9 +13,7 @@ public class LeverController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("PlayerInteract"))
-            return;
-        if (other.gameObject.name != "Interactable Trigger")
+        if (!other.CompareTag("Player"))
             return;
         isInteractable = true;
         Debug.Log("Enter Range");
@@ -23,9 +21,7 @@ public class LeverController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("PlayerInteract"))
-            return;
-        if (other.gameObject.name != "Interactable Trigger")
+        if (!other.CompareTag("Player"))
             return;
         isInteractable = false;
         Debug.Log("Exit Range");

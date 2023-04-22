@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1446860067171003868}
   - component: {fileID: 1776354119}
   - component: {fileID: 8676931272634999858}
+  - component: {fileID: 7550121187494929245}
   m_Layer: 0
   m_Name: GearCollectable
   m_TagString: PickUp
@@ -138,8 +139,21 @@ MeshCollider:
   m_GameObject: {fileID: 1446860067171003811}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: e3070cc6301621440835ae10924cfcd1, type: 3}
+--- !u!135 &7550121187494929245
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446860067171003811}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.18386
+  m_Center: {x: -0.0004357472, y: 0.002147749, z: 0.00069949776}

@@ -217,10 +217,11 @@ public class PlayerController : MonoBehaviour
 
 
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
+            other.gameObject.SetActive(false);
             gears += 1;
             Debug.Log(gears + " gears collected");
             SetGearText();
