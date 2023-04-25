@@ -71,3 +71,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/
+Assets/Nature pack/SimpleNaturePack/SimpleNaturePack_2020.3_URP_v1.23.unitypackage.meta
+Assets/Nature pack/SimpleNaturePack/SimpleNaturePack_2020.3_HDRP_v1.23.unitypackage.meta
+Assets/Nature pack/Low Poly Wind/PolyPacks/Wind/UpgradePackages/LPW_URP_Unity2019.3.15+.unitypackage.meta
+Assets/Nature pack/Low Poly Wind/PolyPacks/Wind/UpgradePackages/LPW_HDRP_Unity2020.2.1+.unitypackage.meta
+Assets/Nature pack/Low Poly Wind/PolyPacks/Wind/UpgradePackages/LPW_HDRP_Unity2019.3.15+.unitypackage.meta
