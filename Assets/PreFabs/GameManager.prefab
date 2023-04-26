@@ -47,3 +47,5 @@ MonoBehaviour:
   hubWorldSceneName: Hub World
   levelZeroSceneName: 
   mainMenuSceneName: Start
+  outsideLevelOneSceneName: Outside Level 1
+  levelOneSceneName: Factory Level 1

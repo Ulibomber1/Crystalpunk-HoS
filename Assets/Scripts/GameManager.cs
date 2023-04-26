@@ -22,7 +22,7 @@ public static class SettingsData
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, levelOneSceneName;
+    [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, outsideLevelOneSceneName, levelOneSceneName;
 
     // New Singleton Pattern
     public static GameManager Instance { get; private set; }
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
             SetGameState(GameState.HUB_WORLD);
         else if (activeSceneName == levelZeroSceneName)
             SetGameState(GameState.LEVEL_0);
-        else if (activeSceneName == levelOneSceneName)
+        else if (activeSceneName == outsideLevelOneSceneName || activeSceneName == levelOneSceneName)
             SetGameState(GameState.LEVEL_FACTORY);
         else if (activeSceneName == mainMenuSceneName)
             SetGameState(GameState.MAIN_MENU);
