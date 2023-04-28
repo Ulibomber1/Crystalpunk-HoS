@@ -18,17 +18,17 @@ public class CubeUtility : MonoBehaviour
     {
         if (name != togglerName)
             return;
-        if (mr.enabled)
+        if(mr.enabled)
             mr.enabled = false;
         else
             mr.enabled = true;
-
+        
 
         Debug.Log("Object " + mr.enabled);
     }
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 }
