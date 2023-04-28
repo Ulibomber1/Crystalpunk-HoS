@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeUtility : MonoBehaviour
+public class Door : MonoBehaviour
 {
     public string togglerName;
-    private MeshRenderer mr;
+    private bool isOpen = false;
+
     // Start is called before the first frame update
     void Awake()
     {
         Interactable.OnInteractAction += OnInteractHandler;
-        mr = gameObject.GetComponent<MeshRenderer>();
     }
 
 
@@ -18,13 +18,18 @@ public class CubeUtility : MonoBehaviour
     {
         if (name != togglerName)
             return;
-        if (mr.enabled)
-            mr.enabled = false;
+        if (!isOpen)
+        {
+            //transform.Rotate(0f, 90f, 0f);
+            transform.Translate(0f, 2.5f, 0f);
+            isOpen = true;
+        }
         else
-            mr.enabled = true;
-
-
-        Debug.Log("Object " + mr.enabled);
+        {
+            //transform.Rotate(0f, -90f, 0f);
+            transform.Translate(0f, -2.5f, 0f);
+            isOpen = false;
+        }
     }
     // Update is called once per frame
     void Update()
@@ -32,3 +37,4 @@ public class CubeUtility : MonoBehaviour
 
     }
 }
+
