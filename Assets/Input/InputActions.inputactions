@@ -55,6 +55,10 @@
                     "type": "Button",
                     "id": "387a4e25-e034-472e-8b5b-f9b0d3d6f68e",
                     "expectedControlType": "Button",
+                    "name": "Aim",
+                    "type": "PassThrough",
+                    "id": "1f2ef175-964f-4be3-9b49-1a6c1748868f",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -300,6 +304,12 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Interact",
+                    "id": "3143400a-1d8d-4d7c-83e3-b46214818b87",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -322,6 +332,12 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Pause",
+                    "id": "67be2efd-e4ee-47e6-9b7b-bf83ff4b8992",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
