@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public int HP = 10;
+    private int HP = 10;
     public Animator animator;
 
     public Slider healthBar;
