@@ -8,7 +8,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
-    [SerializeField] private Transform debugTransform;
+    //[SerializeField] private Transform debugTransform;
     [SerializeField] private Transform pfBulletProjectile;
     [SerializeField] private Transform spawnBulletPosition;
 
@@ -25,7 +25,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
         if(Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask)){
-            debugTransform.position = raycastHit.point;
+            //debugTransform.position = raycastHit.point;
             //variable for face towards aiming code
             mouseWorldPosition = raycastHit.point;
         }
