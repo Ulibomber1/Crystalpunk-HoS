@@ -8,7 +8,6 @@ TagManager:
   - Void
   - Interactable
   - PlayerInteract
-  - InteractUI
   layers:
   - Default
   - TransparentFX
