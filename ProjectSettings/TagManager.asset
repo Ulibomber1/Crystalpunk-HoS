@@ -8,6 +8,8 @@ TagManager:
   - Void
   - Interactable
   - PlayerInteract
+  - wayPoints
+  - wayPoints 2
   layers:
   - Default
   - TransparentFX
