@@ -9,7 +9,7 @@ public class CooldownBar : MonoBehaviour
     public Slider cooldownSlider;
 
     //Sets the Cooldown of the player based on the integer parameter
-    public void SetCooldown(int cooldown)
+    public void SetCooldown(float cooldown)
     {
         //Slider of the cooldown bar will be set to the value of cooldown
         //This will set the cooldown in game
@@ -17,7 +17,7 @@ public class CooldownBar : MonoBehaviour
     }
 
     //Sets the maximum value of the cooldown to the slider based on the integer parameter
-    public void SetMaxCooldown(int cooldown)
+    public void SetMaxCooldown(float cooldown)
     {
         //Maximum value of the cooldown bar slider is set
         cooldownSlider.maxValue = cooldown;

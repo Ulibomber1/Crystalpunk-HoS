@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 groundNormal;
     public float sphercastOffset;
 
-    private static float cd = 5;
+    private static float cd = 5f;
     private static float nextCast;
     private static int abilityCDText = 0;
     private static float fireRate = 0.2f;
