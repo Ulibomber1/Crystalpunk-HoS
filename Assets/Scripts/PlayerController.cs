@@ -1,20 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-//using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEditor.Rendering.LookDev;
+
 
 public class PlayerController : MonoBehaviour
 {
     public HealthBar healthBar;
+    public AmmoBar ammoBar;
+    public CooldownBar cooldownBar;
     public TextMeshProUGUI gearText;
+    public TextMeshProUGUI abilityText;
+    public TextMeshProUGUI ammoText;
 
 
     public float jumpHeight = 0;
     public float playerSpeed;
     public float maxVelocity;
+    private const float walkSpeed = 10.0f;
+    private const float runSpeed = 15.0f;
 
     //private bool isGrounded = false;
     private Rigidbody rb;
@@ -27,16 +34,24 @@ public class PlayerController : MonoBehaviour
 
     //Player Stat Variables
     private static int gears = 0;
-    private static int maxAmmo = 5;
+    private static int maxAmmo = 20;
     private static int ammo = maxAmmo;
     private int maxHealth = 10;
     private int currentHealth;
     private static int lives = 3;
     private static bool doubleJump = false;
-    private static float cd = 5;
+    private static int cd = 5;
     private static float nextCast;
+    private static int abilityCDText = 0;
+    private static float fireRate = 0.2f;
+    private static float nextFire;
+    private static float reloadTime = 2;
+    private static float nextReload;
+    private static bool allowFire = false;
+    private static bool isReloading = false;
 
-    void OnJump()
+
+    void OnJump(InputValue context)
     {
         if (GroundCheck())
         {
@@ -54,31 +69,52 @@ public class PlayerController : MonoBehaviour
             doubleJump = true;
         }
     }
-
-    void OnFire()
+ 
+    void Fired()
     {
-        if (ammo > 0)
+        Debug.Log("Pew"); // Projectile-based shooting
+        ammo = ammo - 1;
+        SetAmmoText();
+        // Disable projectile when they hit something
+        // Here, we only instantiate the projectile
+    }
+
+    public void OnFire(InputValue inputValue)
+    {
+        if (inputValue.isPressed)
         {
-            Debug.Log("Pew"); // Projectile-based shooting
-            ammo = ammo - 1;
-            // Disable projectile when they hit something
-            // Here, we only instantiate the projectile
+            allowFire = true;
         }
         else
         {
-            Reload();
+            allowFire = false;
         }
     }
+    public void ReloadTime()
+    {
+        isReloading = true;
+        nextReload = Time.time + reloadTime;
+        Debug.Log("Reloading...");
+    }
 
-    void Reload()
+    public void Reload()
     {
         //Code for reloading
+        isReloading = false;
         ammo = maxAmmo;
+        SetAmmoText();
         Debug.Log("Reloaded Successfully!");
+        ammoBar.SetMaxAmmo(ammo);
+    }
+
+    void OnReload(InputValue context)
+    {
+        allowFire = false;
+        ReloadTime();
     }
 
     //Ability function, checks to see if ability is on cooldown
-    void Ability()
+    void OnAbility(InputValue context)
     {
         if(Time.time < nextCast)
         {
@@ -104,17 +140,31 @@ public class PlayerController : MonoBehaviour
         return gears;
     }
 
-    void OnLook(InputValue inputValue)
+    void OnLook(InputValue context)
     {
 
     }
 
 
-    void OnMove(InputValue movementValue)
+    void OnMove(InputValue context)
     {
-        Vector2 readVector = movementValue.Get<Vector2>();
+        Vector2 readVector = context.Get<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
         movementVector = toConvert;
+    }
+
+    void OnSprint(InputValue context)
+    {
+        if (context.isPressed)
+        {
+            Debug.Log("Add + 5 Speed!");
+            maxVelocity = runSpeed;
+        }
+        else
+        {
+            Debug.Log("Speed Reset");
+            maxVelocity = walkSpeed;
+        }
     }
 
     private Quaternion VectorToQuaternion(Vector3 movementVector)
@@ -184,6 +234,10 @@ public class PlayerController : MonoBehaviour
 
         //Sets HUD stats
         SetGearText();
+        SetAbilityText();
+        SetAmmoText();
+        cooldownBar.SetMaxCooldown(cd);
+        ammoBar.SetMaxAmmo(ammo);
 
     }
 
@@ -229,7 +283,7 @@ public class PlayerController : MonoBehaviour
         //When the player loses all health their position will be reset and the death count will increase by +1
         //The player's health is reset back to it's max value
         //The health slider is also reset to a full bar
-        if (currentHealth == 0)
+        if (currentHealth == 0 && lives > 0)
         {
             transform.position = new Vector3(0f, 0.5f, 0f);
             rb.velocity = Vector3.zero;
@@ -242,6 +296,12 @@ public class PlayerController : MonoBehaviour
             currentHealth = maxHealth;
             healthBar.SetMaxHealth(maxHealth);
         }
+        else if(currentHealth == 0 && lives == 0)
+        {
+            GameManager.Instance.ChangeScene("GameOver");
+            GameManager.Instance.SetGameState(GameState.GAME_OVER);
+            lives = 3;
+        }
     }
     void SetGearText()
     {
@@ -249,20 +309,58 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void SetAbilityText()
+    {
+        if(abilityCDText > 0)
+        {
+            abilityText.text = abilityCDText.ToString();
+        }
+        else
+        {
+            abilityText.text = "Ability Available";
+        }
+    }
+
+    void SetAmmoText()
+    {
+        ammoText.text = ammo.ToString() + "/" + maxAmmo;
+        ammoBar.SetAmmo(ammo);
+    }
+
     void Update()
     {
+        if (nextCast > Time.time)
+        {
+
+            abilityCDText = (int)nextCast - (int)Time.time;
+            cooldownBar.SetCooldown(abilityCDText);
+            SetAbilityText();
+        }
+
         //This is used as a test to ensure the health bar works properly
         //Press the "V" key to reduce the player health
-        if (Input.GetKeyDown(KeyCode.V))
+        /*if (Input.GetKeyDown(KeyCode.V))
         {
             PlayerDamage(2);
-        }
+        }*/
 
         //Tests Ability Cooldown
         //Press the "E" key to use ability to cast and see if its on cooldown or not
-        if (Input.GetKeyDown(KeyCode.E))
+
+
+        if (ammo == 0 && isReloading == false)
         {
-            Ability();
+            ReloadTime();
+        }
+
+        if (nextReload < Time.time && isReloading == true)
+        {
+            Reload();
+        }
+        if (Time.time > nextFire && ammo > 0 && allowFire == true)
+        {
+            nextFire = Time.time + fireRate;
+            Fired();
         }
     }
 
