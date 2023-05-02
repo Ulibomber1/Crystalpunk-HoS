@@ -8,12 +8,12 @@ public enum GameState { MAIN_MENU,
                         LEVEL_FACTORY,
                         LEVEL_LAVA, 
                         LEVEL_AIR, 
-                        PAUSED, 
+                        PAUSED,
                         GAME_OVER}
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, levelOneSceneName;
+    [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, levelOneSceneName, gameOverSceneName;
 
     // New Singleton Pattern
     public static GameManager Instance { get; private set; }
@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
             SetGameState(GameState.LEVEL_FACTORY);
         else if (activeSceneName == mainMenuSceneName)
             SetGameState(GameState.MAIN_MENU);
+        else if (activeSceneName == gameOverSceneName)
+            SetGameState(GameState.GAME_OVER);
         else
             Debug.LogWarning("Unrecognized Scene Name. Check the active scene's GameManager script to make sure the correct scene names are provided.");
     }
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
     {
         // Game Logic may occur here
     }
+
 
     public void ChangeScene(string sceneName)
     {
@@ -108,7 +111,7 @@ public class GameManager : MonoBehaviour
 
         void ChangeFromGameOver()
         {
-            if (sceneName != hubWorldSceneName || sceneName != mainMenuSceneName || sceneName != SceneManager.GetActiveScene().name)
+            if (sceneName != hubWorldSceneName && sceneName != mainMenuSceneName)
             {
                 Debug.LogError("Cannot change from " + SceneManager.GetActiveScene().name + " to " + sceneName + ".");
                 return;

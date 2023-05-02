@@ -47,3 +47,5 @@ MonoBehaviour:
   hubWorldSceneName: Hub World
   levelZeroSceneName: 
   mainMenuSceneName: Start
+  levelOneSceneName: 
+  gameOverSceneName: GameOver
