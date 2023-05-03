@@ -4,8 +4,6 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-using UnityEditor.Rendering.LookDev;
-
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,8 +13,8 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI gearText;
     public TextMeshProUGUI abilityText;
     public TextMeshProUGUI ammoText;
-
     private CapsuleCollider capColl;
+    public PlayerInput playerInput;
 
     public float jumpHeight = 0;
     public float acceleration;
@@ -42,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private static int lives = 3;
 
     private static bool canDoubleJump = false;
+    public bool doubleJumpUnlocked;
     private static bool isGrounded;
     public float groundAngle;
     [Range(0, 1)] public float midAirForceScale;
@@ -57,9 +56,10 @@ public class PlayerController : MonoBehaviour
     private static float nextReload;
     private static bool allowFire = false;
     private static bool isReloading = false;
+    private static float cd = 5;
+    private static float nextCast;
 
-
-    void OnJump(InputValue context)
+    public void OnJump(InputValue context)
     {
         if (isGrounded)
         {
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Boing");
             rb.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
         }
-        else if (!isGrounded && !canDoubleJump)
+        else if (!isGrounded && !canDoubleJump && doubleJumpUnlocked)
         {
             Debug.Log("Double Boing");
             rb.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
@@ -142,19 +142,46 @@ public class PlayerController : MonoBehaviour
         return currentHealth;
     }
 
+    //Ability function, checks to see if ability is on cooldown
+    void Ability()
+    {
+        if(Time.time < nextCast)
+        {
+            Debug.Log("Ability in cooldown!");
+            return;
+        }
+        else
+        {
+            Debug.Log("Ability casted!");
+            nextCast = Time.time + cd;
+        }
+    }
+
+    //Should return current HP
+    public int GetHP()
+    {
+        return currentHealth;
+    }
+
     //Should return current amount of gears
-    public int DisplayGears()
+    public int GetGearTotal()
     {
         return gears;
     }
 
-    void OnLook(InputValue context)
+    public void OnLook(InputValue context)
     {
 
     }
 
+    public delegate void InteractionHandler();
+    public static event InteractionHandler OnInteraction;
+    public void OnInteract(InputValue value)
+    {
+           OnInteraction?.Invoke();
+    }
 
-    void OnMove(InputValue context)
+    public void OnMove(InputValue movementValue)
     {
         Vector2 readVector = context.Get<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
@@ -247,6 +274,7 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
+        // rb = GetComponentInParent<Rigidbody>(); // if something is broken, try this
         capColl = GetComponent<CapsuleCollider>();
 
         //Sets the current health to the max health
@@ -269,7 +297,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
+
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
@@ -295,7 +325,7 @@ public class PlayerController : MonoBehaviour
 
     //Reduces the player's health by the parameter value
     //Function should be called whenever the player takes damage from an enemy
-    void PlayerDamage(int damage)
+    public void PlayerDamage(int damage)
     {
         //The player's health is subtracted by the damage value
         currentHealth = currentHealth - damage;
@@ -349,6 +379,11 @@ public class PlayerController : MonoBehaviour
         ammoText.text = ammo.ToString() + "/" + maxAmmo;
         ammoBar.SetAmmo(ammo);
     }
+    void SetGearText()
+    {
+        gearText.text = gears.ToString();
+
+    }
 
     void Update()
     {
@@ -391,4 +426,6 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
     }
+
+
 }
