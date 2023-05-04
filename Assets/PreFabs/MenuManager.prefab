@@ -50,3 +50,6 @@ MonoBehaviour:
   creditsMenu: {fileID: 0}
   areYouSure: {fileID: 0}
   fadeOut: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  inGameSettings: {fileID: 0}
+  HUD: {fileID: 0}
