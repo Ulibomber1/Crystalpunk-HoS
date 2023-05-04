@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI gearText;
     private CapsuleCollider capColl;
     public PlayerInput playerInput;
+    public MenuManager menuManager;
 
     public float jumpHeight = 0;
     public float acceleration;
@@ -45,6 +46,14 @@ public class PlayerController : MonoBehaviour
     private static float cd = 5;
     private static float nextCast;
 
+
+    public void OnPause(InputValue context)
+    {
+        if (menuManager.IsPaused())
+            menuManager.Unpause();
+        else
+            menuManager.Pause();
+    }
     public void OnJump(InputValue context)
     {
         if (isGrounded)

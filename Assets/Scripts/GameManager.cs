@@ -40,6 +40,13 @@ public class GameManager : MonoBehaviour
         }
         // End of new Singleton Pattern
 
+        SetGameStateByContext();
+        Interactable.OnInteractAction += OnInteractHandler;
+        SettingsMenu.onSettingsAwake += PassBackSettingsData;
+    }
+
+    public void SetGameStateByContext()
+    {
         string activeSceneName = SceneManager.GetActiveScene().name;
         if (activeSceneName == hubWorldSceneName) // if else-if because switch cases require constant values to compare to.
             SetGameState(GameState.HUB_WORLD);
@@ -51,8 +58,6 @@ public class GameManager : MonoBehaviour
             SetGameState(GameState.MAIN_MENU);
         else
             Debug.LogWarning("Unrecognized Scene Name. Check the active scene's GameManager script to make sure the correct scene names are provided.");
-        Interactable.OnInteractAction += OnInteractHandler;
-        SettingsMenu.onSettingsAwake += PassBackSettingsData;
     }
 
     public void PassBackSettingsData(SettingsMenu settingsMenu)
@@ -180,7 +185,7 @@ public class GameManager : MonoBehaviour
 
         void ChangeFromPause() 
         {
-            if (sceneName != hubWorldSceneName || sceneName != mainMenuSceneName)
+            if (sceneName != hubWorldSceneName && sceneName != mainMenuSceneName)
             {
                 Debug.LogError("Cannot change from " + SceneManager.GetActiveScene().name + " to " + sceneName + ".");
                 return;
