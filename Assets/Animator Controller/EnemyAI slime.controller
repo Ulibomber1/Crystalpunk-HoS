@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 5
-  enemyBullet: {fileID: 4235939242642074689, guid: 6864bf0742475e14a83aa789a692b5df,
-    type: 3}
-  enemyBulletSpawnPoint: {fileID: 0}
-  enemyBulletSpeed: 100
+  enemyBulletSpeed: 0
+  projectile: {fileID: 0}
 --- !u!1102 &-7549578699183312872
 AnimatorState:
   serializedVersion: 6

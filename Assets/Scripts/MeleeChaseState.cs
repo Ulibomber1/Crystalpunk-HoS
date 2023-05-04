@@ -21,7 +21,7 @@ public class MeleeChaseState : StateMachineBehaviour
     {
         agent.SetDestination(player.position);
         float distance = Vector3.Distance(player.position, animator.transform.position);
-        if (distance < 15)
+        if (distance > 8f)
             animator.SetBool("isChasing", false);
         if (distance < 2f)
             animator.SetBool("isAttacking", true);

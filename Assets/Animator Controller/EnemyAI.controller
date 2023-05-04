@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218361c739e32074e9e61e91b3332acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 5
-  enemyBullet: {fileID: 4235939242642074689, guid: 6864bf0742475e14a83aa789a692b5df,
+  timer: 2
+  enemyBulletSpeed: 1000
+  projectile: {fileID: 4235939242642074689, guid: 6864bf0742475e14a83aa789a692b5df,
     type: 3}
-  enemyBulletSpawnPoint: {fileID: 0}
-  enemyBulletSpeed: 100
 --- !u!1102 &-7549578699183312872
 AnimatorState:
   serializedVersion: 6
