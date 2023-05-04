@@ -22,7 +22,7 @@ public static class SettingsData
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, levelOneSceneName;
+    [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, outsideLevelOneSceneName, levelOneSceneName;
 
     // New Singleton Pattern
     public static GameManager Instance { get; private set; }
@@ -40,19 +40,24 @@ public class GameManager : MonoBehaviour
         }
         // End of new Singleton Pattern
 
+        SetGameStateByContext();
+        Interactable.OnInteractAction += OnInteractHandler;
+        SettingsMenu.onSettingsAwake += PassBackSettingsData;
+    }
+
+    public void SetGameStateByContext()
+    {
         string activeSceneName = SceneManager.GetActiveScene().name;
         if (activeSceneName == hubWorldSceneName) // if else-if because switch cases require constant values to compare to.
             SetGameState(GameState.HUB_WORLD);
         else if (activeSceneName == levelZeroSceneName)
             SetGameState(GameState.LEVEL_0);
-        else if (activeSceneName == levelOneSceneName)
+        else if (activeSceneName == outsideLevelOneSceneName || activeSceneName == levelOneSceneName)
             SetGameState(GameState.LEVEL_FACTORY);
         else if (activeSceneName == mainMenuSceneName)
             SetGameState(GameState.MAIN_MENU);
         else
             Debug.LogWarning("Unrecognized Scene Name. Check the active scene's GameManager script to make sure the correct scene names are provided.");
-        Interactable.OnInteractAction += OnInteractHandler;
-        SettingsMenu.onSettingsAwake += PassBackSettingsData;
     }
 
     public void PassBackSettingsData(SettingsMenu settingsMenu)
@@ -180,7 +185,7 @@ public class GameManager : MonoBehaviour
 
         void ChangeFromPause() 
         {
-            if (sceneName != hubWorldSceneName || sceneName != mainMenuSceneName)
+            if (sceneName != hubWorldSceneName && sceneName != mainMenuSceneName)
             {
                 Debug.LogError("Cannot change from " + SceneManager.GetActiveScene().name + " to " + sceneName + ".");
                 return;
