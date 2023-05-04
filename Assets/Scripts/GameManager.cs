@@ -11,6 +11,15 @@ public enum GameState { MAIN_MENU,
                         PAUSED,
                         GAME_OVER}
 
+public static class SettingsData
+{
+    public static float volume;
+    public static bool invertX;
+    public static bool invertY;
+    public static float sensitivity;
+    public static float FOVslider;
+}
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, levelOneSceneName, gameOverSceneName;
@@ -44,6 +53,14 @@ public class GameManager : MonoBehaviour
             SetGameState(GameState.GAME_OVER);
         else
             Debug.LogWarning("Unrecognized Scene Name. Check the active scene's GameManager script to make sure the correct scene names are provided.");
+        Interactable.OnInteractAction += OnInteractHandler;
+        SettingsMenu.onSettingsAwake += PassBackSettingsData;
+    }
+
+    public void PassBackSettingsData(SettingsMenu settingsMenu)
+    {
+        SettingsData.volume = settingsMenu.volume.value;
+        SettingsData.invertX = settingsMenu.invertX.isOn;
     }
 
     public delegate void StateChangeHandler(GameState state);
@@ -173,5 +190,10 @@ public class GameManager : MonoBehaviour
             }
             SceneManager.LoadScene(sceneName);
         }
+    }
+
+    public void OnInteractHandler(string name)
+    {
+        Debug.Log("Hello Lever!");
     }
 }
