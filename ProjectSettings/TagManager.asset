@@ -6,8 +6,6 @@ TagManager:
   tags:
   - PickUp
   - Void
-  - Interactable
-  - PlayerInteract
   layers:
   - Default
   - TransparentFX
