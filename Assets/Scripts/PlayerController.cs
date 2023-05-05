@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public float acceleration;
     public float maxVelocity;
     public float slopeLimit;
+    private const float walkSpeed = 10.0f;
+    private const float runSpeed = 15.0f;
 
     private Rigidbody rb;
     private Vector3 movementVector;
@@ -33,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     //Player Stat Variables
     public static int gears = 0;
-    private static int maxAmmo = 5;
+    [SerializeField] private static int maxAmmo = 20;
     private static int ammo = maxAmmo;
     private int maxHealth = 10;
     private int currentHealth;
@@ -90,6 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Pew"); // Projectile-based shooting
             ammo = ammo - 1;
+            Fired();
             // Disable projectile when they hit something
             // Here, we only instantiate the projectile
         }
@@ -99,13 +102,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    void OnSprint(InputValue context)
+    {
+        if (context.isPressed)
+        {
+            Debug.Log("Add + 5 Speed!");
+            maxVelocity = runSpeed;
+        }
+        else
+        {
+            Debug.Log("Speed Reset");
+            maxVelocity = walkSpeed;
+        }
+    }
 
     void Reload()
     {
         //Code for reloading
+        isReloading = false;
         ammo = maxAmmo;
+        SetAmmoText();
         Debug.Log("Reloaded Successfully!");
+        ammoBar.SetMaxAmmo(ammo);
     }
 
     public void ReloadTime()
@@ -117,15 +135,13 @@ public class PlayerController : MonoBehaviour
 
     void Fired()
     {
-        Debug.Log("Pew"); // Projectile-based shooting
-        ammo = ammo - 1;
         SetAmmoText();
         // Disable projectile when they hit something
         // Here, we only instantiate the projectile
     }
 
     //Ability function, checks to see if ability is on cooldown
-    void Ability()
+    void OnAbility(InputValue context)
     {
         if(Time.time < nextCast)
         {
@@ -137,6 +153,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Ability casted!");
             nextCast = Time.time + cd;
         }
+    }
+
+    void OnReload(InputValue context)
+    {
+        allowFire = false;
+        ReloadTime();
     }
 
     //Should return current HP
@@ -337,6 +359,18 @@ public class PlayerController : MonoBehaviour
     {
         ammoText.text = ammo.ToString() + "/" + maxAmmo;
         ammoBar.SetAmmo(ammo);
+    }
+
+    //Should return current HP
+    public int DisplayHP()
+    {
+        return currentHealth;
+    }
+
+    //Should return current amount of gears
+    public int DisplayGears()
+    {
+        return gears;
     }
 
     void Update()
