@@ -16,7 +16,7 @@ public class PatrolStateBug : StateMachineBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = animator.GetComponent<NavMeshAgent>();
         timer = 0;
-        GameObject go = GameObject.FindGameObjectWithTag("wayPoints");
+        GameObject go = GameObject.FindGameObjectWithTag("wayPoints 2");
         foreach (Transform t in go.transform)
             wayPoints.Add(t);
 

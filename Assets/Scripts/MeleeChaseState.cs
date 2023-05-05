@@ -7,13 +7,14 @@ public class MeleeChaseState : StateMachineBehaviour
 {
     NavMeshAgent agent;
     Transform player;
-    // float chaseRange = 8;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = animator.GetComponent<NavMeshAgent>();
-        //agent.speed = agent.speed + 2;
+
+        agent.speed = 4f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -21,7 +22,7 @@ public class MeleeChaseState : StateMachineBehaviour
     {
         agent.SetDestination(player.position);
         float distance = Vector3.Distance(player.position, animator.transform.position);
-        if (distance > 8f)
+        if (distance > 12f)
             animator.SetBool("isChasing", false);
         if (distance < 2f)
             animator.SetBool("isAttacking", true);
@@ -30,7 +31,7 @@ public class MeleeChaseState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(agent.transform.position);
+        agent.speed = 2f;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

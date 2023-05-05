@@ -28,9 +28,13 @@ public class PatrolState : StateMachineBehaviour
     {
         if(agent.remainingDistance <= agent.stoppingDistance)
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        //quick fix to make enemy move to waypoint they can go to
+        if(timer > 4)
+            agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
         timer += Time.deltaTime;
-        if (timer > Random.Range(15, 20))
+        if (timer > Random.Range(4, 8))
             animator.SetBool("isPatrolling", false);
+
         float distance = Vector3.Distance(player.position, animator.transform.position);
         if (distance < chaseRange)
             animator.SetBool("isChasing", true);
