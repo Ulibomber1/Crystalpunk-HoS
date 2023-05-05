@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
@@ -19,17 +18,14 @@ public class MenuManager : MonoBehaviour
     public GameObject inGameSettings;
     public GameObject HUD;
 
-    bool isPaused = false;
+    private bool isPaused = false;
 
     public delegate void OnExitSettingsHandler();
     public static event OnExitSettingsHandler SettingsExited;
 
-    void OnPause()
+    public bool IsPaused()
     {
-        if (isPaused)
-            Unpause();
-        else
-            Pause();
+        return isPaused;
     }
 
     private void Start()
@@ -46,19 +42,20 @@ public class MenuManager : MonoBehaviour
     {
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
-        GameManager.Instance.SetGameState(GameState.PAUSED); // I dont know if this is right?
+        GameManager.Instance.SetGameState(GameState.PAUSED); // Yes this is right. ;P
         InGameSwitch("Pause");
-        Time.timeScale = 0; //Timescale is a controvertial way to pause, needs more research
+        Time.timeScale = 0; // Make sure Input System Package setting "Update Mode" is set to "Dynamic Update", otherwise it will not work
     }
 
     public void Unpause()
     {
+        if (!isPaused)
+            return;
         isPaused = false;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
-        //GameManager.Instance.SetGameState(Name of scene); 
+        GameManager.Instance.SetGameStateByContext();
         InGameSwitch("HUD");
-
     }
 
     public void OpenInGameSettings()
