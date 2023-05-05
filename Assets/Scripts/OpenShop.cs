@@ -6,6 +6,7 @@ public class OpenShop : MonoBehaviour
 {
     public string togglerName;
     public GameObject shopUI;
+    public MenuManager menuManager;
     private bool isShopping = false;
     // Start is called before the first frame update
     void Awake()
@@ -33,14 +34,12 @@ public class OpenShop : MonoBehaviour
 
     public void Shopping()
     {
-        shopUI.SetActive(true);
-        isShopping = true;
+        menuManager.OpenShop();
     }
 
     public void DoneShopping()
     {
-        shopUI.SetActive(false);
-        isShopping = false;
+        menuManager.CloseShop();
     }
 
 }

@@ -17,6 +17,10 @@ public class MenuManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject inGameSettings;
     public GameObject HUD;
+    public GameObject shop;
+
+    [Header("Player")]
+    public PlayerController playerController;
 
     private bool isPaused = false;
 
@@ -69,6 +73,26 @@ public class MenuManager : MonoBehaviour
         InGameSwitch("Pause");
     }
 
+    public void OpenShop()
+    {
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        InGameSwitch("Shop");
+    }
+
+    public void CloseShop()
+    {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        InGameSwitch("HUD");
+    }
+
+    public void PurchaseBoots()
+    {
+        //take money here
+        playerController.doubleJumpUnlocked = true; //should provbably go through game manager
+    }
+
     private void InGameSwitch(string ui)
     {
         switch (ui)
@@ -77,16 +101,25 @@ public class MenuManager : MonoBehaviour
                 HUD.SetActive(true);
                 pauseMenu.SetActive(false);
                 inGameSettings.SetActive(false);
+                shop.SetActive(false);
                 break;
             case "Pause":
                 HUD.SetActive(false);
                 pauseMenu.SetActive(true);
                 inGameSettings.SetActive(false);
+                shop.SetActive(false);
                 break;
             case "Settings":
                 HUD.SetActive(false);
                 pauseMenu.SetActive(false);
                 inGameSettings.SetActive(true);
+                shop.SetActive(false);
+                break;
+            case "Shop":
+                HUD.SetActive(false);
+                pauseMenu.SetActive(false);
+                inGameSettings.SetActive(false);
+                shop.SetActive(true);
                 break;
             default:
                 break;

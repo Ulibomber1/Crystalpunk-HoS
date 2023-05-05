@@ -182,7 +182,9 @@ public class PlayerController : MonoBehaviour
     public static event InteractionHandler OnInteraction;
     public void OnInteract(InputValue value)
     {
-           OnInteraction?.Invoke();
+        if (menuManager.IsPaused())
+            return;
+        OnInteraction?.Invoke();
     }
 
     public void OnMove(InputValue movementValue)
