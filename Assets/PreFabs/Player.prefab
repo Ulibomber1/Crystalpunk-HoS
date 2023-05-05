@@ -261,11 +261,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   gearText: {fileID: 0}
+  abilityText: {fileID: 0}
+  ammoText: {fileID: 0}
   playerInput: {fileID: 5005127394278487163}
   menuManager: {fileID: 0}
+  cooldownBar: {fileID: 0}
+  ammoBar: {fileID: 0}
   jumpHeight: 7
   acceleration: 30
-  maxVelocity: 11
+  maxVelocity: 12
   slopeLimit: 45
   boxSize: {x: 1, y: 0.2, z: 1}
   maxDistance: 1
