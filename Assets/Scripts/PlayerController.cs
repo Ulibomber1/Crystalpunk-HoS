@@ -10,9 +10,13 @@ public class PlayerController : MonoBehaviour
 {
     public HealthBar healthBar;
     public TextMeshProUGUI gearText;
+    public TextMeshProUGUI abilityText;
+    public TextMeshProUGUI ammoText;
     private CapsuleCollider capColl;
     public PlayerInput playerInput;
     public MenuManager menuManager;
+    public CooldownBar cooldownBar;
+    public AmmoBar ammoBar;
 
     public float jumpHeight = 0;
     public float acceleration;
@@ -45,6 +49,13 @@ public class PlayerController : MonoBehaviour
 
     private static float cd = 5;
     private static float nextCast;
+    private static int abilityCDText = 0;
+    private static float fireRate = 0.2f;
+    private static float nextFire;
+    private static float reloadTime = 2;
+    private static float nextReload;
+    private static bool allowFire = false;
+    private static bool isReloading = false;
 
 
     public void OnPause(InputValue context)
@@ -95,6 +106,22 @@ public class PlayerController : MonoBehaviour
         //Code for reloading
         ammo = maxAmmo;
         Debug.Log("Reloaded Successfully!");
+    }
+
+    public void ReloadTime()
+    {
+        isReloading = true;
+        nextReload = Time.time + reloadTime;
+        Debug.Log("Reloading...");
+    }
+
+    void Fired()
+    {
+        Debug.Log("Pew"); // Projectile-based shooting
+        ammo = ammo - 1;
+        SetAmmoText();
+        // Disable projectile when they hit something
+        // Here, we only instantiate the projectile
     }
 
     //Ability function, checks to see if ability is on cooldown
@@ -223,7 +250,10 @@ public class PlayerController : MonoBehaviour
 
         //Sets HUD stats
         SetGearText();
-
+        SetAbilityText();
+        SetAmmoText();
+        cooldownBar.SetMaxCooldown(cd);
+        ammoBar.SetMaxAmmo(ammo);
     }
 
     void FixedUpdate()
@@ -291,22 +321,49 @@ public class PlayerController : MonoBehaviour
         gearText.text = gears.ToString();
 
     }
+    void SetAbilityText()
+    {
+        if (abilityCDText > 0)
+        {
+            abilityText.text = abilityCDText.ToString();
+        }
+        else
+        {
+            abilityText.text = "Ability Available";
+        }
+    }
+
+    void SetAmmoText()
+    {
+        ammoText.text = ammo.ToString() + "/" + maxAmmo;
+        ammoBar.SetAmmo(ammo);
+    }
 
     void Update()
     {
-        //This is used as a test to ensure the health bar works properly
-        //Press the "V" key to reduce the player health
-        //if (Input.GetKeyDown(KeyCode.V))
-        //{
-        //    PlayerDamage(2);
-        //}
+        if (nextCast > Time.time)
+        {
 
-        //Tests Ability Cooldown
-        //Press the "E" key to use ability to cast and see if its on cooldown or not
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    Ability();
-        //}
+            abilityCDText = (int)nextCast - (int)Time.time;
+            cooldownBar.SetCooldown(abilityCDText);
+            SetAbilityText();
+        }
+
+        if (ammo == 0 && isReloading == false)
+        {
+            ReloadTime();
+        }
+
+        if (nextReload < Time.time && isReloading == true)
+        {
+            Reload();
+        }
+
+        if (Time.time > nextFire && ammo > 0 && allowFire == true)
+        {
+            nextFire = Time.time + fireRate;
+            Fired();
+        }
     }
 
     private void OnDestroy()
