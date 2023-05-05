@@ -1324,6 +1324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4268765687179827041}
   - component: {fileID: 2461488469145985338}
+  - component: {fileID: 594837900}
   m_Layer: 5
   m_Name: Cooldown Bar
   m_TagString: Untagged
@@ -1405,6 +1406,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &594837900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276030176650837290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf946b442cf2d944eb775b6f2fc31f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownSlider: {fileID: 2461488469145985338}
 --- !u!1 &2572380239193599995
 GameObject:
   m_ObjectHideFlags: 0
