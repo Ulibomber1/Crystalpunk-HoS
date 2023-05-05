@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDialogue : MonoBehaviour
+public class OpenShop : MonoBehaviour
 {
     public string togglerName;
-    public GameObject dialogueBox;
-    private bool isTalking = false;
+    public GameObject shopUI;
+    private bool isShopping = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -18,29 +18,29 @@ public class OpenDialogue : MonoBehaviour
     {
         if (name != togglerName)
             return;
-        if (!isTalking)
+        if (!isShopping)
         {
-            Talking();
+            Shopping();
         }
         else
         {
-            DoneTalking();
+            DoneShopping();
         }
 
 
-        Debug.Log("Dialogue " + isTalking);
+        Debug.Log("Dialogue " + isShopping);
     }
 
-    public void Talking()
+    public void Shopping()
     {
-        dialogueBox.SetActive(true);
-        isTalking = true;
+        shopUI.SetActive(true);
+        isShopping = true;
     }
 
-    public void DoneTalking()
+    public void DoneShopping()
     {
-        dialogueBox.SetActive(false);
-        isTalking = false;
+        shopUI.SetActive(false);
+        isShopping = false;
     }
 
 }

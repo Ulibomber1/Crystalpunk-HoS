@@ -801,6 +801,7 @@ GameObject:
   - component: {fileID: 1418885995}
   - component: {fileID: 594837903}
   - component: {fileID: 594837902}
+  - component: {fileID: 636558146}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -858,6 +859,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   togglerName: DialogueTrigger
   dialogueBox: {fileID: 2911485870737604335}
+--- !u!114 &636558146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418885993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481da3a4aeeedb24693323a4c64e26fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  togglerName: ShopTrigger
+  shopUI: {fileID: 6168650997923274986}
 --- !u!1 &363736549917902655
 GameObject:
   m_ObjectHideFlags: 0
