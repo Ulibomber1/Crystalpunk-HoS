@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: f16a8eb99df562d48bea0b81c4b2bfea, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 6bfab16f387f95e4bb60f866299be241, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -715,12 +715,12 @@ PrefabInstance:
     - target: {fileID: 5147717103635249597, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 8.869752e-24
+      value: -4.0804605e-17
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103635249597, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -9.810946e-25
+      value: -7.95845e-17
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103850081968, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
@@ -840,12 +840,12 @@ PrefabInstance:
     - target: {fileID: 5147717105289247136, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000013875434
+      value: -0.000000001957099
       objectReference: {fileID: 0}
     - target: {fileID: 5147717105289247136, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.9103394e-10
+      value: 2.694492e-10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc01ea595d1f0974fb4c301cbf671e9a, type: 3}
@@ -1303,12 +1303,12 @@ PrefabInstance:
     - target: {fileID: 6720153260823689344, guid: 8ae558b0eb70a1f4b90f7914721048bf,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000032831583
+      value: -0.000000032831583
       objectReference: {fileID: 0}
     - target: {fileID: 6720153260823689344, guid: 8ae558b0eb70a1f4b90f7914721048bf,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000005684202
+      value: 0.000000005684202
       objectReference: {fileID: 0}
     - target: {fileID: 6720153260823689344, guid: 8ae558b0eb70a1f4b90f7914721048bf,
         type: 3}
