@@ -24,6 +24,8 @@ public class MenuManager : MonoBehaviour
 
     private bool isPaused = false;
 
+    public int doubleJumpPrice = 20;
+
     public delegate void OnExitSettingsHandler();
     public static event OnExitSettingsHandler SettingsExited;
 
@@ -90,7 +92,14 @@ public class MenuManager : MonoBehaviour
     public void PurchaseBoots()
     {
         //take money here
-        playerController.doubleJumpUnlocked = true; //should provbably go through game manager
+        int gears = playerController.GetGearTotal();
+        Debug.Log(gears);
+        if (gears >= doubleJumpPrice)
+        {
+            playerController.doubleJumpUnlocked = true;
+            //take gears away
+        }
+        
     }
 
     private void InGameSwitch(string ui)
