@@ -11,6 +11,7 @@ public enum GameState
     LEVEL_LAVA,
     LEVEL_AIR,
     PAUSED,
+    SHOP,
     GAME_OVER
 }
 
@@ -116,6 +117,9 @@ public class GameManager : MonoBehaviour
                 ChangeFromLevel();
                 break;
             case GameState.PAUSED:
+                ChangeFromPause();
+                break;
+            case GameState.SHOP:
                 ChangeFromPause();
                 break;
             case GameState.GAME_OVER:

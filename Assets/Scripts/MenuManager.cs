@@ -18,13 +18,19 @@ public class MenuManager : MonoBehaviour
     public GameObject inGameSettings;
     public GameObject HUD;
     public GameObject shop;
+    public GameObject doubleJumpSold;
+    public GameObject doubleJumpButton;
+    public GameObject insufficientFunds;
 
     [Header("Player")]
     public PlayerController playerController;
 
     private bool isPaused = false;
+    private bool isShop = false;
 
     public int doubleJumpPrice = 20;
+    public int healthPrice = 5;
+    public int ammoPrice = 5;
 
     public delegate void OnExitSettingsHandler();
     public static event OnExitSettingsHandler SettingsExited;
@@ -34,19 +40,42 @@ public class MenuManager : MonoBehaviour
         return isPaused;
     }
 
+    public bool IsShop()
+    {
+        return isShop;
+    }
+
     private void Start()
     {
-        BackToMainMenu();
+        if(SceneManager.GetActiveScene().name == "Start")
+        {
+            BackToMainMenu();
+        }
+        else
+        {
+            StartOfScene();
+        }
     }
     public void StartOfScene()
     {
         InGameSwitch("HUD");
         Time.timeScale = 1;
+        if(playerController.doubleJumpUnlocked == true)
+        {
+            doubleJumpSold.SetActive(true);
+            doubleJumpButton.SetActive(false);
+        }
+        else
+        {
+            doubleJumpSold.SetActive(false);
+            doubleJumpButton.SetActive(true);
+        }
+
     }
 
     public void Pause()
     {
-        isPaused = true;
+        isPaused = true; isShop = false;
         Cursor.lockState = CursorLockMode.None;
         GameManager.Instance.SetGameState(GameState.PAUSED); // Yes this is right. ;P
         InGameSwitch("Pause");
@@ -57,7 +86,7 @@ public class MenuManager : MonoBehaviour
     {
         if (!isPaused)
             return;
-        isPaused = false;
+        isPaused = false; isShop = false;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         GameManager.Instance.SetGameStateByContext();
@@ -77,6 +106,8 @@ public class MenuManager : MonoBehaviour
 
     public void OpenShop()
     {
+        GameManager.Instance.SetGameState(GameState.SHOP);
+        isPaused = false; isShop = true;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         InGameSwitch("Shop");
@@ -84,6 +115,8 @@ public class MenuManager : MonoBehaviour
 
     public void CloseShop()
     {
+        GameManager.Instance.SetGameStateByContext();
+        isPaused = false; isShop = false;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         InGameSwitch("HUD");
@@ -91,15 +124,49 @@ public class MenuManager : MonoBehaviour
 
     public void PurchaseBoots()
     {
-        //take money here
-        int gears = playerController.GetGearTotal();
-        Debug.Log(gears);
-        if (gears >= doubleJumpPrice)
+        if (playerController.GetGearTotal() >= doubleJumpPrice)
         {
+            playerController.SubtractGears(doubleJumpPrice);
             playerController.doubleJumpUnlocked = true;
-            //take gears away
+            doubleJumpSold.SetActive(true);
+            doubleJumpButton.SetActive(false);
         }
-        
+        else
+            StartCoroutine(NotEnoughMoney()); 
+    }
+
+    public void PurchaseHealth()
+    {
+        if (playerController.GetGearTotal() >= healthPrice)
+        {
+            playerController.SubtractGears(healthPrice);
+            playerController.SetHealthFull();
+        }
+        else
+            StartCoroutine(NotEnoughMoney());
+    }
+
+    public void PurchaseAmmo()
+    {
+        if (playerController.GetGearTotal() >= ammoPrice)
+        {
+            playerController.SubtractGears(ammoPrice);
+            Debug.Log("Idk how to refill ammo");
+        }
+        else
+            StartCoroutine(NotEnoughMoney());
+    }
+
+    public void PurchaseTheGame()
+    {
+        StartCoroutine(NotEnoughMoney());
+    }
+
+    private IEnumerator NotEnoughMoney()
+    {
+        insufficientFunds.SetActive(true);
+        yield return new WaitForSecondsRealtime(1.5f);
+        insufficientFunds.SetActive(false);
     }
 
     private void InGameSwitch(string ui)
@@ -125,7 +192,7 @@ public class MenuManager : MonoBehaviour
                 shop.SetActive(false);
                 break;
             case "Shop":
-                HUD.SetActive(false);
+                HUD.SetActive(true); //stays active to show gear count
                 pauseMenu.SetActive(false);
                 inGameSettings.SetActive(false);
                 shop.SetActive(true);
