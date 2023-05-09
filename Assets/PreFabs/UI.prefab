@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 594837903}
   - component: {fileID: 594837902}
   - component: {fileID: 636558146}
+  - component: {fileID: 8767320530796042974}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -373,6 +374,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   togglerName: ShopTrigger
   shopUI: {fileID: 6168650997923274986}
+  menuManager: {fileID: 594837903}
+--- !u!114 &8767320530796042974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418885993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af263006307f414459d2f3f64f1ceb01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: {fileID: 872744830}
+  dialogueHolder: {fileID: 0}
+  textSpeed: 0.01
   menuManager: {fileID: 594837903}
 --- !u!1 &172412864888697247
 GameObject:

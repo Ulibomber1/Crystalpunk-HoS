@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2911733156016855019}
   - component: {fileID: 5782300217075079567}
   - component: {fileID: 3286603165000002340}
-  - component: {fileID: 7618505451687606751}
   - component: {fileID: 3420669157341551593}
   m_Layer: 0
   m_Name: DialogueTrigger
@@ -60,23 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388d571ae1d6dc2449fdc3dcbd5e39d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7618505451687606751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6966418096802164076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af263006307f414459d2f3f64f1ceb01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueText: {fileID: 0}
-  dialogueHolder: {fileID: 3420669157341551593}
-  textSpeed: 0.01
-  menuManager: {fileID: 7992285107959203821, guid: 272758af6abdb3642b8c4beaaa72482e,
-    type: 3}
 --- !u!114 &3420669157341551593
 MonoBehaviour:
   m_ObjectHideFlags: 0

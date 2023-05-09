@@ -28,7 +28,6 @@ public class Dialogue : MonoBehaviour
         {
             StopAllCoroutines();
             dialogueText.text = dialogueHolder.lines[index];
-            menuManager.CloseDialogue();
         }
     }
 
