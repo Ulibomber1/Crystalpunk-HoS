@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Interactable : MonoBehaviour
 {
 
-    public delegate void InteractActionHandler(string name);
+    public delegate void InteractActionHandler(string name, string parentName);
     public static event InteractActionHandler OnInteractAction;
 
     private bool isInteractable = false;
@@ -38,6 +38,6 @@ public class Interactable : MonoBehaviour
         if (!isInteractable)
             return;
         Debug.Log("Lever Pulled");
-        OnInteractAction?.Invoke(gameObject.name);
+        OnInteractAction?.Invoke(gameObject.name, this.transform.parent.gameObject.name);
     }
 }

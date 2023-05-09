@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnInteractHandler(string name)
+    public void OnInteractHandler(string name, string parentName)
     {
         Debug.Log("Hello Lever!");
     }

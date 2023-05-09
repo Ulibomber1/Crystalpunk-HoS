@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class MenuManager : MonoBehaviour
     public GameObject doubleJumpSold;
     public GameObject doubleJumpButton;
     public GameObject insufficientFunds;
+    public TextMeshProUGUI dialogueName;
+    public Dialogue dialogue;
+    public OpenDialogue openDialogue;
 
     [Header("Player")]
     public PlayerController playerController;
@@ -124,8 +128,8 @@ public class MenuManager : MonoBehaviour
             InGameSwitch("Shop");
         }
         else
-        {
-            OpenDialogue();
+        { 
+            OpenDialogue("Shop Owner");
         }
     }
 
@@ -138,20 +142,31 @@ public class MenuManager : MonoBehaviour
         InGameSwitch("HUD");
     }
 
-    public void OpenDialogue()
+    public void OpenDialogue(string name)
     {
         GameManager.Instance.SetGameState(GameState.SHOP);
+        isPaused = false; isShop = false; isDialogue = true;
         Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
         InGameSwitch("Dialogue");
+        dialogueName.SetText("Name: " + name);
+        dialogue.StartDialogue();
     }
 
     public void CloseDialogue()
     {
         GameManager.Instance.SetGameStateByContext();
+        isPaused = false; isShop = false; isDialogue = false;
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
         InGameSwitch("HUD");
+        openDialogue.DoneTalking();
     }
 
+    public void NextDialogue()
+    {
+        dialogue.Click();
+    }
 
     public void PurchaseBoots()
     {
@@ -200,7 +215,7 @@ public class MenuManager : MonoBehaviour
         insufficientFunds.SetActive(false);
     }
 
-    private void InGameSwitch(string ui)
+    public void InGameSwitch(string ui)
     {
         switch (ui)
         {
@@ -209,6 +224,7 @@ public class MenuManager : MonoBehaviour
                 pauseMenu.SetActive(false);
                 inGameSettings.SetActive(false);
                 shop.SetActive(false);
+                dialogueBox.SetActive(false);
                 break;
             case "Pause":
                 HUD.SetActive(false);
@@ -227,6 +243,7 @@ public class MenuManager : MonoBehaviour
                 pauseMenu.SetActive(false);
                 inGameSettings.SetActive(false);
                 shop.SetActive(true);
+                dialogueBox.SetActive(false);
                 break;
             case "Dialogue":
                 HUD.SetActive(true);

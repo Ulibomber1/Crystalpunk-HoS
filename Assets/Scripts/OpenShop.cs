@@ -15,7 +15,7 @@ public class OpenShop : MonoBehaviour
     }
 
 
-    public void OnInteractHandler(string name)
+    public void OnInteractHandler(string name, string parentName)
     {
         if (name != togglerName)
             return;

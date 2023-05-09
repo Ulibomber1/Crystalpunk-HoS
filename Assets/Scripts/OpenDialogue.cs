@@ -14,13 +14,13 @@ public class OpenDialogue : MonoBehaviour
     }
 
 
-    public void OnInteractHandler(string name)
+    public void OnInteractHandler(string name, string parentName)
     {
         if (name != togglerName)
             return;
         if (!isTalking)
         {
-            Talking();
+            Talking(parentName);
         }
         else
         {
@@ -31,9 +31,9 @@ public class OpenDialogue : MonoBehaviour
         Debug.Log("Dialogue " + isTalking);
     }
 
-    public void Talking()
+    public void Talking(string name)
     {
-        menuManager.OpenDialogue();
+        menuManager.OpenDialogue(name);
         isTalking = true;
     }
 

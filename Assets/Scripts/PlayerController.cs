@@ -92,8 +92,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputValue context)
     {
-        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+        if (menuManager.IsPaused() || menuManager.IsShop())
             return;
+        if (menuManager.IsDialogue())
+        {
+            menuManager.NextDialogue();
+            return;
+        }
         if (ammo > 0)
         {
             Debug.Log("Pew"); // Projectile-based shooting

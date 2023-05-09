@@ -95,10 +95,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3420669157341551593, guid: 9a2b51b0f87cfa04ba4661374ffed7a7,
+        type: 3}
+      propertyPath: lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420669157341551593, guid: 9a2b51b0f87cfa04ba4661374ffed7a7,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: hello there
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420669157341551593, guid: 9a2b51b0f87cfa04ba4661374ffed7a7,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: the shop is closed
+      objectReference: {fileID: 0}
     - target: {fileID: 6966418096802164076, guid: 9a2b51b0f87cfa04ba4661374ffed7a7,
         type: 3}
       propertyPath: m_Name
       value: ShopTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618505451687606751, guid: 9a2b51b0f87cfa04ba4661374ffed7a7,
+        type: 3}
+      propertyPath: menuManager
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4289424724491854427, guid: 9a2b51b0f87cfa04ba4661374ffed7a7, type: 3}
@@ -188,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 2732684518155842968, guid: c73ae6621f8832748a78dfb8aec6dd12,
         type: 3}
       propertyPath: m_Name
-      value: Burrow (1)
+      value: Mr Test Guy
       objectReference: {fileID: 0}
     - target: {fileID: 3361834574544056098, guid: c73ae6621f8832748a78dfb8aec6dd12,
         type: 3}
@@ -315,10 +335,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3420669157341551593, guid: 9a2b51b0f87cfa04ba4661374ffed7a7,
+        type: 3}
+      propertyPath: lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420669157341551593, guid: 9a2b51b0f87cfa04ba4661374ffed7a7,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: bro wtf
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420669157341551593, guid: 9a2b51b0f87cfa04ba4661374ffed7a7,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: sample text
+      objectReference: {fileID: 0}
     - target: {fileID: 6966418096802164076, guid: 9a2b51b0f87cfa04ba4661374ffed7a7,
         type: 3}
       propertyPath: m_Name
       value: DialogueTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618505451687606751, guid: 9a2b51b0f87cfa04ba4661374ffed7a7,
+        type: 3}
+      propertyPath: menuManager
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a2b51b0f87cfa04ba4661374ffed7a7, type: 3}
