@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PatrolStateBug : StateMachineBehaviour
 {
     float timer;
+    public string waypointname;
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
     Transform player;
@@ -16,7 +17,7 @@ public class PatrolStateBug : StateMachineBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = animator.GetComponent<NavMeshAgent>();
         timer = 0;
-        GameObject go = GameObject.FindGameObjectWithTag("wayPoints 2");
+        GameObject go = GameObject.FindGameObjectWithTag(waypointname);
         foreach (Transform t in go.transform)
             wayPoints.Add(t);
 
