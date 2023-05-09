@@ -842,14 +842,17 @@ MonoBehaviour:
   creditsMenu: {fileID: 0}
   areYouSure: {fileID: 0}
   fadeOut: {fileID: 0}
+  noSaveData: {fileID: 0}
   pauseMenu: {fileID: 5662392994526509275}
   inGameSettings: {fileID: 8043056986219087402}
   HUD: {fileID: 4290409511580165914}
   shop: {fileID: 6168650997923274986}
+  dialogueBox: {fileID: 2911485870737604335}
   doubleJumpSold: {fileID: 6827068881997574935}
   doubleJumpButton: {fileID: 837733421294352218}
   insufficientFunds: {fileID: 306072858264660403}
   playerController: {fileID: 0}
+  shopUnlocked: 1
   doubleJumpPrice: 20
   healthPrice: 5
   ammoPrice: 5
@@ -866,7 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   togglerName: DialogueTrigger
-  dialogueBox: {fileID: 2911485870737604335}
+  menuManager: {fileID: 594837903}
 --- !u!114 &636558146
 MonoBehaviour:
   m_ObjectHideFlags: 0

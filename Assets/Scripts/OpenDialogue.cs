@@ -5,7 +5,7 @@ using UnityEngine;
 public class OpenDialogue : MonoBehaviour
 {
     public string togglerName;
-    public GameObject dialogueBox;
+    public MenuManager menuManager;
     private bool isTalking = false;
     // Start is called before the first frame update
     void Awake()
@@ -33,13 +33,13 @@ public class OpenDialogue : MonoBehaviour
 
     public void Talking()
     {
-        dialogueBox.SetActive(true);
+        menuManager.OpenDialogue();
         isTalking = true;
     }
 
     public void DoneTalking()
     {
-        dialogueBox.SetActive(false);
+        
         isTalking = false;
     }
 

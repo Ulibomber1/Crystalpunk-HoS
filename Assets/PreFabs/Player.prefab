@@ -269,7 +269,7 @@ MonoBehaviour:
   ammoBar: {fileID: 0}
   jumpHeight: 7
   acceleration: 30
-  maxVelocity: 12
+  maxVelocity: 10
   slopeLimit: 45
   boxSize: {x: 1, y: 0.2, z: 1}
   maxDistance: 1

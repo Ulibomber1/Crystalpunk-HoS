@@ -12,6 +12,7 @@ public enum GameState
     LEVEL_AIR,
     PAUSED,
     SHOP,
+    DIALOGUE,
     GAME_OVER
 }
 
@@ -120,6 +121,9 @@ public class GameManager : MonoBehaviour
                 ChangeFromPause();
                 break;
             case GameState.SHOP:
+                ChangeFromPause();
+                break;
+            case GameState.DIALOGUE:
                 ChangeFromPause();
                 break;
             case GameState.GAME_OVER:

@@ -12,12 +12,14 @@ public class MenuManager : MonoBehaviour
     public GameObject creditsMenu;
     public GameObject areYouSure;
     public GameObject fadeOut;
+    public GameObject noSaveData;
 
     [Header("In Game Menu")]
     public GameObject pauseMenu;
     public GameObject inGameSettings;
     public GameObject HUD;
     public GameObject shop;
+    public GameObject dialogueBox;
     public GameObject doubleJumpSold;
     public GameObject doubleJumpButton;
     public GameObject insufficientFunds;
@@ -27,6 +29,8 @@ public class MenuManager : MonoBehaviour
 
     private bool isPaused = false;
     private bool isShop = false;
+    private bool isDialogue = false;
+    public bool shopUnlocked = false;
 
     public int doubleJumpPrice = 20;
     public int healthPrice = 5;
@@ -43,6 +47,11 @@ public class MenuManager : MonoBehaviour
     public bool IsShop()
     {
         return isShop;
+    }
+
+    public bool IsDialogue()
+    {
+        return isDialogue;
     }
 
     private void Start()
@@ -106,21 +115,43 @@ public class MenuManager : MonoBehaviour
 
     public void OpenShop()
     {
-        GameManager.Instance.SetGameState(GameState.SHOP);
-        isPaused = false; isShop = true;
-        Time.timeScale = 0;
-        Cursor.lockState = CursorLockMode.None;
-        InGameSwitch("Shop");
+        if (shopUnlocked)
+        {
+            GameManager.Instance.SetGameState(GameState.SHOP);
+            isPaused = false; isShop = true; isDialogue = false;
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            InGameSwitch("Shop");
+        }
+        else
+        {
+            OpenDialogue();
+        }
     }
 
     public void CloseShop()
     {
         GameManager.Instance.SetGameStateByContext();
-        isPaused = false; isShop = false;
+        isPaused = false; isShop = false; isDialogue = false;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         InGameSwitch("HUD");
     }
+
+    public void OpenDialogue()
+    {
+        GameManager.Instance.SetGameState(GameState.SHOP);
+        Time.timeScale = 0;
+        InGameSwitch("Dialogue");
+    }
+
+    public void CloseDialogue()
+    {
+        GameManager.Instance.SetGameStateByContext();
+        Time.timeScale = 1;
+        InGameSwitch("HUD");
+    }
+
 
     public void PurchaseBoots()
     {
@@ -197,6 +228,13 @@ public class MenuManager : MonoBehaviour
                 inGameSettings.SetActive(false);
                 shop.SetActive(true);
                 break;
+            case "Dialogue":
+                HUD.SetActive(true);
+                pauseMenu.SetActive(false);
+                inGameSettings.SetActive(false);
+                shop.SetActive(false);
+                dialogueBox.SetActive(true);
+                break;
             default:
                 break;
         }
@@ -210,7 +248,15 @@ public class MenuManager : MonoBehaviour
 
     public void LoadGame()
     {
+        StartCoroutine(NoSaveData());
         Debug.Log("We don't have a save system to load from yet!");
+    }
+
+    private IEnumerator NoSaveData()
+    {
+        noSaveData.SetActive(true);
+        yield return new WaitForSecondsRealtime(1.5f);
+        noSaveData.SetActive(false);
     }
 
     public void NewGame(string SceneName)

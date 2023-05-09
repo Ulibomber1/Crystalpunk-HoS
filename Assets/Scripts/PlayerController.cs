@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause(InputValue context)
     {
-        if (menuManager.IsShop())
+        if (menuManager.IsShop() || menuManager.IsDialogue())
             return;
         if (menuManager.IsPaused())
             menuManager.Unpause();
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnJump(InputValue context)
     {
-        if (menuManager.IsPaused() || menuManager.IsShop())
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
             return;
         if (isGrounded)
         {
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputValue context)
     {
-        if (menuManager.IsPaused() || menuManager.IsShop())
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
             return;
         if (ammo > 0)
         {
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
     void OnSprint(InputValue context)
     {
-        if (menuManager.IsPaused() || menuManager.IsShop())
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
             return;
         if (context.isPressed)
         {
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
     //Ability function, checks to see if ability is on cooldown
     void OnAbility(InputValue context)
     {
-        if (menuManager.IsPaused() || menuManager.IsShop())
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
             return;
         if (Time.time < nextCast)
         {
@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
 
     void OnReload(InputValue context)
     {
-        if (menuManager.IsPaused() || menuManager.IsShop())
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
             return;
         allowFire = false;
         ReloadTime();
@@ -200,14 +200,14 @@ public class PlayerController : MonoBehaviour
     public static event InteractionHandler OnInteraction;
     public void OnInteract(InputValue value)
     {
-        if (menuManager.IsPaused() || menuManager.IsShop())
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
             return;
         OnInteraction?.Invoke();
     }
 
     public void OnMove(InputValue movementValue)
     {
-        if (menuManager.IsPaused() || menuManager.IsShop())
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
             return;
         Vector2 readVector = movementValue.Get<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
