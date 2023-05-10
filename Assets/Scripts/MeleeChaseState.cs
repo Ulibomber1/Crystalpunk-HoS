@@ -7,7 +7,8 @@ public class MeleeChaseState : StateMachineBehaviour
 {
     NavMeshAgent agent;
     Transform player;
-
+    public float attackRange;
+    public float OutOfSightRange;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -22,9 +23,9 @@ public class MeleeChaseState : StateMachineBehaviour
     {
         agent.SetDestination(player.position);
         float distance = Vector3.Distance(player.position, animator.transform.position);
-        if (distance > 12f)
+        if (distance > OutOfSightRange)
             animator.SetBool("isChasing", false);
-        if (distance < 2f)
+        if (distance < attackRange)
             animator.SetBool("isAttacking", true);
     }
 

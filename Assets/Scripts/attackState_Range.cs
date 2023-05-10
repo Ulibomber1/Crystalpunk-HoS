@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class attackState_Range : StateMachineBehaviour
 {
-    [SerializeField] private float timer = 4;
+    [SerializeField] private float timer;
     private float bulletTime;
     NavMeshAgent agent;
     Transform player;
@@ -13,6 +13,7 @@ public class attackState_Range : StateMachineBehaviour
     public float enemyBulletSpeed;
     bool alreadyAttacked;
     public GameObject projectile;
+    public float tooCloseAttack;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -29,6 +30,7 @@ public class attackState_Range : StateMachineBehaviour
     {
         //Make sure enemy doesn't move
         agent.SetDestination(animator.transform.position);
+        bulletTime -= Time.deltaTime;
         animator.transform.LookAt(player);
         if (!alreadyAttacked)
         {
@@ -40,15 +42,15 @@ public class attackState_Range : StateMachineBehaviour
             ///End of attack code
             alreadyAttacked = true;     
         }
-        bulletTime -= Time.deltaTime;
+        
         if (bulletTime == 0)
         {
             alreadyAttacked = false;
             bulletTime = timer;
         }
+
         float distance = Vector3.Distance(player.position, animator.transform.position);
-       
-        if (distance < 2.5f)
+        if (distance > tooCloseAttack)
             animator.SetBool("isAttacking", false);
     }
 
