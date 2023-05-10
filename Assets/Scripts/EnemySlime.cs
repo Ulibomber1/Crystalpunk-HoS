@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public class EnemySlime : MonoBehaviour
 {
-    private int HP = 10;
+    private int HP = 5;
     public Animator animator;
 
     public Slider healthBar;

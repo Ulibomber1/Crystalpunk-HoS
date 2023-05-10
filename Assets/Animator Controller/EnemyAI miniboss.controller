@@ -144,7 +144,7 @@ AnimatorStateMachine:
     m_Position: {x: 590, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6414347425757362639}
-    m_Position: {x: 640, y: -80, z: 0}
+    m_Position: {x: 730, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1923617336113304506}
     m_Position: {x: 300, y: -80, z: 0}
@@ -266,7 +266,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyAI
+  m_Name: EnemyAI miniboss
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isPatrolling
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d4da91d924e2646bb99c973b9dfcde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointname: wayPoints
+  waypointname: wayPoints mini
   chaseRange: 10
 --- !u!1102 &1923617336113304506
 AnimatorState:
