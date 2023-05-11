@@ -2778,22 +2778,22 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Arius Ulibarri: Co-Leader, Project Organizer, Programmer
+  m_text: 'Arius Ulibarri: Project Lead, Project Organizer, Programmer
 
 
     Thomas
-    Mezzie: Co-Leader, Terrain Design, Menus, Programmer
+    Mezzie: Project Lead, Terrain Design, Menus, Dialogue System, Programmer
 
 
-    Alejandro Perez: Story
-    Writer, Programmer
+    Adi
+    Tuhuteru: 3D Asset Creation, Programmer
 
 
-    Adi Tuhuteru: 3D Asset Creation, Programmer
+    Alan Torres: UI, Programmer
 
 
-    Alan
-    Torres: UI, Programmer
+    Alejandro
+    Perez: Story Writer, Programmer
 
 
     Daniel Ramirez: Programmer'
