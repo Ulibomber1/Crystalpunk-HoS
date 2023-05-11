@@ -11,17 +11,17 @@ public class OpenShop : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Interactable.OnInteractAction += OnInteractHandler;
+        DialogueInteractable.OnDialogueEvent += OnInteractHandler;
     }
 
 
-    public void OnInteractHandler(string name, string parentName)
+    public void OnInteractHandler(string name, string parentName, string[]text)
     {
         if (name != togglerName)
             return;
         if (!isShopping)
         {
-            Shopping();
+            Shopping(text);
         }
         else
         {
@@ -32,9 +32,9 @@ public class OpenShop : MonoBehaviour
         Debug.Log("Dialogue " + isShopping);
     }
 
-    public void Shopping()
+    public void Shopping(string[] text)
     {
-        menuManager.OpenShop();
+        menuManager.OpenShop(text);
     }
 
     public void DoneShopping()

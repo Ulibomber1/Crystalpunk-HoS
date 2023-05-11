@@ -6,9 +6,10 @@ using TMPro;
 public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
-    public DialogueHolder dialogueHolder;
+    //public DialogueHolder dialogueHolder;
     public float textSpeed = 0.01f;
     public MenuManager menuManager;
+    private string[] lines;
 
     private int index;
     // Start is called before the first frame update
@@ -20,15 +21,20 @@ public class Dialogue : MonoBehaviour
 
     public void Click()
     {
-        if (dialogueText.text == dialogueHolder.lines[index])
+        if (dialogueText.text == lines[index])
         {
             NextLine();
         }
         else
         {
             StopAllCoroutines();
-            dialogueText.text = dialogueHolder.lines[index];
+            dialogueText.text = lines[index];
         }
+    }
+
+    public void SetText(string[] text)
+    {
+        lines = text;
     }
 
     public void StartDialogue()
@@ -40,7 +46,7 @@ public class Dialogue : MonoBehaviour
     IEnumerator TypeLine()
     {
         dialogueText.text = string.Empty;
-        foreach (char c in dialogueHolder.lines[index].ToCharArray())
+        foreach (char c in lines[index].ToCharArray())
         {
             dialogueText.text += c;
             yield return new WaitForSecondsRealtime(textSpeed);
@@ -50,7 +56,7 @@ public class Dialogue : MonoBehaviour
     void NextLine()
     {
         dialogueText.text = string.Empty;
-        if (index < dialogueHolder.lines.Length - 1)
+        if (index < lines.Length - 1)
         {
             index++;
             StartCoroutine(TypeLine());

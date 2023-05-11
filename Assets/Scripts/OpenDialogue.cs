@@ -10,17 +10,17 @@ public class OpenDialogue : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Interactable.OnInteractAction += OnInteractHandler;
+        DialogueInteractable.OnDialogueEvent += OnInteractHandler;
     }
 
 
-    public void OnInteractHandler(string name, string parentName)
+    public void OnInteractHandler(string name, string parentName, string[] text)
     {
         if (name != togglerName)
             return;
         if (!isTalking)
         {
-            Talking(parentName);
+            Talking(parentName, text);
         }
         else
         {
@@ -31,9 +31,9 @@ public class OpenDialogue : MonoBehaviour
         Debug.Log("Dialogue " + isTalking);
     }
 
-    public void Talking(string name)
+    public void Talking(string name, string[] text)
     {
-        menuManager.OpenDialogue(name);
+        menuManager.OpenDialogue(name, text);
         isTalking = true;
     }
 

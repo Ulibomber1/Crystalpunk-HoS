@@ -9,7 +9,7 @@ public class Interactable : MonoBehaviour
     public delegate void InteractActionHandler(string name, string parentName);
     public static event InteractActionHandler OnInteractAction;
 
-    private bool isInteractable = false;
+    protected bool isInteractable = false;
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class Interactable : MonoBehaviour
     }
 
 
-    public void BroadcastToggle()
+    protected virtual void BroadcastToggle()
     {
         if (!isInteractable)
             return;

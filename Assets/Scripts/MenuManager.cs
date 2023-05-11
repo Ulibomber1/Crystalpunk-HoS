@@ -117,7 +117,7 @@ public class MenuManager : MonoBehaviour
         InGameSwitch("Pause");
     }
 
-    public void OpenShop()
+    public void OpenShop(string[] text)
     {
         if (shopUnlocked)
         {
@@ -129,7 +129,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         { 
-            OpenDialogue("Shop Owner");
+            OpenDialogue("Shop Owner", text);
         }
     }
 
@@ -142,14 +142,14 @@ public class MenuManager : MonoBehaviour
         InGameSwitch("HUD");
     }
 
-    public void OpenDialogue(string name)
+    public void OpenDialogue(string name, string[] text)
     {
-        GameManager.Instance.SetGameState(GameState.SHOP);
+        GameManager.Instance.SetGameState(GameState.DIALOGUE);
         isPaused = false; isShop = false; isDialogue = true;
         Time.timeScale = 0;
-        Cursor.lockState = CursorLockMode.None;
         InGameSwitch("Dialogue");
         dialogueName.SetText("Name: " + name);
+        dialogue.SetText(text);
         dialogue.StartDialogue();
     }
 
@@ -158,7 +158,6 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.SetGameStateByContext();
         isPaused = false; isShop = false; isDialogue = false;
         Time.timeScale = 1;
-        Cursor.lockState = CursorLockMode.Locked;
         InGameSwitch("HUD");
         openDialogue.DoneTalking();
     }
