@@ -129,7 +129,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         { 
-            OpenDialogue("Shop Owner", text);
+            OpenDialogue("Shop Keeper", text);
         }
     }
 
@@ -148,7 +148,7 @@ public class MenuManager : MonoBehaviour
         isPaused = false; isShop = false; isDialogue = true;
         Time.timeScale = 0;
         InGameSwitch("Dialogue");
-        dialogueName.SetText("Name: " + name);
+        dialogueName.SetText(name);
         dialogue.SetText(text);
         dialogue.StartDialogue();
     }

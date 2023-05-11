@@ -2115,6 +2115,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 46.844
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: f7e2c31ffff0fb142a6a76763fad32ec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7e2c31ffff0fb142a6a76763fad32ec, type: 3}
 --- !u!4 &4554404228218345923 stripped
@@ -2955,6 +2960,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 46.844
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: f7e2c31ffff0fb142a6a76763fad32ec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7e2c31ffff0fb142a6a76763fad32ec, type: 3}
 --- !u!4 &4554404228160891948 stripped
@@ -3690,6 +3700,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: house_with_tank_2story
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 1596b436c76a3554dad54b35f4fc35af,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1596b436c76a3554dad54b35f4fc35af, type: 3}
 --- !u!4 &4554404228039986515 stripped
@@ -3889,6 +3904,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: house_with_pipes_1_story (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8257eaffb631e4c44821d5bb0f908267,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 8257eaffb631e4c44821d5bb0f908267,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8257eaffb631e4c44821d5bb0f908267, type: 3}
@@ -4284,6 +4309,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: house_with_pipes_1_story
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 8257eaffb631e4c44821d5bb0f908267,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8257eaffb631e4c44821d5bb0f908267, type: 3}
@@ -4749,6 +4779,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: house_with_pipes_2story (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b6e8569e6854733488ffa6e03fd799ad,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6e8569e6854733488ffa6e03fd799ad, type: 3}
@@ -6205,6 +6240,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: house_with_tank_2
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 690074ccf0740dc4db2eb173a712a221,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 690074ccf0740dc4db2eb173a712a221, type: 3}
 --- !u!4 &4554404227503004618 stripped
@@ -7290,6 +7330,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: edbe25ae937a1204a945bbc598b9c82e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edbe25ae937a1204a945bbc598b9c82e, type: 3}
 --- !u!4 &4554404227193320647 stripped
@@ -7525,6 +7570,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_tower
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 08b621c61f02bca4397a4472a2419e6d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08b621c61f02bca4397a4472a2419e6d, type: 3}
 --- !u!4 &4554404227141941900 stripped
@@ -7659,6 +7709,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 46.844
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: f7e2c31ffff0fb142a6a76763fad32ec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7e2c31ffff0fb142a6a76763fad32ec, type: 3}
@@ -8850,6 +8905,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: house_with_pipes_1_story (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 8257eaffb631e4c44821d5bb0f908267,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8257eaffb631e4c44821d5bb0f908267, type: 3}
 --- !u!4 &4554404226546793000 stripped
@@ -9024,6 +9084,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: house_with_tank_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 94bae38325319a5489902c962754c063,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94bae38325319a5489902c962754c063, type: 3}
@@ -9839,6 +9904,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: house_with_pipes_2story
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b6e8569e6854733488ffa6e03fd799ad,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6e8569e6854733488ffa6e03fd799ad, type: 3}
