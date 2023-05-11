@@ -146,7 +146,7 @@ public class MenuManager : MonoBehaviour
     {
         GameManager.Instance.SetGameState(GameState.DIALOGUE);
         isPaused = false; isShop = false; isDialogue = true;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         InGameSwitch("Dialogue");
         dialogueName.SetText(name);
         dialogue.SetText(text);
@@ -157,7 +157,7 @@ public class MenuManager : MonoBehaviour
     {
         GameManager.Instance.SetGameStateByContext();
         isPaused = false; isShop = false; isDialogue = false;
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         InGameSwitch("HUD");
         openDialogue.DoneTalking();
     }
