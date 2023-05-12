@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause(InputValue context)
     {
+        if (menuManager.IsShop() || menuManager.IsDialogue())
+            return;
         if (menuManager.IsPaused())
             menuManager.Unpause();
         else
@@ -69,6 +71,8 @@ public class PlayerController : MonoBehaviour
     }
     public void OnJump(InputValue context)
     {
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
         if (isGrounded)
         {
             if (canDoubleJump != false)
@@ -88,6 +92,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputValue context)
     {
+        if (menuManager.IsPaused() || menuManager.IsShop())
+            return;
+        if (menuManager.IsDialogue())
+        {
+            menuManager.NextDialogue();
+            return;
+        }
         if (ammo > 0)
         {
             Debug.Log("Pew"); // Projectile-based shooting
@@ -104,6 +115,8 @@ public class PlayerController : MonoBehaviour
 
     void OnSprint(InputValue context)
     {
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
         if (context.isPressed)
         {
             Debug.Log("Add + 5 Speed!");
@@ -143,7 +156,9 @@ public class PlayerController : MonoBehaviour
     //Ability function, checks to see if ability is on cooldown
     void OnAbility(InputValue context)
     {
-        if(Time.time < nextCast)
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
+        if (Time.time < nextCast)
         {
             Debug.Log("Ability in cooldown!");
             return;
@@ -157,6 +172,8 @@ public class PlayerController : MonoBehaviour
 
     void OnReload(InputValue context)
     {
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
         allowFire = false;
         ReloadTime();
     }
@@ -173,6 +190,12 @@ public class PlayerController : MonoBehaviour
         return gears;
     }
 
+    public void SubtractGears(int price)
+    {
+        gears = gears - price;
+        SetGearText();
+    }
+
     public void OnLook(InputValue context)
     {
 
@@ -182,11 +205,15 @@ public class PlayerController : MonoBehaviour
     public static event InteractionHandler OnInteraction;
     public void OnInteract(InputValue value)
     {
-           OnInteraction?.Invoke();
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
+        OnInteraction?.Invoke();
     }
 
     public void OnMove(InputValue movementValue)
     {
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
         Vector2 readVector = movementValue.Get<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
         movementVector = toConvert;
@@ -337,6 +364,12 @@ public class PlayerController : MonoBehaviour
             currentHealth = maxHealth;
             healthBar.SetMaxHealth(maxHealth);
         }
+    }
+
+    public void SetHealthFull()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
     void SetGearText()
     {

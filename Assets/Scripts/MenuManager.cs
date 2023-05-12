@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -12,13 +13,32 @@ public class MenuManager : MonoBehaviour
     public GameObject creditsMenu;
     public GameObject areYouSure;
     public GameObject fadeOut;
+    public GameObject noSaveData;
 
     [Header("In Game Menu")]
     public GameObject pauseMenu;
     public GameObject inGameSettings;
     public GameObject HUD;
+    public GameObject shop;
+    public GameObject dialogueBox;
+    public GameObject doubleJumpSold;
+    public GameObject doubleJumpButton;
+    public GameObject insufficientFunds;
+    public TextMeshProUGUI dialogueName;
+    public Dialogue dialogue;
+    public OpenDialogue openDialogue;
+
+    [Header("Player")]
+    public PlayerController playerController;
 
     private bool isPaused = false;
+    private bool isShop = false;
+    private bool isDialogue = false;
+    public bool shopUnlocked = false;
+
+    public int doubleJumpPrice = 20;
+    public int healthPrice = 5;
+    public int ammoPrice = 5;
 
     public delegate void OnExitSettingsHandler();
     public static event OnExitSettingsHandler SettingsExited;
@@ -28,19 +48,47 @@ public class MenuManager : MonoBehaviour
         return isPaused;
     }
 
+    public bool IsShop()
+    {
+        return isShop;
+    }
+
+    public bool IsDialogue()
+    {
+        return isDialogue;
+    }
+
     private void Start()
     {
-        BackToMainMenu();
+        if(SceneManager.GetActiveScene().name == "Start")
+        {
+            BackToMainMenu();
+        }
+        else
+        {
+            StartOfScene();
+        }
     }
     public void StartOfScene()
     {
         InGameSwitch("HUD");
         Time.timeScale = 1;
+        if(playerController.doubleJumpUnlocked == true)
+        {
+            doubleJumpSold.SetActive(true);
+            doubleJumpButton.SetActive(false);
+        }
+        else
+        {
+            doubleJumpSold.SetActive(false);
+            doubleJumpButton.SetActive(true);
+        }
+
     }
 
     public void Pause()
     {
-        isPaused = true;
+        isPaused = true; isShop = false;
         Cursor.lockState = CursorLockMode.None;
         GameManager.Instance.SetGameState(GameState.PAUSED); // Yes this is right. ;P
         InGameSwitch("Pause");
@@ -51,7 +99,7 @@ public class MenuManager : MonoBehaviour
     {
         if (!isPaused)
             return;
-        isPaused = false;
+        isPaused = false; isShop = false;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         GameManager.Instance.SetGameStateByContext();
@@ -69,7 +117,104 @@ public class MenuManager : MonoBehaviour
         InGameSwitch("Pause");
     }
 
-    private void InGameSwitch(string ui)
+    public void OpenShop(string[] text)
+    {
+        if (shopUnlocked)
+        {
+            GameManager.Instance.SetGameState(GameState.SHOP);
+            isPaused = false; isShop = true; isDialogue = false;
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            InGameSwitch("Shop");
+        }
+        else
+        { 
+            OpenDialogue("Shop Keeper", text);
+        }
+    }
+
+    public void CloseShop()
+    {
+        GameManager.Instance.SetGameStateByContext();
+        isPaused = false; isShop = false; isDialogue = false;
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        InGameSwitch("HUD");
+    }
+
+    public void OpenDialogue(string name, string[] text)
+    {
+        GameManager.Instance.SetGameState(GameState.DIALOGUE);
+        isPaused = false; isShop = false; isDialogue = true;
+        //Time.timeScale = 0;
+        InGameSwitch("Dialogue");
+        dialogueName.SetText(name);
+        dialogue.SetText(text);
+        dialogue.StartDialogue();
+    }
+
+    public void CloseDialogue()
+    {
+        GameManager.Instance.SetGameStateByContext();
+        isPaused = false; isShop = false; isDialogue = false;
+        //Time.timeScale = 1;
+        InGameSwitch("HUD");
+        openDialogue.DoneTalking();
+    }
+
+    public void NextDialogue()
+    {
+        dialogue.Click();
+    }
+
+    public void PurchaseBoots()
+    {
+        if (playerController.GetGearTotal() >= doubleJumpPrice)
+        {
+            playerController.SubtractGears(doubleJumpPrice);
+            playerController.doubleJumpUnlocked = true;
+            doubleJumpSold.SetActive(true);
+            doubleJumpButton.SetActive(false);
+        }
+        else
+            StartCoroutine(NotEnoughMoney()); 
+    }
+
+    public void PurchaseHealth()
+    {
+        if (playerController.GetGearTotal() >= healthPrice)
+        {
+            playerController.SubtractGears(healthPrice);
+            playerController.SetHealthFull();
+        }
+        else
+            StartCoroutine(NotEnoughMoney());
+    }
+
+    public void PurchaseAmmo()
+    {
+        if (playerController.GetGearTotal() >= ammoPrice)
+        {
+            playerController.SubtractGears(ammoPrice);
+            Debug.Log("Idk how to refill ammo");
+        }
+        else
+            StartCoroutine(NotEnoughMoney());
+    }
+
+    public void PurchaseTheGame()
+    {
+        StartCoroutine(NotEnoughMoney());
+    }
+
+    private IEnumerator NotEnoughMoney()
+    {
+        insufficientFunds.SetActive(true);
+        yield return new WaitForSecondsRealtime(1.5f);
+        insufficientFunds.SetActive(false);
+    }
+
+    public void InGameSwitch(string ui)
     {
         switch (ui)
         {
@@ -77,16 +222,34 @@ public class MenuManager : MonoBehaviour
                 HUD.SetActive(true);
                 pauseMenu.SetActive(false);
                 inGameSettings.SetActive(false);
+                shop.SetActive(false);
+                dialogueBox.SetActive(false);
                 break;
             case "Pause":
                 HUD.SetActive(false);
                 pauseMenu.SetActive(true);
                 inGameSettings.SetActive(false);
+                shop.SetActive(false);
                 break;
             case "Settings":
                 HUD.SetActive(false);
                 pauseMenu.SetActive(false);
                 inGameSettings.SetActive(true);
+                shop.SetActive(false);
+                break;
+            case "Shop":
+                HUD.SetActive(true); //stays active to show gear count
+                pauseMenu.SetActive(false);
+                inGameSettings.SetActive(false);
+                shop.SetActive(true);
+                dialogueBox.SetActive(false);
+                break;
+            case "Dialogue":
+                HUD.SetActive(true);
+                pauseMenu.SetActive(false);
+                inGameSettings.SetActive(false);
+                shop.SetActive(false);
+                dialogueBox.SetActive(true);
                 break;
             default:
                 break;
@@ -101,7 +264,15 @@ public class MenuManager : MonoBehaviour
 
     public void LoadGame()
     {
+        StartCoroutine(NoSaveData());
         Debug.Log("We don't have a save system to load from yet!");
+    }
+
+    private IEnumerator NoSaveData()
+    {
+        noSaveData.SetActive(true);
+        yield return new WaitForSecondsRealtime(1.5f);
+        noSaveData.SetActive(false);
     }
 
     public void NewGame(string SceneName)

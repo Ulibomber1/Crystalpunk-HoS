@@ -6,21 +6,22 @@ public class OpenShop : MonoBehaviour
 {
     public string togglerName;
     public GameObject shopUI;
+    public MenuManager menuManager;
     private bool isShopping = false;
     // Start is called before the first frame update
     void Awake()
     {
-        Interactable.OnInteractAction += OnInteractHandler;
+        DialogueInteractable.OnDialogueEvent += OnInteractHandler;
     }
 
 
-    public void OnInteractHandler(string name)
+    public void OnInteractHandler(string name, string parentName, string[]text)
     {
         if (name != togglerName)
             return;
         if (!isShopping)
         {
-            Shopping();
+            Shopping(text);
         }
         else
         {
@@ -31,16 +32,14 @@ public class OpenShop : MonoBehaviour
         Debug.Log("Dialogue " + isShopping);
     }
 
-    public void Shopping()
+    public void Shopping(string[] text)
     {
-        shopUI.SetActive(true);
-        isShopping = true;
+        menuManager.OpenShop(text);
     }
 
     public void DoneShopping()
     {
-        shopUI.SetActive(false);
-        isShopping = false;
+        menuManager.CloseShop();
     }
 
 }

@@ -5,22 +5,22 @@ using UnityEngine;
 public class OpenDialogue : MonoBehaviour
 {
     public string togglerName;
-    public GameObject dialogueBox;
+    public MenuManager menuManager;
     private bool isTalking = false;
     // Start is called before the first frame update
     void Awake()
     {
-        Interactable.OnInteractAction += OnInteractHandler;
+        DialogueInteractable.OnDialogueEvent += OnInteractHandler;
     }
 
 
-    public void OnInteractHandler(string name)
+    public void OnInteractHandler(string name, string parentName, string[] text)
     {
         if (name != togglerName)
             return;
         if (!isTalking)
         {
-            Talking();
+            Talking(parentName, text);
         }
         else
         {
@@ -31,15 +31,15 @@ public class OpenDialogue : MonoBehaviour
         Debug.Log("Dialogue " + isTalking);
     }
 
-    public void Talking()
+    public void Talking(string name, string[] text)
     {
-        dialogueBox.SetActive(true);
+        menuManager.OpenDialogue(name, text);
         isTalking = true;
     }
 
     public void DoneTalking()
     {
-        dialogueBox.SetActive(false);
+        
         isTalking = false;
     }
 

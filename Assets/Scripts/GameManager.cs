@@ -11,6 +11,8 @@ public enum GameState
     LEVEL_LAVA,
     LEVEL_AIR,
     PAUSED,
+    SHOP,
+    DIALOGUE,
     GAME_OVER
 }
 
@@ -118,6 +120,12 @@ public class GameManager : MonoBehaviour
             case GameState.PAUSED:
                 ChangeFromPause();
                 break;
+            case GameState.SHOP:
+                ChangeFromPause();
+                break;
+            case GameState.DIALOGUE:
+                ChangeFromPause();
+                break;
             case GameState.GAME_OVER:
                 ChangeFromGameOver();
                 break;
@@ -202,7 +210,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnInteractHandler(string name)
+    public void OnInteractHandler(string name, string parentName)
     {
         Debug.Log("Hello Lever!");
     }
