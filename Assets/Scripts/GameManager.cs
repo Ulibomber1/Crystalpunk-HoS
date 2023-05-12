@@ -2,14 +2,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using System.Collections;
-public enum GameState { MAIN_MENU, 
-                        HUB_WORLD, 
-                        LEVEL_0, 
-                        LEVEL_FACTORY,
-                        LEVEL_LAVA, 
-                        LEVEL_AIR, 
-                        PAUSED, 
-                        GAME_OVER}
+public enum GameState
+{
+    MAIN_MENU,
+    HUB_WORLD,
+    LEVEL_0,
+    LEVEL_FACTORY,
+    LEVEL_LAVA,
+    LEVEL_AIR,
+    PAUSED,
+    SHOP,
+    DIALOGUE,
+    GAME_OVER
+}
 
 public static class SettingsData
 {
@@ -22,7 +27,7 @@ public static class SettingsData
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, outsideLevelOneSceneName, levelOneSceneName;
+    [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, outsideLevelOneSceneName, levelOneSceneName, gameOverSceneName;
 
     // New Singleton Pattern
     public static GameManager Instance { get; private set; }
@@ -40,19 +45,28 @@ public class GameManager : MonoBehaviour
         }
         // End of new Singleton Pattern
 
+        SetGameStateByContext();
+        Interactable.OnInteractAction += OnInteractHandler;
+        SettingsMenu.onSettingsAwake += PassBackSettingsData;
+    }
+
+    public void SetGameStateByContext()
+    {
         string activeSceneName = SceneManager.GetActiveScene().name;
         if (activeSceneName == hubWorldSceneName) // if else-if because switch cases require constant values to compare to.
             SetGameState(GameState.HUB_WORLD);
         else if (activeSceneName == levelZeroSceneName)
             SetGameState(GameState.LEVEL_0);
-        else if (activeSceneName == outsideLevelOneSceneName || activeSceneName == levelOneSceneName)
+        else if (activeSceneName == levelOneSceneName)
             SetGameState(GameState.LEVEL_FACTORY);
         else if (activeSceneName == mainMenuSceneName)
             SetGameState(GameState.MAIN_MENU);
+        else if (activeSceneName == gameOverSceneName)
+            SetGameState(GameState.GAME_OVER);
+        else if (activeSceneName == outsideLevelOneSceneName || activeSceneName == levelOneSceneName)
+            SetGameState(GameState.LEVEL_FACTORY);
         else
             Debug.LogWarning("Unrecognized Scene Name. Check the active scene's GameManager script to make sure the correct scene names are provided.");
-        Interactable.OnInteractAction += OnInteractHandler;
-        SettingsMenu.onSettingsAwake += PassBackSettingsData;
     }
 
     public void PassBackSettingsData(SettingsMenu settingsMenu)
@@ -80,6 +94,7 @@ public class GameManager : MonoBehaviour
         // Game Logic may occur here
     }
 
+
     public void ChangeScene(string sceneName)
     {
         switch (gameState)
@@ -105,6 +120,12 @@ public class GameManager : MonoBehaviour
             case GameState.PAUSED:
                 ChangeFromPause();
                 break;
+            case GameState.SHOP:
+                ChangeFromPause();
+                break;
+            case GameState.DIALOGUE:
+                ChangeFromPause();
+                break;
             case GameState.GAME_OVER:
                 ChangeFromGameOver();
                 break;
@@ -125,7 +146,7 @@ public class GameManager : MonoBehaviour
 
         void ChangeFromGameOver()
         {
-            if (sceneName != hubWorldSceneName || sceneName != mainMenuSceneName || sceneName != SceneManager.GetActiveScene().name)
+            if (sceneName != hubWorldSceneName && sceneName != mainMenuSceneName)
             {
                 Debug.LogError("Cannot change from " + SceneManager.GetActiveScene().name + " to " + sceneName + ".");
                 return;
@@ -178,9 +199,9 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        void ChangeFromPause() 
+        void ChangeFromPause()
         {
-            if (sceneName != hubWorldSceneName || sceneName != mainMenuSceneName)
+            if (sceneName != hubWorldSceneName && sceneName != mainMenuSceneName)
             {
                 Debug.LogError("Cannot change from " + SceneManager.GetActiveScene().name + " to " + sceneName + ".");
                 return;
@@ -189,7 +210,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnInteractHandler(string name)
+    public void OnInteractHandler(string name, string parentName)
     {
         Debug.Log("Hello Lever!");
     }

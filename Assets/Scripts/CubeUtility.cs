@@ -14,7 +14,7 @@ public class CubeUtility : MonoBehaviour
     }
 
 
-    public void OnInteractHandler(string name)
+    public void OnInteractHandler(string name, string parentName)
     {
         if (name != togglerName)
             return;

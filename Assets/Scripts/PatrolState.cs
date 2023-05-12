@@ -6,17 +6,18 @@ using UnityEngine.AI;
 public class PatrolState : StateMachineBehaviour
 {
     float timer;
+    public string waypointname;
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
     Transform player;
-    float chaseRange = 8;
+    public float chaseRange = 10;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = animator.GetComponent<NavMeshAgent>();
         timer = 0;
-        GameObject go = GameObject.FindGameObjectWithTag("wayPoints");
+        GameObject go = GameObject.FindGameObjectWithTag(waypointname);
         foreach (Transform t in go.transform)
             wayPoints.Add(t);
 
@@ -29,8 +30,13 @@ public class PatrolState : StateMachineBehaviour
         if(agent.remainingDistance <= agent.stoppingDistance)
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
         timer += Time.deltaTime;
-        if (timer > Random.Range(15, 20))
+        //quick fix to make enemy move to waypoint they can go to
+        if (timer > 4)
+            agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        
+        if (timer > Random.Range(4, 8))
             animator.SetBool("isPatrolling", false);
+
         float distance = Vector3.Distance(player.position, animator.transform.position);
         if (distance < chaseRange)
             animator.SetBool("isChasing", true);

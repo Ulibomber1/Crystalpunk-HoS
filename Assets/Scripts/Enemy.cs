@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
         if (HP <= 0)
         {
             animator.SetTrigger("die");
+            Destroy(this);
         }
         else
         {
