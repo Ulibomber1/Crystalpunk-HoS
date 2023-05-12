@@ -3916,7 +3916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5546119899535762628}
   - component: {fileID: 9181941807442871528}
-  - component: {fileID: 594837900}
+  - component: {fileID: 8700328830727358305}
   m_Layer: 5
   m_Name: Ammo Bar
   m_TagString: Untagged
@@ -3998,7 +3998,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &594837900
+--- !u!114 &8700328830727358305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4007,7 +4007,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5411408446400215947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55d8278c7cde9e848b138bff56fe960d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0988eb7b4130d1c41b074ddaffb3143d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ammoSlider: {fileID: 9181941807442871528}
