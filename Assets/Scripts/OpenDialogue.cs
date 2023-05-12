@@ -5,36 +5,42 @@ using UnityEngine;
 public class OpenDialogue : MonoBehaviour
 {
     public string togglerName;
-    public GameObject dialogueBox;
+    public MenuManager menuManager;
     private bool isTalking = false;
     // Start is called before the first frame update
     void Awake()
     {
-        Interactable.OnInteractAction += OnInteractHandler;
+        DialogueInteractable.OnDialogueEvent += OnInteractHandler;
     }
 
 
-    public void OnInteractHandler(string name)
+    public void OnInteractHandler(string name, string parentName, string[] text)
     {
         if (name != togglerName)
             return;
         if (!isTalking)
         {
-            dialogueBox.SetActive(true);
-            isTalking = true;
+            Talking(parentName, text);
         }
         else
         {
-            dialogueBox.SetActive(false);
-            isTalking = false;
+            DoneTalking();
         }
 
 
-        Debug.Log("Dialogue" + isTalking);
+        Debug.Log("Dialogue " + isTalking);
     }
-    // Update is called once per frame
-    void Update()
-    {
 
+    public void Talking(string name, string[] text)
+    {
+        menuManager.OpenDialogue(name, text);
+        isTalking = true;
     }
+
+    public void DoneTalking()
+    {
+        
+        isTalking = false;
+    }
+
 }

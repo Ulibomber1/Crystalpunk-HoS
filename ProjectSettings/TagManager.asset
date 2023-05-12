@@ -10,6 +10,8 @@ TagManager:
   - PlayerInteract
   - wayPoints
   - wayPoints 2
+  - wayPoints slime
+  - wayPoints mini
   layers:
   - Default
   - TransparentFX
