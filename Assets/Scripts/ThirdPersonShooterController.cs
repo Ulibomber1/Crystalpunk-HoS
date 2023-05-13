@@ -12,10 +12,22 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private Transform pfBulletProjectile;
     [SerializeField] private Transform spawnBulletPosition;
     private Vector3 aimDirection;
+    private bool aiming = false;
 
-   public void OnAim(){
-        //cmFreeLook.gameObject.SetActive(!cmFreeLook.gameObject.activeSelf);
-   }
+/*    public void OnAim() //this works but is destructive of the fov value will fix later
+    {
+        if (!aiming)
+        {
+            aiming = true;
+            cmFreeLook.m_Lens.FieldOfView = cmFreeLook.m_Lens.FieldOfView - 20;
+        }
+        else
+        {
+            aiming = false;
+            cmFreeLook.m_Lens.FieldOfView = cmFreeLook.m_Lens.FieldOfView + 20;
+        }
+    }*/
+
     //variable for face towards aiming code
     Vector3 mouseWorldPosition = Vector3.zero;
 
@@ -49,7 +61,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
         //shoot where the player is looking
         //Vector3 aimDir = transform.forward;
-        transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 180f); //when you shoot the player faces the direction
+        transform.forward = Vector3.Slerp(transform.forward, aimDirection, Time.deltaTime * 180f); //when you shoot the player faces the direction, may not be necessary 
         Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
         
     }
