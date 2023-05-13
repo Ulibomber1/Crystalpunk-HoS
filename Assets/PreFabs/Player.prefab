@@ -270,6 +270,7 @@ MonoBehaviour:
   menuManager: {fileID: 0}
   cooldownBar: {fileID: 0}
   ammoBar: {fileID: 0}
+  shooterController: {fileID: 7304532437127514366}
   jumpHeight: 7
   acceleration: 30
   maxVelocity: 10

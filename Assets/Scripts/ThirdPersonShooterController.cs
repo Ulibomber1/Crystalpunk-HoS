@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
@@ -42,7 +42,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     }
 
-    public void OnFire(){
+    public void Shoot(){
         //shoot where at the mouse cursor
         //Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
         //shoot where the player is looking
