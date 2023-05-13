@@ -128,11 +128,13 @@ public class PlayerController : MonoBehaviour
         if (context.isPressed)
         {
             Debug.Log("Add + 5 Speed!");
+            Anim.SetBool("Is Sprinting", true);
             maxVelocity = runSpeed;
         }
         else
         {
             Debug.Log("Speed Reset");
+            Anim.SetBool("Is Sprinting", false);
             maxVelocity = walkSpeed;
         }
     }
