@@ -448,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e015d2e0c18efe1439e4c1fa6d354f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cmFreeLook: {fileID: 0}
   aimColliderLayerMask:
     serializedVersion: 2
     m_Bits: 375

@@ -19,6 +19,10 @@ public class BulletProjectile : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other){
+        if (!other.gameObject.CompareTag("Player"))
+        {
+            Destroy(this.gameObject); //probably could be improved, but better than nothing
+        }
         /*
         if(other.GetComponent<BulletTarget>() != null){
             //hit target
@@ -28,6 +32,6 @@ public class BulletProjectile : MonoBehaviour
             Instantiate(vfxHitRed, transform.position, Quaternion.identity);
         }
         */
-        //Destroy(gameObject);
+            //Destroy(gameObject);
     }
 }
