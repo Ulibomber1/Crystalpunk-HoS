@@ -66,9 +66,15 @@ public class PlayerController : MonoBehaviour
         if (menuManager.IsShop() || menuManager.IsDialogue())
             return;
         if (menuManager.IsPaused())
+        {
             menuManager.Unpause();
+            // pause animation?
+        }
         else
+        {
             menuManager.Pause();
+            // unpause animation?
+        }
     }
     public void OnJump(InputValue context)
     {
@@ -89,6 +95,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
             canDoubleJump = true;
         }
+        Anim.SetBool("Is Jumping", true);
     }
 
     public void OnFire(InputValue context)
@@ -228,6 +235,7 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayerRelativeToCamera()
     {
+        Anim.SetFloat("Input Magnitude", movementVector.magnitude);
         if (movementVector.magnitude == 0.0f)
             return;
 
@@ -278,6 +286,7 @@ public class PlayerController : MonoBehaviour
             {
                 groundAngle = Vector3.Angle(Vector3.up, helpHit.normal);
             }
+            Anim.SetBool("Is Jumping", false);
         }
         else
         {
@@ -285,6 +294,7 @@ public class PlayerController : MonoBehaviour
             groundAngle = 0;
             groundNormal = Vector3.up;
         }
+        Anim.SetBool("Is Grounded", isGrounded);
     }
 
     // Start is called before the first frame update
@@ -345,7 +355,7 @@ public class PlayerController : MonoBehaviour
     {
         //The player's health is subtracted by the damage value
         currentHealth = currentHealth - damage;
-
+        Anim.SetTrigger("Health Lost");
         //The new player health that was subtracted is set
         healthBar.SetHealth(currentHealth);
 
@@ -354,6 +364,8 @@ public class PlayerController : MonoBehaviour
         //The health slider is also reset to a full bar
         if (currentHealth == 0)
         {
+            //Anim.SetBool("Player Dead", true);
+            
             transform.position = new Vector3(0f, 0.5f, 0f);
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
