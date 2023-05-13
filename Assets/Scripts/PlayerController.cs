@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public MenuManager menuManager;
     public CooldownBar cooldownBar;
     public AmmoBar ammoBar;
+    [SerializeField] private Animator Anim;
 
     public float jumpHeight = 0;
     public float acceleration;
