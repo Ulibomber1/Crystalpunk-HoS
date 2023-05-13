@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-Assets/Animator Controller.meta
-guid: 42124199544f4b64db500ebdc205c8c3
+<<<<<<<< HEAD:Assets/Animator Controller.meta
+guid: bf9101a472ef05c44bdaa8a96b0323f1
 folderAsset: yes
 DefaultImporter:
+========
 guid: 6d2729d71b8e4df44937a7aacbfda065
 PrefabImporter:
-dannys-shooter-branch:Assets/PreFabs/pfBulletProjectile.prefab.meta
+>>>>>>>> dannys-shooter-branch:Assets/PreFabs/pfBulletProjectile.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
