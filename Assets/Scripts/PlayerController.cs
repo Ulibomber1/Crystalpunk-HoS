@@ -213,7 +213,10 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputValue movementValue)
     {
         if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+        {
+            movementVector = Vector3.zero;
             return;
+        }
         Vector2 readVector = movementValue.Get<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
         movementVector = toConvert;

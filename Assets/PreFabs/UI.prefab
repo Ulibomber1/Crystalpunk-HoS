@@ -390,6 +390,7 @@ MonoBehaviour:
   dialogueText: {fileID: 872744830}
   textSpeed: 0.01
   menuManager: {fileID: 594837903}
+  dialogueTrigger: {fileID: 0}
 --- !u!1 &172412864888697247
 GameObject:
   m_ObjectHideFlags: 0

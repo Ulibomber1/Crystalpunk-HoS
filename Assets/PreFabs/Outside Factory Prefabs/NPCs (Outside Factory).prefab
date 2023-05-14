@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &153463001
+--- !u!1 &1335043319
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,89 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 153463006}
-  - component: {fileID: 153463005}
-  - component: {fileID: 153463004}
-  - component: {fileID: 153463003}
-  - component: {fileID: 153463002}
+  - component: {fileID: 1335043320}
+  - component: {fileID: 1335043324}
+  - component: {fileID: 1335043323}
+  - component: {fileID: 1335043322}
+  - component: {fileID: 1335043321}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: DialogueTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &153463006
+--- !u!4 &1335043320
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153463001}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 65.73, y: -6.588, z: -644.36}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1335043319}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 67.24, y: 34.8, z: -635.41}
+  m_LocalScale: {x: 135.93001, y: 89.2185, z: 11.614}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1637809213714579058}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &153463005
+--- !u!114 &1335043324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335043319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299015be98ae46747ad4dfe6cae21086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuManager: {fileID: 0}
+  parentName:
+  - Brett
+  - Crystal
+  - Hamilton
+  text:
+  - "Newbie is finally caught up, hey there. Glad to have you here, we\u2019ve got
+    a small dilemma.\n"
+  - "Indeed, we\u2019ve taken out some enemies around the area, but there are still
+    some enemies surrounding the facility. "
+  - "Right, there doesn\u2019t seem to be a lot of them. I think for the new guy
+    you should be able to handle this. Take out the enemies surrounding the facility.
+    We\u2019ll clean up here and catch up. Find a way into the building while you\u2019re
+    at it as well.\n"
+  numOfSpeakers: 2
+--- !u!65 &1335043323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335043319}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1335043322
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153463001}
+  m_GameObject: {fileID: 1335043319}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &153463004
+--- !u!23 &1335043321
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153463001}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1335043319}
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -85,31 +125,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &153463003
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153463001}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &153463002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153463001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 299015be98ae46747ad4dfe6cae21086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6324627916262291639
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +156,7 @@ Transform:
   - {fileID: 8560936292677729082}
   - {fileID: 3748334640185565990}
   - {fileID: 1384978432058723596}
-  - {fileID: 153463006}
+  - {fileID: 1335043320}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -195,9 +210,9 @@ PrefabInstance:
     - target: {fileID: 5388305629006635355, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
       propertyPath: lines.Array.data[0]
-      value: 'Test 123
-
-'
+      value: "Take out the enemies surrounding the facility. We\u2019ll clean up
+        here and catch up. Find a way into the building while you\u2019re at it as
+        well. "
       objectReference: {fileID: 0}
     - target: {fileID: 7331775609122842625, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
@@ -207,7 +222,7 @@ PrefabInstance:
     - target: {fileID: 7331775609122842625, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 81.37253
+      value: 58.94
       objectReference: {fileID: 0}
     - target: {fileID: 7331775609122842625, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
@@ -217,12 +232,12 @@ PrefabInstance:
     - target: {fileID: 7331775609122842625, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -619.94867
+      value: -629.14
       objectReference: {fileID: 0}
     - target: {fileID: 7331775609122842625, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.53508395
+      value: -0.9412587
       objectReference: {fileID: 0}
     - target: {fileID: 7331775609122842625, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
@@ -232,7 +247,7 @@ PrefabInstance:
     - target: {fileID: 7331775609122842625, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.8447989
+      value: -0.33768645
       objectReference: {fileID: 0}
     - target: {fileID: 7331775609122842625, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
@@ -247,7 +262,7 @@ PrefabInstance:
     - target: {fileID: 7331775609122842625, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -244.699
+      value: -320.528
       objectReference: {fileID: 0}
     - target: {fileID: 7331775609122842625, guid: 042472f9edfae4040bbfba9a9cec21c3,
         type: 3}
@@ -274,6 +289,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1637809213714579058}
     m_Modifications:
+    - target: {fileID: 88536127157957664, guid: 15339e662152259458326844643409ff,
+        type: 3}
+      propertyPath: lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 88536127157957664, guid: 15339e662152259458326844643409ff,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: "If Catherine trusts you, then I suppose I\u2019ll trust you as well.
+        Welcome to the group, just don\u2019t go dying on us already. None of us
+        would want that."
+      objectReference: {fileID: 0}
     - target: {fileID: 3333265545901882745, guid: 15339e662152259458326844643409ff,
         type: 3}
       propertyPath: m_Name
@@ -287,7 +314,7 @@ PrefabInstance:
     - target: {fileID: 3333265545901882746, guid: 15339e662152259458326844643409ff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 84.14
+      value: 65.45
       objectReference: {fileID: 0}
     - target: {fileID: 3333265545901882746, guid: 15339e662152259458326844643409ff,
         type: 3}
@@ -297,12 +324,12 @@ PrefabInstance:
     - target: {fileID: 3333265545901882746, guid: 15339e662152259458326844643409ff,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -625.8
+      value: -626.56
       objectReference: {fileID: 0}
     - target: {fileID: 3333265545901882746, guid: 15339e662152259458326844643409ff,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0070716287
+      value: -0.6582365
       objectReference: {fileID: 0}
     - target: {fileID: 3333265545901882746, guid: 15339e662152259458326844643409ff,
         type: 3}
@@ -312,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 3333265545901882746, guid: 15339e662152259458326844643409ff,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.999975
+      value: -0.75281125
       objectReference: {fileID: 0}
     - target: {fileID: 3333265545901882746, guid: 15339e662152259458326844643409ff,
         type: 3}
@@ -327,7 +354,7 @@ PrefabInstance:
     - target: {fileID: 3333265545901882746, guid: 15339e662152259458326844643409ff,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -179.19
+      value: -262.331
       objectReference: {fileID: 0}
     - target: {fileID: 3333265545901882746, guid: 15339e662152259458326844643409ff,
         type: 3}
@@ -349,6 +376,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1637809213714579058}
     m_Modifications:
+    - target: {fileID: 1480894540312745316, guid: 34597df5ba26d94488784046c6bf6b8b,
+        type: 3}
+      propertyPath: lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480894540312745316, guid: 34597df5ba26d94488784046c6bf6b8b,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: "So you\u2019re the new member, huh? I\u2019m Brett, nice to meet you.
+        Catherine said you\u2019ve got some skill, looking forward to working and
+        seeing ya in action."
+      objectReference: {fileID: 0}
     - target: {fileID: 4320528488880036925, guid: 34597df5ba26d94488784046c6bf6b8b,
         type: 3}
       propertyPath: m_Name
@@ -362,7 +401,7 @@ PrefabInstance:
     - target: {fileID: 4320528488880036926, guid: 34597df5ba26d94488784046c6bf6b8b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 79.2
+      value: 69.63
       objectReference: {fileID: 0}
     - target: {fileID: 4320528488880036926, guid: 34597df5ba26d94488784046c6bf6b8b,
         type: 3}
@@ -372,12 +411,12 @@ PrefabInstance:
     - target: {fileID: 4320528488880036926, guid: 34597df5ba26d94488784046c6bf6b8b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -631.18
+      value: -631.93
       objectReference: {fileID: 0}
     - target: {fileID: 4320528488880036926, guid: 34597df5ba26d94488784046c6bf6b8b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7939718
+      value: -0.16821557
       objectReference: {fileID: 0}
     - target: {fileID: 4320528488880036926, guid: 34597df5ba26d94488784046c6bf6b8b,
         type: 3}
@@ -387,7 +426,7 @@ PrefabInstance:
     - target: {fileID: 4320528488880036926, guid: 34597df5ba26d94488784046c6bf6b8b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.6079547
+      value: -0.98575026
       objectReference: {fileID: 0}
     - target: {fileID: 4320528488880036926, guid: 34597df5ba26d94488784046c6bf6b8b,
         type: 3}
@@ -402,7 +441,7 @@ PrefabInstance:
     - target: {fileID: 4320528488880036926, guid: 34597df5ba26d94488784046c6bf6b8b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -74.884
+      value: -199.368
       objectReference: {fileID: 0}
     - target: {fileID: 4320528488880036926, guid: 34597df5ba26d94488784046c6bf6b8b,
         type: 3}

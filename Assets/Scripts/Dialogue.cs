@@ -9,6 +9,7 @@ public class Dialogue : MonoBehaviour
     //public DialogueHolder dialogueHolder;
     public float textSpeed = 0.01f;
     public MenuManager menuManager;
+    public DialogueTrigger dialogueTrigger;
     private string[] lines;
 
     private int index;
@@ -23,6 +24,7 @@ public class Dialogue : MonoBehaviour
     {
         if (dialogueText.text == lines[index])
         {
+            dialogueTrigger.NextSpeaker();
             NextLine();
         }
         else
