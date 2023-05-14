@@ -2,22 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimedPlatforms : MonoBehaviour
+public class ToggleEnable : MonoBehaviour
 {
-    public GameObject platformHolder;
+    public GameObject ToToggle;
     public string togglerName;
-    public float timerLength = 10;
+    public bool StartEnabled = false;
+    //public float timerLength = 10;
     bool isToggled;
     // Start is called before the first frame update
     void Awake()
     {
         Interactable.OnInteractAction += OnInteractHandler;
-        platformHolder.SetActive(false);
-    }
-
-    void OnDestroy()
-    {
-        Interactable.OnInteractAction -= OnInteractHandler;
+        ToToggle.SetActive(StartEnabled);
     }
 
 
@@ -25,20 +21,24 @@ public class TimedPlatforms : MonoBehaviour
     {
         if (name != togglerName)
             return;
-        if(!isToggled)
+        if (StartEnabled)
         {
-            platformHolder.SetActive(true);
-            isToggled = true;
-            Invoke("DespawnPlatform", timerLength);
+            Disable();
         }
         else
-            Debug.Log("Platforms already enabled!");
+            Enable();
     }
 
-    void DespawnPlatform()
+    void Disable()
     {
-        platformHolder.SetActive(false);
+        ToToggle.SetActive(false);
         isToggled = false;
+    }
+
+    private void Enable()
+    {
+        ToToggle.SetActive(true);
+        isToggled = true;
     }
     // Update is called once per frame
     void Update()

@@ -1,130 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1335043319
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1335043320}
-  - component: {fileID: 1335043324}
-  - component: {fileID: 1335043323}
-  - component: {fileID: 1335043322}
-  - component: {fileID: 1335043321}
-  m_Layer: 0
-  m_Name: DialogueTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1335043320
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335043319}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.24, y: 34.8, z: -635.41}
-  m_LocalScale: {x: 135.93001, y: 89.2185, z: 11.614}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1637809213714579058}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1335043324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335043319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 299015be98ae46747ad4dfe6cae21086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuManager: {fileID: 0}
-  parentName:
-  - Brett
-  - Crystal
-  - Hamilton
-  text:
-  - "Newbie is finally caught up, hey there. Glad to have you here, we\u2019ve got
-    a small dilemma.\n"
-  - "Indeed, we\u2019ve taken out some enemies around the area, but there are still
-    some enemies surrounding the facility. "
-  - "Right, there doesn\u2019t seem to be a lot of them. I think for the new guy
-    you should be able to handle this. Take out the enemies surrounding the facility.
-    We\u2019ll clean up here and catch up. Find a way into the building while you\u2019re
-    at it as well.\n"
-  numOfSpeakers: 2
---- !u!65 &1335043323
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335043319}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &1335043322
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335043319}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1335043321
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335043319}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6324627916262291639
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,10 +31,85 @@ Transform:
   - {fileID: 8560936292677729082}
   - {fileID: 3748334640185565990}
   - {fileID: 1384978432058723596}
-  - {fileID: 1335043320}
+  - {fileID: 3871622975750873254}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &579155857063529460
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1637809213714579058}
+    m_Modifications:
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.6920091
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.6188588
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.3844838
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702176184915191251, guid: 19153997f45edd14989ed502e07c84be,
+        type: 3}
+      propertyPath: m_Name
+      value: MultiDialogueTrigger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 19153997f45edd14989ed502e07c84be, type: 3}
+--- !u!4 &3871622975750873254 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4445993720298662738, guid: 19153997f45edd14989ed502e07c84be,
+    type: 3}
+  m_PrefabInstance: {fileID: 579155857063529460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1400968173170053947
 PrefabInstance:
   m_ObjectHideFlags: 0

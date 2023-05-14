@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeUtility : MonoBehaviour
+public class InteractionHandler : MonoBehaviour
 {
     public string togglerName;
     private MeshRenderer mr;
@@ -13,6 +13,10 @@ public class CubeUtility : MonoBehaviour
         mr = gameObject.GetComponent<MeshRenderer>();
     }
 
+    private void OnDestroy()
+    {
+        Interactable.OnInteractAction -= OnInteractHandler;
+    }
 
     public void OnInteractHandler(string name, string parentName)
     {
