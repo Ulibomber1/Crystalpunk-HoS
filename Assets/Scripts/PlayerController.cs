@@ -360,25 +360,31 @@ public class PlayerController : MonoBehaviour
         Anim.SetTrigger("Health Lost");
         //The new player health that was subtracted is set
         healthBar.SetHealth(currentHealth);
-
+        Anim.SetInteger("Health", currentHealth);
         //When the player loses all health their position will be reset and the death count will increase by +1
         //The player's health is reset back to it's max value
         //The health slider is also reset to a full bar
         if (currentHealth == 0)
         {
-            //Anim.SetBool("Player Dead", true);
+            Anim.SetTrigger("Player Dead");
+            playerInput.DeactivateInput();
+            this.CallWithDelay(Respawn, 5f);
             
-            transform.position = new Vector3(0f, 0.5f, 0f);
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            lives = lives - 1;
-            Debug.Log("Lives left: " + lives);
-            //deathccount = deathcount + 1;
-            //SetCountText();
-
-            currentHealth = maxHealth;
-            healthBar.SetMaxHealth(maxHealth);
         }
+    }
+
+    private void Respawn()
+    {
+        transform.position = new Vector3(0f, 0.5f, 0f);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        lives = lives - 1;
+        Debug.Log("Lives left: " + lives);
+        Anim.StopPlayback();
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        Anim.SetTrigger("Respawned");
+        playerInput.ActivateInput();
     }
 
     public void SetHealthFull()
