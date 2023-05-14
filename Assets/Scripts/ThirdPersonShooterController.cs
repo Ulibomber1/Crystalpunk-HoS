@@ -61,7 +61,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
         //shoot where the player is looking
         //Vector3 aimDir = transform.forward;
-        transform.forward = Vector3.Slerp(transform.forward, aimDirection, Time.deltaTime * 180f); //when you shoot the player faces the direction, may not be necessary 
+        //transform.forward = Vector3.Slerp(transform.forward, aimDirection, Time.deltaTime * 180f); //when you shoot the player faces the direction, may not be necessary 
         Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
         
     }
