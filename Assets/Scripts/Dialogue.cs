@@ -11,6 +11,7 @@ public class Dialogue : MonoBehaviour
     public MenuManager menuManager;
     public DialogueTrigger dialogueTrigger;
     private string[] lines;
+    public bool SceneHasMultipleSpeakers;
 
     private int index;
     // Start is called before the first frame update
@@ -24,7 +25,8 @@ public class Dialogue : MonoBehaviour
     {
         if (dialogueText.text == lines[index])
         {
-            dialogueTrigger.NextSpeaker();
+            if (SceneHasMultipleSpeakers)
+                dialogueTrigger.NextSpeaker();
             NextLine();
         }
         else
