@@ -16,6 +16,11 @@ public class Interactable : MonoBehaviour
         PlayerController.OnInteraction += BroadcastToggle;
     }
 
+    private void OnDestroy()
+    {
+        PlayerController.OnInteraction -= BroadcastToggle;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player"))

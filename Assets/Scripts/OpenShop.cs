@@ -14,6 +14,10 @@ public class OpenShop : MonoBehaviour
         DialogueInteractable.OnDialogueEvent += OnInteractHandler;
     }
 
+    void OnDestroy()
+    {
+        DialogueInteractable.OnDialogueEvent -= OnInteractHandler;
+    }
 
     public void OnInteractHandler(string name, string parentName, string[]text)
     {

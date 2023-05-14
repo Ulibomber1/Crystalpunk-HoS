@@ -13,6 +13,11 @@ public class OpenDialogue : MonoBehaviour
         DialogueInteractable.OnDialogueEvent += OnInteractHandler;
     }
 
+    void OnDestroy()
+    {
+        DialogueInteractable.OnDialogueEvent -= OnInteractHandler;
+    }
+
 
     public void OnInteractHandler(string name, string parentName, string[] text)
     {
