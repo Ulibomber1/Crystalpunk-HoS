@@ -4,38 +4,47 @@ using UnityEngine;
 
 public class BulletProjectile : MonoBehaviour
 {
-    //Enemy enemy;
-    //EnemySlime slime;
     //commented out code is for vfx if the bullet hits something
     //[SerializeField] Private Transform vfxHitGreen;
     //[SerializeField] private Transform vfxHitRed;
     private Rigidbody bulletRigidbody;
+    private float DeathTime = 2;
 
     private void Awake(){
         bulletRigidbody = GetComponent<Rigidbody>();
-        //enemy = GameObject.FindGameObjectWithTag("enemy").GetComponent<Enemy>();
-        //slime = GameObject.FindGameObjectWithTag("enemySlime").GetComponent<EnemySlime>();
     }
 
     private void Start(){
         float speed = 40f;
         bulletRigidbody.velocity = transform.forward * speed;
+        Invoke("UseGravity", DeathTime/2);
+        Invoke("Kill", DeathTime);
+    }
+
+    void Kill()
+    {
+        Destroy(gameObject);
+    }
+
+    void UseGravity()
+    {
+        bulletRigidbody.useGravity = true;
     }
 
     private void OnTriggerEnter(Collider other){
-        
-        //if(other.GetComponent<BulletTarget>() != null){
+    if (!other.gameObject.CompareTag("Player"))
+    {
+        Destroy(this.gameObject); //probably could be improved, but better than nothing
+    }
+        /*
+        if(other.GetComponent<BulletTarget>() != null){
             //hit target
-            //enemy.E_TakeDamage(2);
-            //slime.E_TakeDamage(2);
-            //Debug.Log("damaged enemy");
-            //Destroy(this.gameObject);
-            //Instantiate(vfxHitGreen, transform.position, Quaternion.identity);
-            //} else {
+            Instantiate(vfxHitGreen, transform.position, Quaternion.identity);
+        } else {
             //hit something else
-            //Instantiate(vfxHitRed, transform.position, Quaternion.identity);
-        //}
-        //simple patch up to destroy bullet after hitting something in 1 second
-        Destroy(this.gameObject, 1);
+            Instantiate(vfxHitRed, transform.position, Quaternion.identity);
+        }
+        */
+            //Destroy(gameObject);
     }
 }

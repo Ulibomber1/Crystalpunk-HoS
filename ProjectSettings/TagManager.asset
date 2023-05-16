@@ -25,11 +25,11 @@ TagManager:
   - Ground
   - Player
   - Obstacles
+  - PlayerBullet
+  - 
   - PlayerPassthrough
   - Enemy
-  - 
-  - 
-  - 
+  - NPC
   - 
   - 
   - 

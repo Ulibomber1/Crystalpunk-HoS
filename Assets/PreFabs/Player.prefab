@@ -287,6 +287,7 @@ MonoBehaviour:
   menuManager: {fileID: 0}
   cooldownBar: {fileID: 0}
   ammoBar: {fileID: 0}
+  shooterController: {fileID: 7304532437127514366}
   Anim: {fileID: 4540228999828976227}
   jumpHeight: 7
   acceleration: 30
@@ -465,6 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e015d2e0c18efe1439e4c1fa6d354f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cmFreeLook: {fileID: 0}
   aimColliderLayerMask:
     serializedVersion: 2
     m_Bits: 375

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public MenuManager menuManager;
     public CooldownBar cooldownBar;
     public AmmoBar ammoBar;
+    public ThirdPersonShooterController shooterController;
     [SerializeField] private Animator Anim;
 
     public float jumpHeight = 0;
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputValue context)
     {
-        if (menuManager.IsPaused() || menuManager.IsShop())
+        if (menuManager.IsPaused() || menuManager.IsShop() || isReloading)
             return;
         if (menuManager.IsDialogue())
         {
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour
         if (ammo > 0)
         {
             Debug.Log("Pew"); // Projectile-based shooting
+            shooterController.Shoot();
             ammo = ammo - 1;
             Fired();
             // Disable projectile when they hit something
