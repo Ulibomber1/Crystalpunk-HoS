@@ -2156,8 +2156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defd849f460dba843a1077625be131de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 20
+  maxHP: 20
   animator: {fileID: 0}
   healthBar: {fileID: 0}
+  healthBarUI: {fileID: 0}
 --- !u!4 &4448337253826571380 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4934111147742088, guid: 9c49b9c1648647e47be8167f82a5f87e,
