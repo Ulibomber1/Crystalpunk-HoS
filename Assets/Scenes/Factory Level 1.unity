@@ -137,7 +137,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 971064475}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -688,12 +688,12 @@ PrefabInstance:
     - target: {fileID: 5147717103283277445, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016841229
+      value: -0.000000016841222
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103283277445, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000035260008
+      value: 0.000000003525999
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103635249597, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
@@ -1100,11 +1100,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemies (Factory)
       objectReference: {fileID: 0}
-    - target: {fileID: 4444664188097372539, guid: ae0461c1493210f4981cf1443d29b933,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5255418897471201417, guid: ae0461c1493210f4981cf1443d29b933,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1138,12 +1133,12 @@ PrefabInstance:
     - target: {fileID: 5255418898487833733, guid: ae0461c1493210f4981cf1443d29b933,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5255418898487833733, guid: ae0461c1493210f4981cf1443d29b933,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5255418898497289637, guid: ae0461c1493210f4981cf1443d29b933,
         type: 3}

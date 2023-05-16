@@ -773,11 +773,9 @@ GameObject:
   - component: {fileID: 4673369876368086}
   - component: {fileID: 95980759410839360}
   - component: {fileID: 5929951781586537075}
-  - component: {fileID: 5393472790307269455}
-  - component: {fileID: 6284568647693364157}
   m_Layer: 0
   m_Name: bug purple
-  m_TagString: enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -857,34 +855,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &5393472790307269455
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462720695320296}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &6284568647693364157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462720695320296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94103ccc80beaa247b8bb21f57c93c01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 10
-  animator: {fileID: 95980759410839360}
-  healthBar: {fileID: 0}
 --- !u!1 &1486048802852170
 GameObject:
   m_ObjectHideFlags: 0
