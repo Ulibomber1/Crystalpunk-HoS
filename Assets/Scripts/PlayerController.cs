@@ -151,10 +151,6 @@ public class PlayerController : MonoBehaviour
         SetAmmoText();
         Debug.Log("Reloaded Successfully!");
         ammoBar.SetMaxAmmo(ammo);
-        if (!doubleJumpUnlocked)
-            DoubleJumpBoots.SetActive(false);
-        else
-            DoubleJumpBoots.SetActive(true);
     }
 
     public void ActivateBoots()
@@ -332,6 +328,10 @@ public class PlayerController : MonoBehaviour
         SetAmmoText();
         cooldownBar.SetMaxCooldown(cd);
         ammoBar.SetMaxAmmo(ammo);
+        if (!doubleJumpUnlocked)
+            DoubleJumpBoots.SetActive(false);
+        else
+            DoubleJumpBoots.SetActive(true);
     }
 
     void FixedUpdate()
