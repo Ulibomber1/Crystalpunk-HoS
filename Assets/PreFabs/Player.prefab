@@ -288,8 +288,10 @@ MonoBehaviour:
   cooldownBar: {fileID: 0}
   ammoBar: {fileID: 0}
   shooterController: {fileID: 7304532437127514366}
+  DoubleJumpBoots: {fileID: 7093791604535495754}
   Anim: {fileID: 4540228999828976227}
   jumpHeight: 7
+  doubleJumpHeight: 8.5
   acceleration: 30
   maxVelocity: 10
   slopeLimit: 45
@@ -874,6 +876,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4561406473548200586, guid: 60770bdb4dc667c45bea53db0339dc05,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bd236fb057e4b224fa0472c489d5b02c, type: 2}
     - target: {fileID: 4630776517431558122, guid: 60770bdb4dc667c45bea53db0339dc05,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1033,6 +1040,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093791603881671045, guid: 60770bdb4dc667c45bea53db0339dc05,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7097009715782797335, guid: 60770bdb4dc667c45bea53db0339dc05,
         type: 3}
@@ -1258,6 +1270,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8423666484119569355, guid: de13a7420582ded45a8d7d3f96889aca, type: 3}
+--- !u!1 &7093791604535495754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7093791603881671045, guid: 60770bdb4dc667c45bea53db0339dc05,
+    type: 3}
+  m_PrefabInstance: {fileID: 788493775}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7945953894009854609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7945953894594096990, guid: 60770bdb4dc667c45bea53db0339dc05,

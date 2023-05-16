@@ -173,6 +173,8 @@ public class MenuManager : MonoBehaviour
         {
             playerController.SubtractGears(doubleJumpPrice);
             playerController.doubleJumpUnlocked = true;
+            playerController.ActivateBoots();
+            playerController.ActivateBoots();
             doubleJumpSold.SetActive(true);
             doubleJumpButton.SetActive(false);
         }

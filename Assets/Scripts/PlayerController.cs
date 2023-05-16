@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour
     public CooldownBar cooldownBar;
     public AmmoBar ammoBar;
     public ThirdPersonShooterController shooterController;
+    public GameObject DoubleJumpBoots;
     [SerializeField] private Animator Anim;
 
     public float jumpHeight = 0;
+    public float doubleJumpHeight = 0;
     public float acceleration;
     public float maxVelocity;
     public float slopeLimit;
@@ -93,7 +95,7 @@ public class PlayerController : MonoBehaviour
         else if (!isGrounded && !canDoubleJump && doubleJumpUnlocked)
         {
             Debug.Log("Double Boing");
-            rb.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
+            rb.AddForce(transform.up * doubleJumpHeight, ForceMode.VelocityChange);
             canDoubleJump = true;
         }
         Anim.SetBool("Is Jumping", true);
@@ -149,6 +151,15 @@ public class PlayerController : MonoBehaviour
         SetAmmoText();
         Debug.Log("Reloaded Successfully!");
         ammoBar.SetMaxAmmo(ammo);
+        if (!doubleJumpUnlocked)
+            DoubleJumpBoots.SetActive(false);
+        else
+            DoubleJumpBoots.SetActive(true);
+    }
+
+    public void ActivateBoots()
+    {
+        DoubleJumpBoots.SetActive(true);
     }
 
     public void ReloadTime()
