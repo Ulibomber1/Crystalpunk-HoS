@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d4da91d924e2646bb99c973b9dfcde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointname: wayPoints
+  waypointname: wayPoints slime
   chaseRange: 10
 --- !u!1102 &1923617336113304506
 AnimatorState:

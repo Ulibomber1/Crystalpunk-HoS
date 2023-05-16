@@ -20,8 +20,8 @@ public class Enemy : MonoBehaviour
         HP -= damageAmount;
         if (HP <= 0)
         {
-            animator.SetTrigger("die");
             healthBar.value = HP;
+            animator.SetTrigger("die");
             GetComponent<Collider>().enabled = false;
             Destroy(this.gameObject, 1);
             Debug.Log("Enemy died");
