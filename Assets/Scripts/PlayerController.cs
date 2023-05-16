@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public CooldownBar cooldownBar;
     public AmmoBar ammoBar;
     public ThirdPersonShooterController shooterController;
+    public GameObject RegularBoots;
     public GameObject DoubleJumpBoots;
     [SerializeField] private Animator Anim;
 
@@ -155,6 +156,7 @@ public class PlayerController : MonoBehaviour
 
     public void ActivateBoots()
     {
+        RegularBoots.SetActive(false);
         DoubleJumpBoots.SetActive(true);
     }
 
@@ -329,9 +331,15 @@ public class PlayerController : MonoBehaviour
         cooldownBar.SetMaxCooldown(cd);
         ammoBar.SetMaxAmmo(ammo);
         if (!doubleJumpUnlocked)
+        {
+            RegularBoots.SetActive(true);
             DoubleJumpBoots.SetActive(false);
+        }
         else
+        {
+            RegularBoots.SetActive(false);
             DoubleJumpBoots.SetActive(true);
+        }
     }
 
     void FixedUpdate()

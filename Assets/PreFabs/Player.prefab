@@ -288,6 +288,7 @@ MonoBehaviour:
   cooldownBar: {fileID: 0}
   ammoBar: {fileID: 0}
   shooterController: {fileID: 7304532437127514366}
+  RegularBoots: {fileID: 4108629494573806678}
   DoubleJumpBoots: {fileID: 7093791604535495754}
   Anim: {fileID: 4540228999828976227}
   jumpHeight: 7
@@ -866,6 +867,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4108629495336714649, guid: 60770bdb4dc667c45bea53db0339dc05,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4116401870129570769, guid: 60770bdb4dc667c45bea53db0339dc05,
         type: 3}
       propertyPath: m_Layer
@@ -1181,6 +1187,12 @@ PrefabInstance:
 --- !u!4 &1438546958887475974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05,
+    type: 3}
+  m_PrefabInstance: {fileID: 788493775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4108629494573806678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4108629495336714649, guid: 60770bdb4dc667c45bea53db0339dc05,
     type: 3}
   m_PrefabInstance: {fileID: 788493775}
   m_PrefabAsset: {fileID: 0}
