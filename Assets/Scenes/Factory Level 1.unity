@@ -124,6 +124,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 433a9765df961e442a0593057d89eea1, type: 2}
+--- !u!4 &115923625 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 115923625, guid: 465223eafb67e3d40a5b250f1df9e23a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7062218879756688459}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &161782849 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4734357166887539511, guid: 308fcec71c3480e4c9f7ae3e8a60ae18,
@@ -650,6 +656,11 @@ PrefabInstance:
       propertyPath: menuManager
       value: 
       objectReference: {fileID: 817164496}
+    - target: {fileID: 5005127394278487161, guid: eed3c90d410c49e4c8990f5898990700,
+        type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 115923625}
     - target: {fileID: 5005127394278487164, guid: eed3c90d410c49e4c8990f5898990700,
         type: 3}
       propertyPath: m_Name
@@ -677,12 +688,12 @@ PrefabInstance:
     - target: {fileID: 5147717103283277445, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016841215
+      value: -0.000000016841222
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103283277445, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000035259982
+      value: 0.000000003525999
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103635249597, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public CooldownBar cooldownBar;
     public AmmoBar ammoBar;
     [SerializeField] private Animator Anim;
+    [SerializeField] private Transform respawnPoint;
 
     public float jumpHeight = 0;
     public float acceleration;
@@ -378,7 +379,7 @@ public class PlayerController : MonoBehaviour
 
     private void Respawn()
     {
-        transform.position = new Vector3(0f, 0.5f, 0f);
+        transform.position = respawnPoint.transform.position;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         lives = lives - 1;
