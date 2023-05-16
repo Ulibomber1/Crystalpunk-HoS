@@ -26,9 +26,5 @@ public class enemyBullet : MonoBehaviour
             Debug.Log("damaged player!"); 
            
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
     }
 }
