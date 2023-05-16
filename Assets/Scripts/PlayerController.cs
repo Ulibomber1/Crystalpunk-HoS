@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputValue context)
     {
-        if (menuManager.IsPaused() || menuManager.IsShop())
+        if (menuManager.IsPaused() || menuManager.IsShop() || isReloading)
             return;
         if (menuManager.IsDialogue())
         {

@@ -8,6 +8,7 @@ public class BulletProjectile : MonoBehaviour
     //[SerializeField] Private Transform vfxHitGreen;
     //[SerializeField] private Transform vfxHitRed;
     private Rigidbody bulletRigidbody;
+    private int DeathTime = 2;
 
     private void Awake(){
         bulletRigidbody = GetComponent<Rigidbody>();
@@ -16,6 +17,12 @@ public class BulletProjectile : MonoBehaviour
     private void Start(){
         float speed = 40f;
         bulletRigidbody.velocity = transform.forward * speed;
+        Invoke("Kill", DeathTime);
+    }
+
+    void Kill()
+    {
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other){
