@@ -26,6 +26,7 @@ public class AttackState : StateMachineBehaviour
         animator.transform.LookAt(player);
         if (!alreadyAttacked)
         {
+            //agent.SetDestination(agent.transform.position);
             playerC.PlayerDamage(1);
             Debug.Log("player damaged by 1!");
             alreadyAttacked = true;
