@@ -9,7 +9,9 @@ public class Dialogue : MonoBehaviour
     //public DialogueHolder dialogueHolder;
     public float textSpeed = 0.01f;
     public MenuManager menuManager;
+    public DialogueTrigger dialogueTrigger;
     private string[] lines;
+    public bool SceneHasMultipleSpeakers;
 
     private int index;
     // Start is called before the first frame update
@@ -23,6 +25,8 @@ public class Dialogue : MonoBehaviour
     {
         if (dialogueText.text == lines[index])
         {
+            if (SceneHasMultipleSpeakers)
+                dialogueTrigger.NextSpeaker();
             NextLine();
         }
         else

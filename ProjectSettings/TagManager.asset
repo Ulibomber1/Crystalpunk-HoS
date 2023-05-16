@@ -12,6 +12,9 @@ TagManager:
   - wayPoints 2
   - wayPoints slime
   - wayPoints mini
+  - playerBullet
+  - enemy
+  - enemySlime
   layers:
   - Default
   - TransparentFX
@@ -24,6 +27,8 @@ TagManager:
   - Obstacles
   - PlayerBullet
   - 
+  - PlayerPassthrough
+  - Enemy
   - 
   - 
   - 
