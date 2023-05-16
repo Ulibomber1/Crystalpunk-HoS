@@ -1256,12 +1256,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5537546685659426894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 1.25, z: -14.2}
+  m_LocalPosition: {x: 1, y: 1.25, z: -14.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7062218879021502917}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5837263867335579019
 GameObject:
@@ -23461,19 +23461,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 08b90937d3ee7504cb7fee0efcbae93d, type: 3}
---- !u!114 &1840800891069424790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391234700197869147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8c132981cecaae4dbeb7340f5fa9c35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  togglerName: Boss Door Key
 --- !u!65 &1761390537010727894
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23487,6 +23474,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 3}
   m_Center: {x: -4, y: 2, z: -0.3}
+--- !u!114 &1840800891069424790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391234700197869147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c132981cecaae4dbeb7340f5fa9c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  togglerName: Boss Door Key
 --- !u!4 &7316295345345827896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08b90937d3ee7504cb7fee0efcbae93d,
@@ -25083,19 +25083,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7062218878467609617}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2443429743362299847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391234700138303897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be0d2674068fd6f499425d3185c8e76d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  togglerName: Right Door Lever
 --- !u!64 &7849585647747100663
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25110,6 +25097,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: f13d52877db191542a690dc769d6c59c, type: 3}
+--- !u!114 &2443429743362299847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391234700138303897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0d2674068fd6f499425d3185c8e76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  togglerName: Right Door Lever
 --- !u!4 &7316295345286411258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f13d52877db191542a690dc769d6c59c,
