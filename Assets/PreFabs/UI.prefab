@@ -391,7 +391,7 @@ MonoBehaviour:
   textSpeed: 0.01
   menuManager: {fileID: 594837903}
   dialogueTrigger: {fileID: 0}
-  SceneHasMultipleSpeakers: 0
+  SceneHasMultipleSpeakers: 1
 --- !u!1 &172412864888697247
 GameObject:
   m_ObjectHideFlags: 0
