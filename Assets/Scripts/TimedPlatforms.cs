@@ -15,6 +15,11 @@ public class TimedPlatforms : MonoBehaviour
         platformHolder.SetActive(false);
     }
 
+    void OnDestroy()
+    {
+        Interactable.OnInteractAction -= OnInteractHandler;
+    }
+
 
     public void OnInteractHandler(string name, string parentName)
     {

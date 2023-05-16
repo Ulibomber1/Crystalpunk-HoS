@@ -2,19 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
-    // [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
+    [SerializeField] private CinemachineFreeLook cmFreeLook;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
     //[SerializeField] private Transform debugTransform;
     [SerializeField] private Transform pfBulletProjectile;
     [SerializeField] private Transform spawnBulletPosition;
+    private Vector3 aimDirection;
+    private bool aiming = false;
 
-   public void OnAim(){
-        //aimVirtualCamera.gameObject.SetActive(!aimVirtualCamera.gameObject.activeSelf);
-   }
+/*    public void OnAim() //this works but is destructive of the fov value will fix later
+    {
+        if (!aiming)
+        {
+            aiming = true;
+            cmFreeLook.m_Lens.FieldOfView = cmFreeLook.m_Lens.FieldOfView - 20;
+        }
+        else
+        {
+            aiming = false;
+            cmFreeLook.m_Lens.FieldOfView = cmFreeLook.m_Lens.FieldOfView + 20;
+        }
+    }*/
+
     //variable for face towards aiming code
     Vector3 mouseWorldPosition = Vector3.zero;
 
@@ -31,22 +44,24 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
 
         // Convert Reticle position From screen space to world space through a raycast
-        //if(aimVirtualCamera.gameObject.activeSelf){
+        if(cmFreeLook.gameObject.activeSelf){
             //code to make the character face the way they are aiming
-            //Vector3 worldAimTarget = mouseWorldPosition;
-            //worldAimTarget.y = transform.position.y;
-            //Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
+            Vector3 worldAimTarget = mouseWorldPosition;
+            worldAimTarget.y = transform.position.y;
+            aimDirection = (worldAimTarget - transform.position).normalized;
 
+            //change this to while onaim
             //transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
-        //} 
+        } 
 
     }
 
-    public void OnFire(){
+    public void Shoot(){
         //shoot where at the mouse cursor
-        //Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+        Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
         //shoot where the player is looking
-        Vector3 aimDir = transform.forward;
+        //Vector3 aimDir = transform.forward;
+        //transform.forward = Vector3.Slerp(transform.forward, aimDirection, Time.deltaTime * 180f); //when you shoot the player faces the direction, may not be necessary 
         Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
         
     }

@@ -133,11 +133,11 @@ public class GameManager : MonoBehaviour
 
         void ChangeBasedOnSave()
         {
-            if (SceneManager.GetActiveScene().name != mainMenuSceneName)
+            /*if (SceneManager.GetActiveScene().name != mainMenuSceneName)
             {
                 Debug.LogError("Cannot change based on a save file from anywhere except the main menu.");
                 return;
-            }
+            }*/
             // Need to load save, then intialize the scene using that save data
             SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
             // Temporary:
@@ -146,12 +146,12 @@ public class GameManager : MonoBehaviour
 
         void ChangeFromGameOver()
         {
-            if (sceneName != hubWorldSceneName && sceneName != mainMenuSceneName)
+            /*if (sceneName != hubWorldSceneName && sceneName != mainMenuSceneName)
             {
                 Debug.LogError("Cannot change from " + SceneManager.GetActiveScene().name + " to " + sceneName + ".");
                 return;
-            }
-            else if (sceneName == SceneManager.GetActiveScene().name)
+            }*/
+            if (sceneName == SceneManager.GetActiveScene().name)
             {
                 RestartCurrent();
                 return;
@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
 
         void ChangeFromHub()
         {
-            if (SceneManager.GetActiveScene().name != hubWorldSceneName)
+            /*if (SceneManager.GetActiveScene().name != hubWorldSceneName)
             {
                 Debug.LogError("Cannot change to " + sceneName + " from a non-hub scene.\n" +
                     "Make sure the hubWorldSceneName is intitialized properly.");
@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
                 Debug.LogError("Cannot change from hub world to Level 0. " +
                     "Also make sure Level Zero Scene Name is set properly.");
                 return;
-            }
+            }*/
             // save player state first, then load the scene
             SceneManager.LoadScene(sceneName);
             // temporary:
@@ -181,14 +181,14 @@ public class GameManager : MonoBehaviour
 
         void ChangeFromLevel()
         {
-            if (sceneName != hubWorldSceneName)
+            /*if (sceneName != hubWorldSceneName)
             {
                 Debug.LogError("Cannot change to " + sceneName +
                                " from a from a level.\n" +
                                "Make sure the call to ChangeFromLevel() is" +
                                "getting the Hub World's scene name as its parameter.");
                 return;
-            }
+            }*/
             // Before scene change, save player stats/equipment except for HP
             SceneManager.LoadScene(sceneName);
         }
@@ -201,11 +201,11 @@ public class GameManager : MonoBehaviour
 
         void ChangeFromPause()
         {
-            if (sceneName != hubWorldSceneName && sceneName != mainMenuSceneName)
+            /*if (sceneName != hubWorldSceneName && sceneName != mainMenuSceneName)
             {
                 Debug.LogError("Cannot change from " + SceneManager.GetActiveScene().name + " to " + sceneName + ".");
                 return;
-            }
+            }*/
             SceneManager.LoadScene(sceneName);
         }
     }

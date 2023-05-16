@@ -8,6 +8,7 @@ public class BulletProjectile : MonoBehaviour
     //[SerializeField] Private Transform vfxHitGreen;
     //[SerializeField] private Transform vfxHitRed;
     private Rigidbody bulletRigidbody;
+    private float DeathTime = 2;
 
     private void Awake(){
         bulletRigidbody = GetComponent<Rigidbody>();
@@ -16,9 +17,25 @@ public class BulletProjectile : MonoBehaviour
     private void Start(){
         float speed = 40f;
         bulletRigidbody.velocity = transform.forward * speed;
+        Invoke("UseGravity", DeathTime/2);
+        Invoke("Kill", DeathTime);
+    }
+
+    void Kill()
+    {
+        Destroy(gameObject);
+    }
+
+    void UseGravity()
+    {
+        bulletRigidbody.useGravity = true;
     }
 
     private void OnTriggerEnter(Collider other){
+    if (!other.gameObject.CompareTag("Player"))
+    {
+        Destroy(this.gameObject); //probably could be improved, but better than nothing
+    }
         /*
         if(other.GetComponent<BulletTarget>() != null){
             //hit target
@@ -28,6 +45,6 @@ public class BulletProjectile : MonoBehaviour
             Instantiate(vfxHitRed, transform.position, Quaternion.identity);
         }
         */
-        //Destroy(gameObject);
+            //Destroy(gameObject);
     }
 }

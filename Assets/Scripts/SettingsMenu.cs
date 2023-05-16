@@ -84,6 +84,7 @@ public class SettingsMenu : MonoBehaviour
     {
         cmFreeLook.m_Lens.FieldOfView = fov;
     }
+
     public void FlipX(bool flipX)
     {
         cmFreeLook.m_XAxis.m_InvertInput = flipX;
