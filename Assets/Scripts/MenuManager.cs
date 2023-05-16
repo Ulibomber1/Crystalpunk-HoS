@@ -146,6 +146,7 @@ public class MenuManager : MonoBehaviour
     {
         GameManager.Instance.SetGameState(GameState.DIALOGUE);
         isPaused = false; isShop = false; isDialogue = true;
+        playerController.SetSpeedZero();
         //Time.timeScale = 0;
         InGameSwitch("Dialogue");
         dialogueName.SetText(name);

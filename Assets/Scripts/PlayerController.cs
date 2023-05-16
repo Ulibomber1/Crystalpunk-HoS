@@ -243,6 +243,11 @@ public class PlayerController : MonoBehaviour
         movementVector = toConvert;
     }
 
+    public void SetSpeedZero()
+    {
+        movementVector = Vector3.zero;
+    }
+
     private Quaternion VectorToQuaternion(Vector3 movementVector)
     {
         Vector3 relative = (transform.position + movementVector) - transform.position;
