@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class InteractionHandler : MonoBehaviour
 {
-    public string togglerName;
+    [SerializeField] protected string togglerName;
     private MeshRenderer mr;
     // Start is called before the first frame update
-    void Awake()
+    protected virtual void Awake()
     {
         Interactable.OnInteractAction += OnInteractHandler;
         mr = gameObject.GetComponent<MeshRenderer>();
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         Interactable.OnInteractAction -= OnInteractHandler;
     }
 
-    public void OnInteractHandler(string name, string parentName)
+    private void OnInteractHandler(string name, string parentName)
     {
         if (name != togglerName)
             return;
@@ -29,10 +29,5 @@ public class InteractionHandler : MonoBehaviour
         
 
         Debug.Log("Object " + mr.enabled);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
