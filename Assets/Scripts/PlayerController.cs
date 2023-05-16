@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject RegularBoots;
     public GameObject DoubleJumpBoots;
     [SerializeField] private Animator Anim;
+    [SerializeField] private GameObject respawnPoint;
 
     public float jumpHeight = 0;
     public float doubleJumpHeight = 0;
@@ -404,7 +405,7 @@ public class PlayerController : MonoBehaviour
 
     private void Respawn()
     {
-        transform.position = new Vector3(0f, 0.5f, 0f);
+        transform.position = respawnPoint.transform.position;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         lives = lives - 1;
