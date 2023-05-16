@@ -131,6 +131,7 @@ public class PlayerController : MonoBehaviour
         isReloading = true;
         nextReload = Time.time + reloadTime;
         Debug.Log("Reloading...");
+        //PlayerDamage(10);
     }
 
     void Fired()
@@ -324,7 +325,7 @@ public class PlayerController : MonoBehaviour
         //When the player loses all health their position will be reset and the death count will increase by +1
         //The player's health is reset back to it's max value
         //The health slider is also reset to a full bar
-        if (currentHealth == 0)
+        if (currentHealth == 0 && lives > 0)
         {
             transform.position = new Vector3(0f, 0.5f, 0f);
             rb.velocity = Vector3.zero;
@@ -336,6 +337,11 @@ public class PlayerController : MonoBehaviour
 
             currentHealth = maxHealth;
             healthBar.SetMaxHealth(maxHealth);
+        }
+        else if (currentHealth == 0 && lives == 0)
+        {
+            Debug.Log("Scene Changed!");
+            GameManager.Instance.ChangeToGameOver();
         }
     }
     void SetGearText()
@@ -398,6 +404,7 @@ public class PlayerController : MonoBehaviour
             nextFire = Time.time + fireRate;
             Fired();
         }
+
     }
 
     private void OnDestroy()
