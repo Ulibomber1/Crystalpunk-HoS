@@ -15,6 +15,7 @@ TagManager:
   - playerBullet
   - enemy
   - enemySlime
+  - wayPoints add
   layers:
   - Default
   - TransparentFX

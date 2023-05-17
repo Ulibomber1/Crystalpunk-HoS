@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyMiniBoss : MonoBehaviour
+public class BurtronEnemy : MonoBehaviour
 {
-    public int HP = 20;
-    public Animator animator;
+    public int HP = 100;
     public Slider healthBar;
 
     void update()
@@ -20,17 +19,15 @@ public class EnemyMiniBoss : MonoBehaviour
         HP -= damageAmount;
         if (HP <= 0)
         {
-            animator.SetTrigger("die");
             healthBar.value = HP;
             GetComponent<Collider>().enabled = false;
             Destroy(this.gameObject, 1);
-            Debug.Log("miniboss died");
+            Debug.Log("Burtron died");
         }
         else
         {
-            animator.SetTrigger("damage");
+            Debug.Log("damaged Burtron!");
             healthBar.value = HP;
-            Debug.Log("damaged miniboss");
         }
     }
 
@@ -38,10 +35,9 @@ public class EnemyMiniBoss : MonoBehaviour
     {
         if (other.gameObject.CompareTag("playerBullet"))
         {
-            E_TakeDamage(2);
-            Debug.Log("damaged miniboss");
-            //Destroy(gameObject);
+            E_TakeDamage(1);
+            Debug.Log("damaged Burtron!!");
+            Destroy(other.gameObject);
         }
-
     }
 }
