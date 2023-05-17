@@ -6,28 +6,32 @@ public class GameOver : MonoBehaviour
 {
     public GameObject fadeOut;
     public GameObject restart;
+
+    private string scenename;
     public void MoveToScene(string SceneName)
     {
         GameManager.Instance.ChangeScene(SceneName);
-
-        if (SceneName == "Hub World")
+        GameManager.Instance.SetGameStateByContext();
+        /*if (SceneName == "Hub World")
         {
             GameManager.Instance.SetGameState(GameState.HUB_WORLD);
         }
         else if (SceneName == "Start")
         {
             GameManager.Instance.SetGameState(GameState.MAIN_MENU);
-        }
+        }*/
     }
-    public void Restart(string SceneName)
+    public void Restart()
     {
-        Debug.Log("Restarting to HUB!");
-        StartCoroutine(Fade(SceneName));
+        scenename = GameManager.Instance.getPrevScene();
+        Debug.Log("Restarting Current Level!");
+        StartCoroutine(Fade(scenename));
     }
-    public void MoveToMain(string SceneName)
+    public void MoveToMain()
     {
+        scenename = "Start";
         Debug.Log("Back to Main Menu!");
-        StartCoroutine(Fade(SceneName));
+        StartCoroutine(Fade(scenename));
     }
     private IEnumerator Fade(string SceneName)
     {

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using System.Collections;
+
 public enum GameState
 {
     MAIN_MENU,
@@ -15,7 +16,12 @@ public enum GameState
     DIALOGUE,
     GAME_OVER
 }
-
+//Move to another script later!!!
+public static class SaveData
+{
+    public static bool shopUnlocked = false;
+}
+//This too!!
 public static class SettingsData
 {
     public static float volume;
@@ -27,6 +33,8 @@ public static class SettingsData
 
 public class GameManager : MonoBehaviour
 {
+    private string prevScene;
+
     [SerializeField] private string hubWorldSceneName, levelZeroSceneName, mainMenuSceneName, outsideLevelOneSceneName, levelOneSceneName, gameOverSceneName;
 
     // New Singleton Pattern
@@ -196,7 +204,9 @@ public class GameManager : MonoBehaviour
         void RestartCurrent()
         {
             // initialize the player to last saved state first
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            SceneManager.LoadScene(prevScene);
         }
 
         void ChangeFromPause()
@@ -208,6 +218,25 @@ public class GameManager : MonoBehaviour
             }*/
             SceneManager.LoadScene(sceneName);
         }
+    }
+
+    public void ChangeToGameOver()
+    {
+        GameManager.Instance.setPrevScene();
+        SceneManager.LoadScene("GameOver");
+        GameManager.Instance.SetGameState(GameState.GAME_OVER);
+    }
+
+    void setPrevScene()
+    {
+        //return SceneManager.GetActiveScene().buildIndex - 1;
+        //return SceneManager.GetActiveScene(SceneManager.GetActiveScene().buildIndex - 1).name;
+        prevScene = SceneManager.GetActiveScene().name;
+    }
+
+    public string getPrevScene()
+    {
+        return prevScene;
     }
 
     public void OnInteractHandler(string name, string parentName)
