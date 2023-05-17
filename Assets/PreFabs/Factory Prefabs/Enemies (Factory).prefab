@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   addPrefab: {fileID: 349848053240658786, guid: dd31d5922eb88d64ba79d0e991a2145c,
     type: 3}
-  addInterval: 6
+  addInterval: 10
   leftSpawner: {fileID: 0}
   rightSpawner: {fileID: 0}
   burtronEnemy: {fileID: 0}

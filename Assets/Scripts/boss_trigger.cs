@@ -6,6 +6,7 @@ public class boss_trigger : MonoBehaviour
 {
     public BurtronEnemy burtronEnemy;
     public enemySpawner spawner;
+    public GameObject bossDoor;
 
 
     // Start is called before the first frame update
@@ -23,10 +24,13 @@ public class boss_trigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {        
+        {
+            bossDoor.GetComponent<MeshRenderer>().enabled = true;
+            bossDoor.GetComponent<MeshCollider>().enabled = true;
             Debug.Log("Boss Fight");
             burtronEnemy.bossActivated = true;
             spawner.triggerBoss();
+            GetComponent<Collider>().enabled = false;
         }
     }
 }

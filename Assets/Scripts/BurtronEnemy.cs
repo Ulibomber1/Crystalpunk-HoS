@@ -53,7 +53,7 @@ public class BurtronEnemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("playerBullet"))
         {
-            E_TakeDamage(1);
+            E_TakeDamage(5);
             Debug.Log("damaged Burtron!!");
             Destroy(other.gameObject);
         }
