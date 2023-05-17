@@ -720,12 +720,12 @@ PrefabInstance:
     - target: {fileID: 5147717103283277445, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017203432
+      value: 0.000000017203392
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103283277445, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -3.2080577e-10
+      value: -3.2080505e-10
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103635249597, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
@@ -735,17 +735,17 @@ PrefabInstance:
     - target: {fileID: 5147717103635249597, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.1705943
+      value: 0.17059427
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103635249597, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 7.317075e-10
+      value: 0.0000000047438755
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103635249597, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -1.2668205e-10
+      value: -8.213176e-10
       objectReference: {fileID: 0}
     - target: {fileID: 5147717103850081968, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
@@ -855,17 +855,17 @@ PrefabInstance:
     - target: {fileID: 5147717105289247136, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.1363913
+      value: 0.13639128
       objectReference: {fileID: 0}
     - target: {fileID: 5147717105289247136, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000022540627
+      value: 0.000000013318888
       objectReference: {fileID: 0}
     - target: {fileID: 5147717105289247136, guid: fc01ea595d1f0974fb4c301cbf671e9a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -3.1033456e-10
+      value: -0.0000000018337167
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc01ea595d1f0974fb4c301cbf671e9a, type: 3}
@@ -916,17 +916,17 @@ PrefabInstance:
     - target: {fileID: 6720153260823689344, guid: 8ae558b0eb70a1f4b90f7914721048bf,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.1705943
+      value: 0.17059427
       objectReference: {fileID: 0}
     - target: {fileID: 6720153260823689344, guid: 8ae558b0eb70a1f4b90f7914721048bf,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000014700952
+      value: 0.000000015430068
       objectReference: {fileID: 0}
     - target: {fileID: 6720153260823689344, guid: 8ae558b0eb70a1f4b90f7914721048bf,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000025452078
+      value: -0.0000000026714404
       objectReference: {fileID: 0}
     - target: {fileID: 6720153260823689344, guid: 8ae558b0eb70a1f4b90f7914721048bf,
         type: 3}
@@ -1098,22 +1098,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1613964073, guid: ae0461c1493210f4981cf1443d29b933, type: 3}
-      propertyPath: spawner
+    - target: {fileID: 1613964074, guid: ae0461c1493210f4981cf1443d29b933, type: 3}
+      propertyPath: leftSpawner
       value: 
       objectReference: {fileID: 1793271464}
-    - target: {fileID: 1613964073, guid: ae0461c1493210f4981cf1443d29b933, type: 3}
+    - target: {fileID: 1613964074, guid: ae0461c1493210f4981cf1443d29b933, type: 3}
       propertyPath: burtronEnemy
       value: 
       objectReference: {fileID: 1095690674}
     - target: {fileID: 1613964074, guid: ae0461c1493210f4981cf1443d29b933, type: 3}
-      propertyPath: spawner
+      propertyPath: rightSpawner
       value: 
       objectReference: {fileID: 1862851222}
-    - target: {fileID: 1613964074, guid: ae0461c1493210f4981cf1443d29b933, type: 3}
-      propertyPath: burtronEnemy
-      value: 
-      objectReference: {fileID: 1095690674}
     - target: {fileID: 36811426175435006, guid: ae0461c1493210f4981cf1443d29b933,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1417,17 +1413,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2750935582486450352, guid: 465223eafb67e3d40a5b250f1df9e23a,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2750935582486450352, guid: 465223eafb67e3d40a5b250f1df9e23a,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4772937872601855916, guid: 465223eafb67e3d40a5b250f1df9e23a,
+        type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1613964074}
+    - target: {fileID: 4812840420280444496, guid: 465223eafb67e3d40a5b250f1df9e23a,
         type: 3}
       propertyPath: spawner
       value: 

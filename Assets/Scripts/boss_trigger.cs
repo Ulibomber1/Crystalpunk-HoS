@@ -7,6 +7,7 @@ public class boss_trigger : MonoBehaviour
     public BurtronEnemy burtronEnemy;
     public enemySpawner spawner;
 
+
     // Start is called before the first frame update
     void Start()
     {

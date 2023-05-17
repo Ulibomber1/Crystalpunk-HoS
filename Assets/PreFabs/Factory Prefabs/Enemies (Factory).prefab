@@ -201,7 +201,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1613964072}
   - component: {fileID: 1613964074}
-  - component: {fileID: 1613964073}
   m_Layer: 0
   m_Name: SpawnAdd
   m_TagString: Untagged
@@ -238,25 +237,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   addPrefab: {fileID: 349848053240658786, guid: dd31d5922eb88d64ba79d0e991a2145c,
     type: 3}
-  addInterval: 3
-  spawner: {fileID: 0}
-  burtronEnemy: {fileID: 0}
---- !u!114 &1613964073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613964071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d6efc67c2b9eb94eb0c49897fb83d21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addPrefab: {fileID: 349848053240658786, guid: dd31d5922eb88d64ba79d0e991a2145c,
-    type: 3}
-  addInterval: 4
-  spawner: {fileID: 0}
+  addInterval: 6
+  leftSpawner: {fileID: 0}
+  rightSpawner: {fileID: 0}
   burtronEnemy: {fileID: 0}
 --- !u!1 &1781483140
 GameObject:
