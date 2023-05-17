@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218361c739e32074e9e61e91b3332acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 3
+  timer: 1.5
   enemyBulletSpeed: 1000
   projectile: {fileID: 4235939242642074689, guid: 6864bf0742475e14a83aa789a692b5df,
     type: 3}
-  tooCloseAttack: 7
 --- !u!1102 &-7549578699183312872
 AnimatorState:
   serializedVersion: 6
@@ -324,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec33f7a38b66df41bed093538aefe1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 8
+  attackRange: 10
   OutOfSightRange: 20
 --- !u!1102 &369934866389348172
 AnimatorState:

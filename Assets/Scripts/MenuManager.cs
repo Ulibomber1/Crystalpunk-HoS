@@ -83,7 +83,7 @@ public class MenuManager : MonoBehaviour
             doubleJumpSold.SetActive(false);
             doubleJumpButton.SetActive(true);
         }
-
+        shopUnlocked = SaveData.shopUnlocked;
     }
 
     public void Pause()

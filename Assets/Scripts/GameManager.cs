@@ -16,7 +16,12 @@ public enum GameState
     DIALOGUE,
     GAME_OVER
 }
-
+//Move to another script later!!!
+public static class SaveData
+{
+    public static bool shopUnlocked = false;
+}
+//This too!!
 public static class SettingsData
 {
     public static float volume;
