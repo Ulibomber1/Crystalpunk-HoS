@@ -10,6 +10,7 @@ public class BurtronEnemy : MonoBehaviour
     public Slider healthBar;
     public bool bossActivated = false;
     public enemySpawner spawner;
+    //public GameObject interactable
 
     void update()
     {
@@ -21,7 +22,7 @@ public class BurtronEnemy : MonoBehaviour
         HP -= damageAmount;
         if (HP <= 0)
         {
-            //gameobject.
+            //enable gameobject crystal_interactable
             bossActivated = false;
             spawner.defeatBoss();
             healthBar.value = HP;
