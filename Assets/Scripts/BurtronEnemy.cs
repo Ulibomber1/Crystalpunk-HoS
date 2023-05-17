@@ -8,6 +8,7 @@ public class BurtronEnemy : MonoBehaviour
 {
     public int HP = 100;
     public Slider healthBar;
+    public bool bossActivated = false;
 
     void update()
     {
@@ -23,6 +24,7 @@ public class BurtronEnemy : MonoBehaviour
             GetComponent<Collider>().enabled = false;
             Destroy(this.gameObject, 1);
             Debug.Log("Burtron died");
+            bossActivated = false;
         }
         else
         {
