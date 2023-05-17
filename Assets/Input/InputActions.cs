@@ -107,6 +107,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e0b6350-02b5-4183-9292-0e6312c81ba8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -428,6 +437,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0482c6a-5672-4e5b-9c4c-05fecfdf2c0f"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1022,6 +1042,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_Ability = m_Player.FindAction("Ability", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1102,6 +1123,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_Ability;
     private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_Aim;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -1115,6 +1137,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputAction @Ability => m_Wrapper.m_Player_Ability;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1151,6 +1174,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1182,6 +1208,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
         }
     }
@@ -1347,6 +1376,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnAbility(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

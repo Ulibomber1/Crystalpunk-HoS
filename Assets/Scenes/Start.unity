@@ -367,6 +367,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dc663314d216043a7c1e79a307ff61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1412136341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1601856325161524876, guid: 76eb1c5937d70ed4ebd23f5149deb016,
+    type: 3}
+  m_PrefabInstance: {fileID: 6070244712223949722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1495357320 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6070244710732796946, guid: 76eb1c5937d70ed4ebd23f5149deb016,
@@ -710,6 +716,11 @@ PrefabInstance:
       propertyPath: areYouSure
       value: 
       objectReference: {fileID: 1692303141}
+    - target: {fileID: 7992285107959203821, guid: 272758af6abdb3642b8c4beaaa72482e,
+        type: 3}
+      propertyPath: noSaveData
+      value: 
+      objectReference: {fileID: 1412136341}
     - target: {fileID: 7992285107959203821, guid: 272758af6abdb3642b8c4beaaa72482e,
         type: 3}
       propertyPath: creditsMenu

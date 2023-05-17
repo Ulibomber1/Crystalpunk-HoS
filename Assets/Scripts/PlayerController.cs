@@ -17,8 +17,14 @@ public class PlayerController : MonoBehaviour
     public MenuManager menuManager;
     public CooldownBar cooldownBar;
     public AmmoBar ammoBar;
+    public ThirdPersonShooterController shooterController;
+    public GameObject RegularBoots;
+    public GameObject DoubleJumpBoots;
+    [SerializeField] private Animator Anim;
+    [SerializeField] private GameObject respawnPoint;
 
     public float jumpHeight = 0;
+    public float doubleJumpHeight = 0;
     public float acceleration;
     public float maxVelocity;
     public float slopeLimit;
@@ -62,13 +68,23 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause(InputValue context)
     {
+        if (menuManager.IsShop() || menuManager.IsDialogue())
+            return;
         if (menuManager.IsPaused())
+        {
             menuManager.Unpause();
+            // pause animation?
+        }
         else
+        {
             menuManager.Pause();
+            // unpause animation?
+        }
     }
     public void OnJump(InputValue context)
     {
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
         if (isGrounded)
         {
             if (canDoubleJump != false)
@@ -81,16 +97,25 @@ public class PlayerController : MonoBehaviour
         else if (!isGrounded && !canDoubleJump && doubleJumpUnlocked)
         {
             Debug.Log("Double Boing");
-            rb.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
+            rb.AddForce(transform.up * doubleJumpHeight, ForceMode.VelocityChange);
             canDoubleJump = true;
         }
+        Anim.SetBool("Is Jumping", true);
     }
 
     public void OnFire(InputValue context)
     {
+        if (menuManager.IsPaused() || menuManager.IsShop() || isReloading)
+            return;
+        if (menuManager.IsDialogue())
+        {
+            menuManager.NextDialogue();
+            return;
+        }
         if (ammo > 0)
         {
             Debug.Log("Pew"); // Projectile-based shooting
+            shooterController.Shoot();
             ammo = ammo - 1;
             Fired();
             // Disable projectile when they hit something
@@ -104,14 +129,18 @@ public class PlayerController : MonoBehaviour
 
     void OnSprint(InputValue context)
     {
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
         if (context.isPressed)
         {
             Debug.Log("Add + 5 Speed!");
+            Anim.SetBool("Is Sprinting", true);
             maxVelocity = runSpeed;
         }
         else
         {
             Debug.Log("Speed Reset");
+            Anim.SetBool("Is Sprinting", false);
             maxVelocity = walkSpeed;
         }
     }
@@ -124,6 +153,12 @@ public class PlayerController : MonoBehaviour
         SetAmmoText();
         Debug.Log("Reloaded Successfully!");
         ammoBar.SetMaxAmmo(ammo);
+    }
+
+    public void ActivateBoots()
+    {
+        RegularBoots.SetActive(false);
+        DoubleJumpBoots.SetActive(true);
     }
 
     public void ReloadTime()
@@ -144,7 +179,9 @@ public class PlayerController : MonoBehaviour
     //Ability function, checks to see if ability is on cooldown
     void OnAbility(InputValue context)
     {
-        if(Time.time < nextCast)
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
+        if (Time.time < nextCast)
         {
             Debug.Log("Ability in cooldown!");
             return;
@@ -158,6 +195,8 @@ public class PlayerController : MonoBehaviour
 
     void OnReload(InputValue context)
     {
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
         allowFire = false;
         ReloadTime();
     }
@@ -174,6 +213,12 @@ public class PlayerController : MonoBehaviour
         return gears;
     }
 
+    public void SubtractGears(int price)
+    {
+        gears = gears - price;
+        SetGearText();
+    }
+
     public void OnLook(InputValue context)
     {
 
@@ -183,14 +228,26 @@ public class PlayerController : MonoBehaviour
     public static event InteractionHandler OnInteraction;
     public void OnInteract(InputValue value)
     {
-           OnInteraction?.Invoke();
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+            return;
+        OnInteraction?.Invoke();
     }
 
     public void OnMove(InputValue movementValue)
     {
+        if (menuManager.IsPaused() || menuManager.IsShop() || menuManager.IsDialogue())
+        {
+            movementVector = Vector3.zero;
+            return;
+        }
         Vector2 readVector = movementValue.Get<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
         movementVector = toConvert;
+    }
+
+    public void SetSpeedZero()
+    {
+        movementVector = Vector3.zero;
     }
 
     private Quaternion VectorToQuaternion(Vector3 movementVector)
@@ -201,6 +258,7 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayerRelativeToCamera()
     {
+        Anim.SetFloat("Input Magnitude", movementVector.magnitude);
         if (movementVector.magnitude == 0.0f)
             return;
 
@@ -251,6 +309,7 @@ public class PlayerController : MonoBehaviour
             {
                 groundAngle = Vector3.Angle(Vector3.up, helpHit.normal);
             }
+            Anim.SetBool("Is Jumping", false);
         }
         else
         {
@@ -258,6 +317,7 @@ public class PlayerController : MonoBehaviour
             groundAngle = 0;
             groundNormal = Vector3.up;
         }
+        Anim.SetBool("Is Grounded", isGrounded);
     }
 
     // Start is called before the first frame update
@@ -277,6 +337,16 @@ public class PlayerController : MonoBehaviour
         SetAmmoText();
         cooldownBar.SetMaxCooldown(cd);
         ammoBar.SetMaxAmmo(ammo);
+        if (!doubleJumpUnlocked)
+        {
+            RegularBoots.SetActive(true);
+            DoubleJumpBoots.SetActive(false);
+        }
+        else
+        {
+            RegularBoots.SetActive(false);
+            DoubleJumpBoots.SetActive(true);
+        }
     }
 
     void FixedUpdate()
@@ -318,31 +388,45 @@ public class PlayerController : MonoBehaviour
     {
         //The player's health is subtracted by the damage value
         currentHealth = currentHealth - damage;
-
+        Anim.SetTrigger("Health Lost");
         //The new player health that was subtracted is set
         healthBar.SetHealth(currentHealth);
-
+        Anim.SetInteger("Health", currentHealth);
         //When the player loses all health their position will be reset and the death count will increase by +1
         //The player's health is reset back to it's max value
         //The health slider is also reset to a full bar
         if (currentHealth == 0 && lives > 0)
         {
-            transform.position = new Vector3(0f, 0.5f, 0f);
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            lives = lives - 1;
-            Debug.Log("Lives left: " + lives);
-            //deathccount = deathcount + 1;
-            //SetCountText();
-
-            currentHealth = maxHealth;
-            healthBar.SetMaxHealth(maxHealth);
+            Anim.SetTrigger("Player Dead");
+            playerInput.DeactivateInput();
+            this.CallWithDelay(Respawn, 5f);
+            
         }
         else if (currentHealth == 0 && lives == 0)
         {
             Debug.Log("Scene Changed!");
             GameManager.Instance.ChangeToGameOver();
         }
+    }
+
+    private void Respawn()
+    {
+        transform.position = respawnPoint.transform.position;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        lives = lives - 1;
+        Debug.Log("Lives left: " + lives);
+        Anim.StopPlayback();
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        Anim.SetTrigger("Respawned");
+        playerInput.ActivateInput();
+    }
+
+    public void SetHealthFull()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
     void SetGearText()
     {
