@@ -514,6 +514,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 4949098392598154683, guid: 043086f4d7e98f94595e9f1fcb0c7ed4,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: "Alright, you\u2019re on the team, now meet up with the rest of the
+        team, they went on ahead to the east past the bridge where you guys will
+        infiltrate a factory. Our reports have stated that one of the power crystals
+        is located there... Go. \r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 7770418813216703713, guid: 043086f4d7e98f94595e9f1fcb0c7ed4,
         type: 3}
       propertyPath: m_RootOrder

@@ -8104,7 +8104,7 @@ PrefabInstance:
     - target: {fileID: 2999820556284916258, guid: 0b359134cba978042b1d1c62d6ff1dba,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MoveToScene
+      value: SendToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 2999820556284916258, guid: 0b359134cba978042b1d1c62d6ff1dba,
         type: 3}
