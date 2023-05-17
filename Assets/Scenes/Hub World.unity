@@ -397,11 +397,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8767320530796042974, guid: 308fcec71c3480e4c9f7ae3e8a60ae18,
-        type: 3}
-      propertyPath: SceneHasMultipleSpeakers
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 308fcec71c3480e4c9f7ae3e8a60ae18, type: 3}
 --- !u!114 &594837898 stripped
@@ -1143,6 +1138,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1288868278, guid: fe80eacd05d775743b37b442f281a79c, type: 3}
+      propertyPath: menuManager
+      value: 
+      objectReference: {fileID: 594837901}
     - target: {fileID: 1870643262423663969, guid: fe80eacd05d775743b37b442f281a79c,
         type: 3}
       propertyPath: m_RootOrder

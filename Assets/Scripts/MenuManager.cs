@@ -27,6 +27,7 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI dialogueName;
     public Dialogue dialogue;
     public OpenDialogue openDialogue;
+    public GameObject thanks;
 
     [Header("Player")]
     public PlayerController playerController;
@@ -227,18 +228,21 @@ public class MenuManager : MonoBehaviour
                 inGameSettings.SetActive(false);
                 shop.SetActive(false);
                 dialogueBox.SetActive(false);
+                thanks.SetActive(false);
                 break;
             case "Pause":
                 HUD.SetActive(false);
                 pauseMenu.SetActive(true);
                 inGameSettings.SetActive(false);
                 shop.SetActive(false);
+                thanks.SetActive(false);
                 break;
             case "Settings":
                 HUD.SetActive(false);
                 pauseMenu.SetActive(false);
                 inGameSettings.SetActive(true);
                 shop.SetActive(false);
+                thanks.SetActive(false);
                 break;
             case "Shop":
                 HUD.SetActive(true); //stays active to show gear count
@@ -246,6 +250,7 @@ public class MenuManager : MonoBehaviour
                 inGameSettings.SetActive(false);
                 shop.SetActive(true);
                 dialogueBox.SetActive(false);
+                thanks.SetActive(false);
                 break;
             case "Dialogue":
                 HUD.SetActive(true);
@@ -253,6 +258,15 @@ public class MenuManager : MonoBehaviour
                 inGameSettings.SetActive(false);
                 shop.SetActive(false);
                 dialogueBox.SetActive(true);
+                thanks.SetActive(false);
+                break;
+            case "Thanks":
+                HUD.SetActive(false);
+                pauseMenu.SetActive(false);
+                inGameSettings.SetActive(false);
+                shop.SetActive(false);
+                dialogueBox.SetActive(false);
+                thanks.SetActive(true);
                 break;
             default:
                 break;
