@@ -27,10 +27,17 @@ public class BurtronEnemy : MonoBehaviour
             spawner.defeatBoss();
             healthBar.value = HP;
             GetComponent<Collider>().enabled = false;
-            this.gameObject.SetActive(false);
+            MeshRenderer[] mrArray = gameObject.transform.GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer mr in mrArray)
+            {
+                mr.enabled = false;
+            }
+            GetComponentInChildren<Canvas>().enabled = false;
+            //SphereCollider sphColl = gameObject.transform.GetComponentInChildren<SphereCollider>();
+            //sphColl.enabled = false;
             Debug.Log("Burtron died");
-
-            
+            SaveData.shopUnlocked = true;
+            this.CallWithDelay(SendToHub, 5f);
         }
         else
         {
@@ -38,7 +45,10 @@ public class BurtronEnemy : MonoBehaviour
             healthBar.value = HP;
         }
     }
-
+    private void SendToHub()
+    {
+        GameManager.Instance.ChangeScene("Hub World");
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("playerBullet"))
