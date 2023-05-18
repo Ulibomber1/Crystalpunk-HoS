@@ -154,12 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf946b442cf2d944eb775b6f2fc31f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &511463854 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1391234700197869147, guid: 465223eafb67e3d40a5b250f1df9e23a,
-    type: 3}
-  m_PrefabInstance: {fileID: 7062218879756688459}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &554208416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1428,36 +1422,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2750935582486450352, guid: 465223eafb67e3d40a5b250f1df9e23a,
+    - target: {fileID: 3923124058086087249, guid: 465223eafb67e3d40a5b250f1df9e23a,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2750935582486450352, guid: 465223eafb67e3d40a5b250f1df9e23a,
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1808602193}
+    - target: {fileID: 4133552293849301899, guid: 465223eafb67e3d40a5b250f1df9e23a,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1808602193}
     - target: {fileID: 4772937872601855916, guid: 465223eafb67e3d40a5b250f1df9e23a,
         type: 3}
       propertyPath: spawner
       value: 
       objectReference: {fileID: 1613964074}
-    - target: {fileID: 4772937872601855916, guid: 465223eafb67e3d40a5b250f1df9e23a,
-        type: 3}
-      propertyPath: bossDoor
-      value: 
-      objectReference: {fileID: 511463854}
-    - target: {fileID: 4812840420280444496, guid: 465223eafb67e3d40a5b250f1df9e23a,
-        type: 3}
-      propertyPath: HP
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 4812840420280444496, guid: 465223eafb67e3d40a5b250f1df9e23a,
         type: 3}
       propertyPath: spawner
       value: 
       objectReference: {fileID: 1613964074}
+    - target: {fileID: 6035886764163345125, guid: 465223eafb67e3d40a5b250f1df9e23a,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1808602193}
     - target: {fileID: 7062218879021502917, guid: 465223eafb67e3d40a5b250f1df9e23a,
         type: 3}
       propertyPath: m_RootOrder
@@ -1517,11 +1506,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Level Design (Factory)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7548652339496134051, guid: 465223eafb67e3d40a5b250f1df9e23a,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 465223eafb67e3d40a5b250f1df9e23a, type: 3}

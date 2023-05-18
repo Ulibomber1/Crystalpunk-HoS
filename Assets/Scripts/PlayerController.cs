@@ -427,6 +427,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        Anim.SetInteger("Health", currentHealth);
     }
     void SetGearText()
     {

@@ -279,6 +279,13 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.ChangeScene(SceneName);
     }
 
+    public void SendToMainMenu(string SceneName)
+    {
+        GameManager.Instance.SetGameState(GameState.MAIN_MENU);
+        Time.timeScale = 1;
+        GameManager.Instance.ChangeScene(SceneName);
+    }
+
     public void LoadGame()
     {
         StartCoroutine(NoSaveData());
