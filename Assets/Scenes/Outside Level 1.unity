@@ -1706,8 +1706,18 @@ PrefabInstance:
       objectReference: {fileID: 901587663}
     - target: {fileID: 1745066658, guid: 0973d8fb58ac1b5418fdca570b1ce8be, type: 3}
       propertyPath: m_VersionIndex
-      value: 4540
+      value: 4549
       objectReference: {fileID: 0}
+    - target: {fileID: 1478837154699617791, guid: 0973d8fb58ac1b5418fdca570b1ce8be,
+        type: 3}
+      propertyPath: menuManager
+      value: 
+      objectReference: {fileID: 997593764}
+    - target: {fileID: 1478837155409500421, guid: 0973d8fb58ac1b5418fdca570b1ce8be,
+        type: 3}
+      propertyPath: menuManager
+      value: 
+      objectReference: {fileID: 997593764}
     - target: {fileID: 5533448379821605342, guid: 0973d8fb58ac1b5418fdca570b1ce8be,
         type: 3}
       propertyPath: m_Name

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class MenuManager : MonoBehaviour
     public Dialogue dialogue;
     public OpenDialogue openDialogue;
     public GameObject thanks;
+
+    [Header("Loading Screen")]
+    public GameObject LoadingScreen;
+    public Image LoadingBarFill;
 
     [Header("Player")]
     public PlayerController playerController;
@@ -229,6 +234,7 @@ public class MenuManager : MonoBehaviour
                 shop.SetActive(false);
                 dialogueBox.SetActive(false);
                 thanks.SetActive(false);
+                LoadingScreen.SetActive(false);
                 break;
             case "Pause":
                 HUD.SetActive(false);
@@ -276,7 +282,24 @@ public class MenuManager : MonoBehaviour
 
     public void MoveToScene(string SceneName)
     {
-        GameManager.Instance.ChangeScene(SceneName);
+        //GameManager.Instance.ChangeScene(SceneName);
+        StartCoroutine(LoadNextScene(SceneName));
+    }
+
+    private IEnumerator LoadNextScene(string SceneName)
+    {
+        LoadingScreen.SetActive(true);
+        LoadingBarFill.fillAmount = 0;
+        //yield return new WaitForSeconds(1.0f);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneName); //does not change the game state, need to fix
+        while (!operation.isDone)
+        {
+            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            LoadingBarFill.fillAmount = progressValue;
+
+            yield return null;
+        }
+        //MoveToScene(SceneName); //might conflict with loading bar
     }
 
     public void SendToMainMenu(string SceneName)
@@ -302,16 +325,27 @@ public class MenuManager : MonoBehaviour
     public void NewGame(string SceneName)
     {
         Debug.Log("Starting new game!");
-        StartCoroutine(Fade(SceneName));
+        StartCoroutine(NewGameFade(SceneName));
         
     }
 
-    private IEnumerator Fade(string SceneName)
+    private IEnumerator NewGameFade(string SceneName)
     {
+        
         fadeOut.SetActive(true);
+        LoadingScreen.SetActive(true);
         fadeOut.GetComponent<Animator>().Play("MenuFade");
-        yield return new WaitForSeconds(1.0f);
-        MoveToScene(SceneName);
+        LoadingBarFill.fillAmount = 0;
+        yield return new WaitForSeconds(0.5f);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneName); //does not change the game state, need to fix
+        while (!operation.isDone)
+        {
+            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            LoadingBarFill.fillAmount = progressValue;
+
+            yield return null;
+        }
+        //MoveToScene(SceneName); //might conflict with loading bar
     }
 
     public void OpenCredits()
@@ -349,6 +383,7 @@ public class MenuManager : MonoBehaviour
                 settingsMenu.SetActive(false);
                 fileSelectMenu.SetActive(false);
                 areYouSure.SetActive(false);
+                LoadingScreen.SetActive(false);
                 break;
             case "Main Menu":
                 creditsMenu.SetActive(false);
@@ -356,6 +391,7 @@ public class MenuManager : MonoBehaviour
                 settingsMenu.SetActive(false);
                 fileSelectMenu.SetActive(false);
                 areYouSure.SetActive(false);
+                LoadingScreen.SetActive(false);
                 break;
             case "Settings":
                 creditsMenu.SetActive(false);
@@ -363,6 +399,7 @@ public class MenuManager : MonoBehaviour
                 settingsMenu.SetActive(true);
                 fileSelectMenu.SetActive(false);
                 areYouSure.SetActive(false);
+                LoadingScreen.SetActive(false);
                 break;
             case "File Select":
                 creditsMenu.SetActive(false);
@@ -370,6 +407,7 @@ public class MenuManager : MonoBehaviour
                 settingsMenu.SetActive(false);
                 fileSelectMenu.SetActive(true);
                 areYouSure.SetActive(false);
+                LoadingScreen.SetActive(false);
                 break;
             case "Are You Sure":
                 creditsMenu.SetActive(false);
@@ -377,6 +415,7 @@ public class MenuManager : MonoBehaviour
                 settingsMenu.SetActive(false);
                 fileSelectMenu.SetActive(false);
                 areYouSure.SetActive(true);
+                LoadingScreen.SetActive(false);
                 break;
             default:
                 break;

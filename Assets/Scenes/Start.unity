@@ -355,6 +355,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6070244712223949722}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1235356854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 352365462723485880, guid: 76eb1c5937d70ed4ebd23f5149deb016,
+    type: 3}
+  m_PrefabInstance: {fileID: 6070244712223949722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1337960167 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7992285107959203821, guid: 272758af6abdb3642b8c4beaaa72482e,
@@ -376,6 +388,12 @@ GameObject:
 --- !u!1 &1495357320 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6070244710732796946, guid: 76eb1c5937d70ed4ebd23f5149deb016,
+    type: 3}
+  m_PrefabInstance: {fileID: 6070244712223949722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1661382430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7989511353195869550, guid: 76eb1c5937d70ed4ebd23f5149deb016,
     type: 3}
   m_PrefabInstance: {fileID: 6070244712223949722}
   m_PrefabAsset: {fileID: 0}
@@ -731,6 +749,16 @@ PrefabInstance:
       propertyPath: settingsMenu
       value: 
       objectReference: {fileID: 1847165731}
+    - target: {fileID: 7992285107959203821, guid: 272758af6abdb3642b8c4beaaa72482e,
+        type: 3}
+      propertyPath: LoadingScreen
+      value: 
+      objectReference: {fileID: 1661382430}
+    - target: {fileID: 7992285107959203821, guid: 272758af6abdb3642b8c4beaaa72482e,
+        type: 3}
+      propertyPath: LoadingBarFill
+      value: 
+      objectReference: {fileID: 1235356854}
     - target: {fileID: 7992285107959203821, guid: 272758af6abdb3642b8c4beaaa72482e,
         type: 3}
       propertyPath: fileSelectMenu
