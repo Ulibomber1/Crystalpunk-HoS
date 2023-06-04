@@ -150,6 +150,7 @@ public class MenuManager : MonoBehaviour
 
     public void OpenDialogue(string name, string[] text)
     {
+        dialogueBox.GetComponent<Animator>().Play("OpenDialogue");
         GameManager.Instance.SetGameState(GameState.DIALOGUE);
         isPaused = false; isShop = false; isDialogue = true;
         playerController.SetSpeedZero();
@@ -162,9 +163,15 @@ public class MenuManager : MonoBehaviour
 
     public void CloseDialogue()
     {
+        dialogueBox.GetComponent<Animator>().Play("CloseDialogue");
         GameManager.Instance.SetGameStateByContext();
         isPaused = false; isShop = false; isDialogue = false;
         //Time.timeScale = 1;
+        Invoke("CloseDialogueDelay", 0.3f);
+    }
+
+    private void CloseDialogueDelay()
+    {
         InGameSwitch("HUD");
         openDialogue.DoneTalking();
     }
