@@ -49,9 +49,9 @@ MonoBehaviour:
   _musicSource: {fileID: 2160935002046212548}
   _effectSource: {fileID: 2160935001094812300}
   dialogueClips:
-  - {fileID: 8300000, guid: 91d336ef3730ab948bf80f57be3e986a, type: 3}
-  - {fileID: 8300000, guid: 5e97ee9953d5c2f41869b0d55397587f, type: 3}
-  - {fileID: 8300000, guid: d9c9101e75fd29e46b2eaaa92e7605ee, type: 3}
+  - {fileID: 8300000, guid: eb67c264bcaabd04dabeead8c9f14e1a, type: 3}
+  - {fileID: 8300000, guid: 9445a543b3ebe1b4b8e5afc197451f3e, type: 3}
+  - {fileID: 8300000, guid: 6da51f81af964a2438d94b256b1adf3d, type: 3}
   nextLine: {fileID: 8300000, guid: 1340ba1fa579f674ab71453241682a8a, type: 3}
 --- !u!1 &2160935001094812301
 GameObject:
