@@ -49,6 +49,11 @@ public class MenuManager : MonoBehaviour
     public delegate void OnExitSettingsHandler();
     public static event OnExitSettingsHandler SettingsExited;
 
+    public void MenuClick(AudioClip clip)
+    {
+        SoundManager.Instance.PlaySound(clip);
+    }
+
     public bool IsPaused()
     {
         return isPaused;
