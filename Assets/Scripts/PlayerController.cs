@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour
         if (ammo > 0)
         {
             Debug.Log("Pew"); // Projectile-based shooting
+            SoundManager.Instance.PlaySound(SoundManager.Instance.fire);
             shooterController.Shoot();
             ammo = ammo - 1;
             Fired();
@@ -148,6 +149,7 @@ public class PlayerController : MonoBehaviour
     void Reload()
     {
         //Code for reloading
+        SoundManager.Instance.PlaySound(SoundManager.Instance.reload);
         isReloading = false;
         ammo = maxAmmo;
         SetAmmoText();
@@ -363,6 +365,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
+            SoundManager.Instance.PlaySound(SoundManager.Instance.gearPickup);
             gears += 1;
             Debug.Log(gears + " gears collected");
             SetGearText();

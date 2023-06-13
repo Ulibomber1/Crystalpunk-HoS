@@ -291,6 +291,7 @@ MonoBehaviour:
   RegularBoots: {fileID: 4108629494573806678}
   DoubleJumpBoots: {fileID: 7093791604535495754}
   Anim: {fileID: 4540228999828976227}
+  respawnPoint: {fileID: 0}
   jumpHeight: 7
   doubleJumpHeight: 8.5
   acceleration: 30

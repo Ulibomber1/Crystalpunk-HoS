@@ -17,7 +17,7 @@ public class BulletProjectile : MonoBehaviour
     private void Start(){
         float speed = 40f;
         bulletRigidbody.velocity = transform.forward * speed;
-        Invoke("UseGravity", DeathTime/2);
+        Invoke("UseGravity", DeathTime/1.5f);
         Invoke("Kill", DeathTime);
     }
 

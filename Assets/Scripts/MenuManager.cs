@@ -49,9 +49,14 @@ public class MenuManager : MonoBehaviour
     public delegate void OnExitSettingsHandler();
     public static event OnExitSettingsHandler SettingsExited;
 
-    public void MenuClick(AudioClip clip)
+    public void MenuNext()
     {
-        SoundManager.Instance.PlaySound(clip);
+        SoundManager.Instance.PlaySound(SoundManager.Instance.menuNext);
+    }
+
+    public void MenuBack()
+    {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.menuBack);
     }
 
     public bool IsPaused()
@@ -190,6 +195,7 @@ public class MenuManager : MonoBehaviour
     {
         if (playerController.GetGearTotal() >= doubleJumpPrice)
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.purchase);
             playerController.SubtractGears(doubleJumpPrice);
             playerController.doubleJumpUnlocked = true;
             playerController.ActivateBoots();
@@ -205,6 +211,7 @@ public class MenuManager : MonoBehaviour
     {
         if (playerController.GetGearTotal() >= healthPrice)
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.purchase);
             playerController.SubtractGears(healthPrice);
             playerController.SetHealthFull();
         }
@@ -216,6 +223,7 @@ public class MenuManager : MonoBehaviour
     {
         if (playerController.GetGearTotal() >= ammoPrice)
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.purchase);
             playerController.SubtractGears(ammoPrice);
             Debug.Log("Idk how to refill ammo");
         }
@@ -316,6 +324,7 @@ public class MenuManager : MonoBehaviour
 
     public void SendToMainMenu(string SceneName)
     {
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.menuMusic);
         GameManager.Instance.SetGameState(GameState.MAIN_MENU);
         Time.timeScale = 1;
         GameManager.Instance.ChangeScene(SceneName);
@@ -349,6 +358,7 @@ public class MenuManager : MonoBehaviour
         fadeOut.GetComponent<Animator>().Play("MenuFade");
         LoadingBarFill.fillAmount = 0;
         yield return new WaitForSeconds(0.5f);
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.hubMusic);
         AsyncOperation operation = SceneManager.LoadSceneAsync(SceneName); //does not change the game state, need to fix
         while (!operation.isDone)
         {
