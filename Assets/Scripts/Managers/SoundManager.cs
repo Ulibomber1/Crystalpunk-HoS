@@ -12,20 +12,38 @@ public class SoundManager : MonoBehaviour
     [Header("SFX")]
     [SerializeField] List<AudioClip> dialogueClips = new List<AudioClip>();
     [SerializeField] AudioClip nextLine;
-    [SerializeField] public AudioClip purchase; //i feel like theres probably a better way then having all the sounds be public but it saves a lot of extra code passing around sounds
-    [SerializeField] public AudioClip reload;
-    [SerializeField] public AudioClip fire;
-    [SerializeField] public AudioClip gearPickup;
-    [SerializeField] public AudioClip menuNext;
-    [SerializeField] public AudioClip menuBack;
+    [SerializeField] AudioClip purchase;
+    [SerializeField] AudioClip reload;
+    [SerializeField] AudioClip fire;
+    [SerializeField] AudioClip gearPickup;
+
+    [Header("MenuSFX")]
+    [SerializeField] AudioClip menuNext;
+    [SerializeField] AudioClip menuBack;
+    [SerializeField] AudioClip menuPause;
 
     [Header("Music")]
-    [SerializeField] public AudioClip menuMusic;
-    [SerializeField] public AudioClip hubMusic;
+    [SerializeField] AudioClip menuMusic;
+    [SerializeField] AudioClip hubMusic;
 
+    private Dictionary<string, AudioClip> SoundList;
 
     private void Awake()
     {
+        SoundList = new Dictionary<string, AudioClip>()
+        {
+            {"nextLine", nextLine },
+            {"purchase", purchase },
+            {"reload", reload },
+            {"fire", fire },
+            {"gearPickup", gearPickup },
+            {"menuNext", menuNext },
+            {"menuBack", menuBack },
+            {"menuPause", menuPause },
+            {"menuMusic", menuMusic },
+            {"hubMusic", hubMusic },
+        };
+
         if (Instance == null)
         {
             Instance = this;
@@ -40,20 +58,46 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         if (SceneManager.GetActiveScene().name == "Start")
-            PlayMusic(menuMusic);
+            PlayMusic("menuMusic");
         else
-            PlayMusic(hubMusic);
+            PlayMusic("hubMusic");
     }
 
-    public void PlaySound(AudioClip clip)
+    public void PlaySound(string name, float volumeScale)
     {
-        _effectSource.PlayOneShot(clip);
+        if (_effectSource == null)
+        {
+            Debug.LogError("Effect source is not assigned.");
+            return;
+        }
+        if (SoundList.ContainsKey(name))
+        {
+            AudioClip sound = SoundList[name];
+            _effectSource.PlayOneShot(sound, volumeScale);
+        }
+        else
+        {
+            Debug.LogError("Sound not found: " + name);
+        }
     }
 
-    public void PlayMusic(AudioClip music)
+    public void PlayMusic(string name)
     {
-        _musicSource.gameObject.GetComponent<AudioSource>().clip = music;
-        _musicSource.Play();
+        if (_musicSource == null)
+        {
+            Debug.LogError("Music source is not assigned.");
+            return;
+        }
+        if (SoundList.ContainsKey(name))
+        {
+            AudioClip music = SoundList[name];
+            _musicSource.gameObject.GetComponent<AudioSource>().clip = music;
+            _musicSource.Play();
+        }
+        else
+        {
+            Debug.LogError("Music not found: " + name);
+        }
     }
 
     public void StopMusic()
