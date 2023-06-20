@@ -70,12 +70,12 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        mixer.SetFloat(MIXER_MUSIC, volume);
+        mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(volume) * 20);
     }
 
     public void SetSfxVolume(float volume)
     {
-        mixer.SetFloat(MIXER_SFX, volume);
+        mixer.SetFloat(MIXER_SFX, Mathf.Log10(volume) * 20);
     }
 
     public void SetQuality(int qualityIndex)
