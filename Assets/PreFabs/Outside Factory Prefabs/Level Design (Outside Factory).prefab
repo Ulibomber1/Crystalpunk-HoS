@@ -2075,7 +2075,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5329
+  m_VersionIndex: 5335
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4528,7 +4528,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4540
+  m_VersionIndex: 4546
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10152,6 +10152,11 @@ PrefabInstance:
         type: 3}
       propertyPath: levelName
       value: Hub World
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181553825185436722, guid: e5b43f4d995119c41afc98abd4d7f5ee,
+        type: 3}
+      propertyPath: menuManager
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4181553825185436723, guid: e5b43f4d995119c41afc98abd4d7f5ee,
         type: 3}
@@ -26184,6 +26189,11 @@ PrefabInstance:
         type: 3}
       propertyPath: levelName
       value: Factory Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181553825185436722, guid: e5b43f4d995119c41afc98abd4d7f5ee,
+        type: 3}
+      propertyPath: menuManager
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4181553825185436723, guid: e5b43f4d995119c41afc98abd4d7f5ee,
         type: 3}

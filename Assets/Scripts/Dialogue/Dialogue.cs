@@ -50,15 +50,23 @@ public class Dialogue : MonoBehaviour
     IEnumerator TypeLine()
     {
         dialogueText.text = string.Empty;
+        int counter = 0;
         foreach (char c in lines[index].ToCharArray())
         {
+            if (counter % 3 == 0)
+            {
+                SoundManager.Instance.PlayDialogueSFX();
+            }
+
             dialogueText.text += c;
             yield return new WaitForSecondsRealtime(textSpeed);
+            counter++;
         }
     }
 
     void NextLine()
     {
+        SoundManager.Instance.PlayNextLine();
         dialogueText.text = string.Empty;
         if (index < lines.Length - 1)
         {

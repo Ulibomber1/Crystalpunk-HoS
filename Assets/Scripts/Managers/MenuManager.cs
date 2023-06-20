@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class MenuManager : MonoBehaviour
     public OpenDialogue openDialogue;
     public GameObject thanks;
 
+    [Header("Loading Screen")]
+    public GameObject LoadingScreen;
+    public Image LoadingBarFill;
+
     [Header("Player")]
     public PlayerController playerController;
 
@@ -43,6 +48,16 @@ public class MenuManager : MonoBehaviour
 
     public delegate void OnExitSettingsHandler();
     public static event OnExitSettingsHandler SettingsExited;
+
+    public void MenuNext()
+    {
+        SoundManager.Instance.PlaySound("menuNext", 1.0f);
+    }
+
+    public void MenuBack()
+    {
+        SoundManager.Instance.PlaySound("menuBack", 1.0f);
+    }
 
     public bool IsPaused()
     {
@@ -89,6 +104,7 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {
+        SoundManager.Instance.PlaySound("menuPause", 1.0f);
         isPaused = true; isShop = false;
         Cursor.lockState = CursorLockMode.None;
         GameManager.Instance.SetGameState(GameState.PAUSED); // Yes this is right. ;P
@@ -98,6 +114,7 @@ public class MenuManager : MonoBehaviour
 
     public void Unpause()
     {
+        SoundManager.Instance.PlaySound("menuPause", 1.0f);
         if (!isPaused)
             return;
         isPaused = false; isShop = false;
@@ -145,6 +162,7 @@ public class MenuManager : MonoBehaviour
 
     public void OpenDialogue(string name, string[] text)
     {
+        dialogueBox.GetComponent<Animator>().Play("OpenDialogue");
         GameManager.Instance.SetGameState(GameState.DIALOGUE);
         isPaused = false; isShop = false; isDialogue = true;
         playerController.SetSpeedZero();
@@ -157,9 +175,15 @@ public class MenuManager : MonoBehaviour
 
     public void CloseDialogue()
     {
+        dialogueBox.GetComponent<Animator>().Play("CloseDialogue");
         GameManager.Instance.SetGameStateByContext();
         isPaused = false; isShop = false; isDialogue = false;
         //Time.timeScale = 1;
+        Invoke("CloseDialogueDelay", 0.3f);
+    }
+
+    private void CloseDialogueDelay()
+    {
         InGameSwitch("HUD");
         openDialogue.DoneTalking();
     }
@@ -173,6 +197,7 @@ public class MenuManager : MonoBehaviour
     {
         if (playerController.GetGearTotal() >= doubleJumpPrice)
         {
+            SoundManager.Instance.PlaySound("purchase", 1.0f);
             playerController.SubtractGears(doubleJumpPrice);
             playerController.doubleJumpUnlocked = true;
             playerController.ActivateBoots();
@@ -188,6 +213,7 @@ public class MenuManager : MonoBehaviour
     {
         if (playerController.GetGearTotal() >= healthPrice)
         {
+            SoundManager.Instance.PlaySound("purchase", 1.0f);
             playerController.SubtractGears(healthPrice);
             playerController.SetHealthFull();
         }
@@ -199,6 +225,7 @@ public class MenuManager : MonoBehaviour
     {
         if (playerController.GetGearTotal() >= ammoPrice)
         {
+            SoundManager.Instance.PlaySound("purchase", 1.0f);
             playerController.SubtractGears(ammoPrice);
             Debug.Log("Idk how to refill ammo");
         }
@@ -229,6 +256,7 @@ public class MenuManager : MonoBehaviour
                 shop.SetActive(false);
                 dialogueBox.SetActive(false);
                 thanks.SetActive(false);
+                LoadingScreen.SetActive(false);
                 break;
             case "Pause":
                 HUD.SetActive(false);
@@ -276,11 +304,29 @@ public class MenuManager : MonoBehaviour
 
     public void MoveToScene(string SceneName)
     {
-        GameManager.Instance.ChangeScene(SceneName);
+        //GameManager.Instance.ChangeScene(SceneName);
+        StartCoroutine(LoadNextScene(SceneName));
+    }
+
+    private IEnumerator LoadNextScene(string SceneName)
+    {
+        LoadingScreen.SetActive(true);
+        LoadingBarFill.fillAmount = 0;
+        //yield return new WaitForSeconds(1.0f);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneName); //does not change the game state, need to fix
+        while (!operation.isDone)
+        {
+            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            LoadingBarFill.fillAmount = progressValue;
+
+            yield return null;
+        }
+        //MoveToScene(SceneName); //might conflict with loading bar
     }
 
     public void SendToMainMenu(string SceneName)
     {
+        SoundManager.Instance.PlayMusic("menuMusic");
         GameManager.Instance.SetGameState(GameState.MAIN_MENU);
         Time.timeScale = 1;
         GameManager.Instance.ChangeScene(SceneName);
@@ -302,16 +348,28 @@ public class MenuManager : MonoBehaviour
     public void NewGame(string SceneName)
     {
         Debug.Log("Starting new game!");
-        StartCoroutine(Fade(SceneName));
+        StartCoroutine(NewGameFade(SceneName));
         
     }
 
-    private IEnumerator Fade(string SceneName)
+    private IEnumerator NewGameFade(string SceneName)
     {
+        
         fadeOut.SetActive(true);
+        LoadingScreen.SetActive(true);
         fadeOut.GetComponent<Animator>().Play("MenuFade");
-        yield return new WaitForSeconds(1.0f);
-        MoveToScene(SceneName);
+        LoadingBarFill.fillAmount = 0;
+        yield return new WaitForSeconds(0.5f);
+        SoundManager.Instance.PlayMusic("hubMusic");
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneName); //does not change the game state, need to fix
+        while (!operation.isDone)
+        {
+            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            LoadingBarFill.fillAmount = progressValue;
+
+            yield return null;
+        }
+        //MoveToScene(SceneName); //might conflict with loading bar
     }
 
     public void OpenCredits()
@@ -349,6 +407,7 @@ public class MenuManager : MonoBehaviour
                 settingsMenu.SetActive(false);
                 fileSelectMenu.SetActive(false);
                 areYouSure.SetActive(false);
+                LoadingScreen.SetActive(false);
                 break;
             case "Main Menu":
                 creditsMenu.SetActive(false);
@@ -356,6 +415,7 @@ public class MenuManager : MonoBehaviour
                 settingsMenu.SetActive(false);
                 fileSelectMenu.SetActive(false);
                 areYouSure.SetActive(false);
+                LoadingScreen.SetActive(false);
                 break;
             case "Settings":
                 creditsMenu.SetActive(false);
@@ -363,6 +423,7 @@ public class MenuManager : MonoBehaviour
                 settingsMenu.SetActive(true);
                 fileSelectMenu.SetActive(false);
                 areYouSure.SetActive(false);
+                LoadingScreen.SetActive(false);
                 break;
             case "File Select":
                 creditsMenu.SetActive(false);
@@ -370,6 +431,7 @@ public class MenuManager : MonoBehaviour
                 settingsMenu.SetActive(false);
                 fileSelectMenu.SetActive(true);
                 areYouSure.SetActive(false);
+                LoadingScreen.SetActive(false);
                 break;
             case "Are You Sure":
                 creditsMenu.SetActive(false);
@@ -377,6 +439,7 @@ public class MenuManager : MonoBehaviour
                 settingsMenu.SetActive(false);
                 fileSelectMenu.SetActive(false);
                 areYouSure.SetActive(true);
+                LoadingScreen.SetActive(false);
                 break;
             default:
                 break;

@@ -560,6 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Outside Level 1
+  menuManager: {fileID: 0}
 --- !u!1 &6833253000485692925
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5147717103283277443}
-  m_LocalRotation: {x: 0.14911518, y: -0, z: -0, w: 0.98881984}
+  m_LocalRotation: {x: 0.204924, y: 0.0000000031127416, z: -6.5170674e-10, w: 0.9787779}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -109,7 +109,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5147717103635249595}
-  m_LocalRotation: {x: 0.1144686, y: -1e-45, z: -0, w: 0.99342686}
+  m_LocalRotation: {x: 0.17059426, y: 0.000000016961032, z: -0.0000000029364997, w: 0.98534137}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -304,14 +304,14 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_BindingMode: 4
-  m_SplineCurvature: 0.2
+  m_SplineCurvature: 0.3
   m_Orbits:
   - m_Height: 5.54
-    m_Radius: 3.5
+    m_Radius: 1.6
   - m_Height: 2.54
     m_Radius: 5.8
-  - m_Height: -0.41
-    m_Radius: 3
+  - m_Height: -1.36
+    m_Radius: 1.6
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 5147717103283277442}
@@ -738,7 +738,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5147717105289247150}
-  m_LocalRotation: {x: 0.080019414, y: 0.000000004287801, z: -3.4421105e-10, w: 0.9967933}
+  m_LocalRotation: {x: 0.13639127, y: -0.000000017053441, z: 0.0000000023478814, w: 0.99065506}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

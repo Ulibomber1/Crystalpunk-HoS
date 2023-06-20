@@ -1470,8 +1470,8 @@ PrefabInstance:
     - target: {fileID: 976410912839102705, guid: c887a624df53d4b4580ad21d801136e8,
         type: 3}
       propertyPath: lines.Array.data[0]
-      value: Dude wtf, what are you doing here? You know damn well how I feel about
-        you being around me ever since the raid. Get out of here!
+      value: Dude, what are you doing here? You know damn well how I feel about you
+        being around me ever since the raid. Get out of here!
       objectReference: {fileID: 0}
     - target: {fileID: 1064395922180553603, guid: c887a624df53d4b4580ad21d801136e8,
         type: 3}

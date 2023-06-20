@@ -5,12 +5,14 @@ using UnityEngine;
 public class LevelTrigger : MonoBehaviour
 {
     [SerializeField] private string levelName;
+    public MenuManager menuManager;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.ChangeScene(levelName);
+            menuManager.MoveToScene(levelName);
+            //GameManager.Instance.ChangeScene(levelName);
         }
     }
 }
