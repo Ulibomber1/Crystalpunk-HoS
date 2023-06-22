@@ -7,7 +7,10 @@ using Cinemachine;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioMixer audioMixer;
+    public AudioMixer mixer;
+
+    const string MIXER_MUSIC = "MusicVolume";
+    const string MIXER_SFX = "SFXVolume";
 
     [SerializeField] private CinemachineFreeLook cmFreeLook;
 
@@ -65,9 +68,14 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    public void SetVolume(float volume)
+    public void SetMusicVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(volume) * 20);
+    }
+
+    public void SetSfxVolume(float volume)
+    {
+        mixer.SetFloat(MIXER_SFX, Mathf.Log10(volume) * 20);
     }
 
     public void SetQuality(int qualityIndex)

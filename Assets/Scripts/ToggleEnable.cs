@@ -15,6 +15,10 @@ public class ToggleEnable : MonoBehaviour
         Interactable.OnInteractAction += OnInteractHandler;
         ToToggle.SetActive(StartEnabled);
     }
+    private void OnDestroy()
+    {
+        Interactable.OnInteractAction -= OnInteractHandler;
+    }
 
 
     public void OnInteractHandler(string name, string parentName)

@@ -13,7 +13,7 @@ public class attackState_Range : StateMachineBehaviour
     public float enemyBulletSpeed;
     bool alreadyAttacked;
     public GameObject projectile;
-    public float tooCloseAttack;
+    //public float tooCloseAttack;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -31,6 +31,7 @@ public class attackState_Range : StateMachineBehaviour
         //Make sure enemy doesn't move
         agent.SetDestination(animator.transform.position);
         bulletTime -= Time.deltaTime;
+        //Debug.Log(bulletTime);
         animator.transform.LookAt(player);
         if (!alreadyAttacked)
         {
@@ -43,15 +44,15 @@ public class attackState_Range : StateMachineBehaviour
             alreadyAttacked = true;     
         }
         
-        if (bulletTime == 0)
+        if (bulletTime <= 0)
         {
             alreadyAttacked = false;
             bulletTime = timer;
         }
 
-        float distance = Vector3.Distance(player.position, animator.transform.position);
-        if (distance > tooCloseAttack)
-            animator.SetBool("isAttacking", false);
+        //float distance = Vector3.Distance(player.position, animator.transform.position);
+        //if (distance > tooCloseAttack)
+        //    animator.SetBool("isAttacking", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

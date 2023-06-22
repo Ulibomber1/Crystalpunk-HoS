@@ -38,9 +38,9 @@ public class EnemyMiniBoss : MonoBehaviour
     {
         if (other.gameObject.CompareTag("playerBullet"))
         {
-            E_TakeDamage(1);
+            E_TakeDamage(2);
             Debug.Log("damaged miniboss");
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }

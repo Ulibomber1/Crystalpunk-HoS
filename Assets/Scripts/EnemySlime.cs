@@ -40,7 +40,7 @@ public class EnemySlime : MonoBehaviour
         {
             E_TakeDamage(2);
             Debug.Log("damaged slime");
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }

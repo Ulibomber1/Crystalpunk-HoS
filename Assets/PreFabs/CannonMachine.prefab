@@ -14595,9 +14595,8 @@ GameObject:
   - component: {fileID: 4973885091301552}
   - component: {fileID: 4958157033872535886}
   - component: {fileID: 7173765946122686779}
-  - component: {fileID: 7014708871276335680}
   - component: {fileID: 5889748954264821521}
-  - component: {fileID: 2374628940878165317}
+  - component: {fileID: 2062627211449637517}
   m_Layer: 0
   m_Name: CannonMachine
   m_TagString: enemy
@@ -14634,7 +14633,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1321759661024940}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
@@ -14643,8 +14642,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
+  m_Height: 3
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!95 &7173765946122686779
@@ -14667,19 +14666,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &7014708871276335680
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321759661024940}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.5, y: 4.5, z: 3.5}
-  m_Center: {x: 0, y: 1.5, z: -0.5}
 --- !u!114 &5889748954264821521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14695,18 +14681,20 @@ MonoBehaviour:
   HP: 10
   animator: {fileID: 7173765946122686779}
   healthBar: {fileID: 6379542202834383151}
---- !u!114 &2374628940878165317
-MonoBehaviour:
+--- !u!136 &2062627211449637517
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321759661024940}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ebfbd4787154940b1da65be528bb22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 2.174723
+  m_Height: 5.4649115
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: -0.17472291}
 --- !u!1 &1447883057696188
 GameObject:
   m_ObjectHideFlags: 0
@@ -15114,7 +15102,6 @@ GameObject:
   - component: {fileID: 4665609617754818}
   - component: {fileID: 33387537782757278}
   - component: {fileID: 23156673370727448}
-  - component: {fileID: 6070860996708802941}
   m_Layer: 0
   m_Name: CannonMachine_Base
   m_TagString: Untagged
@@ -15190,20 +15177,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6070860996708802941
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736772622967094}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300012, guid: 3a09c2833b7155743ad97b5fbef16126, type: 3}
 --- !u!1 &1927538425077316
 GameObject:
   m_ObjectHideFlags: 0

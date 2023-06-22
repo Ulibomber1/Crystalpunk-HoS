@@ -18,9 +18,13 @@ public class PlayerController : MonoBehaviour
     public CooldownBar cooldownBar;
     public AmmoBar ammoBar;
     public ThirdPersonShooterController shooterController;
+    public GameObject RegularBoots;
+    public GameObject DoubleJumpBoots;
     [SerializeField] private Animator Anim;
+    [SerializeField] private GameObject respawnPoint;
 
     public float jumpHeight = 0;
+    public float doubleJumpHeight = 0;
     public float acceleration;
     public float maxVelocity;
     public float slopeLimit;
@@ -93,7 +97,7 @@ public class PlayerController : MonoBehaviour
         else if (!isGrounded && !canDoubleJump && doubleJumpUnlocked)
         {
             Debug.Log("Double Boing");
-            rb.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
+            rb.AddForce(transform.up * doubleJumpHeight, ForceMode.VelocityChange);
             canDoubleJump = true;
         }
         Anim.SetBool("Is Jumping", true);
@@ -111,6 +115,7 @@ public class PlayerController : MonoBehaviour
         if (ammo > 0)
         {
             Debug.Log("Pew"); // Projectile-based shooting
+            SoundManager.Instance.PlaySound("fire", 1.0f);
             shooterController.Shoot();
             ammo = ammo - 1;
             Fired();
@@ -144,6 +149,7 @@ public class PlayerController : MonoBehaviour
     void Reload()
     {
         //Code for reloading
+        SoundManager.Instance.PlaySound("reload", 1.0f);
         isReloading = false;
         ammo = maxAmmo;
         SetAmmoText();
@@ -151,11 +157,18 @@ public class PlayerController : MonoBehaviour
         ammoBar.SetMaxAmmo(ammo);
     }
 
+    public void ActivateBoots()
+    {
+        RegularBoots.SetActive(false);
+        DoubleJumpBoots.SetActive(true);
+    }
+
     public void ReloadTime()
     {
         isReloading = true;
         nextReload = Time.time + reloadTime;
         Debug.Log("Reloading...");
+        //PlayerDamage(10);
     }
 
     void Fired()
@@ -232,6 +245,11 @@ public class PlayerController : MonoBehaviour
         Vector2 readVector = movementValue.Get<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
         movementVector = toConvert;
+    }
+
+    public void SetSpeedZero()
+    {
+        movementVector = Vector3.zero;
     }
 
     private Quaternion VectorToQuaternion(Vector3 movementVector)
@@ -321,6 +339,16 @@ public class PlayerController : MonoBehaviour
         SetAmmoText();
         cooldownBar.SetMaxCooldown(cd);
         ammoBar.SetMaxAmmo(ammo);
+        if (!doubleJumpUnlocked)
+        {
+            RegularBoots.SetActive(true);
+            DoubleJumpBoots.SetActive(false);
+        }
+        else
+        {
+            RegularBoots.SetActive(false);
+            DoubleJumpBoots.SetActive(true);
+        }
     }
 
     void FixedUpdate()
@@ -337,6 +365,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
+            SoundManager.Instance.PlaySound("gearPickup", 1.0f);
             gears += 1;
             Debug.Log(gears + " gears collected");
             SetGearText();
@@ -369,18 +398,23 @@ public class PlayerController : MonoBehaviour
         //When the player loses all health their position will be reset and the death count will increase by +1
         //The player's health is reset back to it's max value
         //The health slider is also reset to a full bar
-        if (currentHealth == 0)
+        if (currentHealth == 0 && lives > 0)
         {
             Anim.SetTrigger("Player Dead");
             playerInput.DeactivateInput();
             this.CallWithDelay(Respawn, 5f);
             
         }
+        else if (currentHealth == 0 && lives == 0)
+        {
+            Debug.Log("Scene Changed!");
+            GameManager.Instance.ChangeToGameOver();
+        }
     }
 
     private void Respawn()
     {
-        transform.position = new Vector3(0f, 0.5f, 0f);
+        transform.position = respawnPoint.transform.position;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         lives = lives - 1;
@@ -396,6 +430,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        Anim.SetInteger("Health", currentHealth);
     }
     void SetGearText()
     {
@@ -457,6 +492,7 @@ public class PlayerController : MonoBehaviour
             nextFire = Time.time + fireRate;
             Fired();
         }
+
     }
 
     private void OnDestroy()
