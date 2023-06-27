@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
     public GameObject fileSelectMenu;
     public GameObject settingsMenu;
     public GameObject creditsMenu;
+    public GameObject controlsMenu;
     public GameObject areYouSure;
     public GameObject fadeOut;
     public GameObject noSaveData;
@@ -377,6 +378,11 @@ public class MenuManager : MonoBehaviour
         MenuSwitch("Credits");
     }
 
+    public void OpenControls()
+    {
+        MenuSwitch("Controls");
+    }
+
     public void BackToMainMenu()
     {
         SettingsExited?.Invoke();
@@ -401,7 +407,17 @@ public class MenuManager : MonoBehaviour
     {
         switch (ui)
         {
+            case "Controls":
+                controlsMenu.SetActive(true);
+                creditsMenu.SetActive(false);
+                mainMenu.SetActive(false);
+                settingsMenu.SetActive(false);
+                fileSelectMenu.SetActive(false);
+                areYouSure.SetActive(false);
+                LoadingScreen.SetActive(false);
+                break;
             case "Credits":
+                controlsMenu.SetActive(false);
                 creditsMenu.SetActive(true);
                 mainMenu.SetActive(false);
                 settingsMenu.SetActive(false);
@@ -410,6 +426,7 @@ public class MenuManager : MonoBehaviour
                 LoadingScreen.SetActive(false);
                 break;
             case "Main Menu":
+                controlsMenu.SetActive(false);
                 creditsMenu.SetActive(false);
                 mainMenu.SetActive(true);
                 settingsMenu.SetActive(false);
@@ -418,6 +435,7 @@ public class MenuManager : MonoBehaviour
                 LoadingScreen.SetActive(false);
                 break;
             case "Settings":
+                controlsMenu.SetActive(false);
                 creditsMenu.SetActive(false);
                 mainMenu.SetActive(false);
                 settingsMenu.SetActive(true);
@@ -426,6 +444,7 @@ public class MenuManager : MonoBehaviour
                 LoadingScreen.SetActive(false);
                 break;
             case "File Select":
+                controlsMenu.SetActive(false);
                 creditsMenu.SetActive(false);
                 mainMenu.SetActive(false);
                 settingsMenu.SetActive(false);
@@ -434,6 +453,7 @@ public class MenuManager : MonoBehaviour
                 LoadingScreen.SetActive(false);
                 break;
             case "Are You Sure":
+                controlsMenu.SetActive(false);
                 creditsMenu.SetActive(false);
                 mainMenu.SetActive(false);
                 settingsMenu.SetActive(false);

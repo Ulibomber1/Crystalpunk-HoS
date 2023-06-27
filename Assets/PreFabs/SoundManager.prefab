@@ -56,7 +56,7 @@ MonoBehaviour:
   purchase: {fileID: 8300000, guid: 865fb4179e6bce143b93976021d88dfe, type: 3}
   reload: {fileID: 8300000, guid: 78c6bd29ab56aa743806c50948d4d3c7, type: 3}
   fire: {fileID: 8300000, guid: 50a6ad8247fff0940ad6fd7e9fb5766a, type: 3}
-  gearPickup: {fileID: 8300000, guid: 733bb4c64adbd0e40a0d8c3d2970683d, type: 3}
+  gearPickup: {fileID: 8300000, guid: 33c31f631d279f44995acdcb1be08b6e, type: 3}
   menuNext: {fileID: 8300000, guid: 1abb37b32c849be44a7a5628d1e6f8b6, type: 3}
   menuBack: {fileID: 8300000, guid: f5d099c7a40edb844a583ee1693ea567, type: 3}
   menuPause: {fileID: 8300000, guid: 4e7ce19b0c9dda1458946554f940d3b8, type: 3}
