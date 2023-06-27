@@ -501,16 +501,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1337960167}
-    - target: {fileID: 4108791762587921064, guid: 76eb1c5937d70ed4ebd23f5149deb016,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackToMainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 4108791762587921064, guid: 76eb1c5937d70ed4ebd23f5149deb016,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: MenuBack
-      objectReference: {fileID: 0}
     - target: {fileID: 6056440216025782568, guid: 76eb1c5937d70ed4ebd23f5149deb016,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -521,16 +511,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1337960167}
-    - target: {fileID: 6056440216025782568, guid: 76eb1c5937d70ed4ebd23f5149deb016,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenControls
-      objectReference: {fileID: 0}
-    - target: {fileID: 6056440216025782568, guid: 76eb1c5937d70ed4ebd23f5149deb016,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: MenuNext
-      objectReference: {fileID: 0}
     - target: {fileID: 6070244710226014390, guid: 76eb1c5937d70ed4ebd23f5149deb016,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
