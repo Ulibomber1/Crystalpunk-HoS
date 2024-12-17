@@ -4,6 +4,8 @@ Take back the power crystals, a recent discovery that allows for nearly limitles
 
 # **[Play Our Game!](https://tommezzie.itch.io/crystalpunk-heart-of-steam)**
 
+**[Devlog](https://tommezzie.itch.io/crystalpunk-heart-of-steam/devlog)**
+
 **[Game Design Document](https://docs.google.com/document/d/1Rou6RI2lGu4-tanf0N2rA3HX3mQ6De_-zW394yIRYLg/edit?usp=sharing)**
 
 **[Trello](https://trello.com/b/Ptka8YNP/crystalpunk-tasks)**
